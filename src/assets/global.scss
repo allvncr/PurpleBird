@@ -1,12 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;600&display=swap");
 
 // Variable definition
+$tablette: 1180px;
+$phone: 800px;
 $black: #2a2a2a;
 $white: #fff;
 $grey-light: #e6e6e6;
 $grey-dark: #d9d9d9;
 $primary: #3e4ca7;
 $secondary: #ff6391;
+
 
 #app {
   font-family: "Raleway", sans-serif;
@@ -24,11 +27,18 @@ a {
 }
 
 .container {
+  @media only screen and (max-width: $tablette) {
+    width: 90%;
+  }
+  @media only screen and (max-width: $phone) {
+    width: 95%;
+  }
   width: 75%;
   margin: auto;
 }
 
 .btn {
+  width: 100%;
   display: inline-block;
   font-weight: 600;
   margin-bottom: 0;
@@ -49,11 +59,23 @@ a {
 
 .btn-default {
   color: $black;
-  background-color: #e6e6e6;
-  border-color: #e6e6e6;
+  background-color: $grey-light;
+  border-color: $grey-light;
 
   &:hover{
-    background-color: #d9d9d9;
-    border-color: #d9d9d9;
+    background-color: $grey-dark;
+    border-color: $grey-dark;
   }
+}
+
+.btn-primary {
+  color: $white;
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.btn-secondary {
+  color: $white;
+  background-color: $secondary;
+  border-color: $secondary;
 }

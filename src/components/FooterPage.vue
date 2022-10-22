@@ -22,7 +22,7 @@
         </ul>
       </div>
     </div>
-    <div class="navbar-container">
+    <div class="container">
       <div class="navbar-body">
         <div class="block">
           <div class="office">
@@ -52,7 +52,11 @@
           </ul>
           <ul class="nav-social">
             <li>
-              <router-link to="" title="Profil LinkedIn de Purplebird" target="_blank">
+              <router-link
+                to=""
+                title="Profil LinkedIn de Purplebird"
+                target="_blank"
+              >
                 <svg
                   class="img"
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +71,11 @@
               </router-link>
             </li>
             <li>
-              <router-link to="" title="Profil Instagram de Purplebird" target="_blank">
+              <router-link
+                to=""
+                title="Profil Instagram de Purplebird"
+                target="_blank"
+              >
                 <svg
                   class="img"
                   xmlns="http://www.w3.org/2000/svg"
@@ -111,13 +119,14 @@
               >Conditions générales de vente</router-link
             >
           </li>
-          <li><router-link to="" title="Mentions légales">Mentions légales</router-link></li>
+          <li>
+            <router-link to="" title="Mentions légales"
+              >Mentions légales</router-link
+            >
+          </li>
           <li>
             Site réalisé par
-            <router-link
-              to=""
-              title="Ablo Vianney"
-              target="_blank"
+            <router-link to="" title="Ablo Vianney" target="_blank"
               >Ablo Vianney</router-link
             >
           </li>
@@ -138,17 +147,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// Variable definition
-$black: #2a2a2a;
-$white: #fff;
-$grey-light: #e6e6e6;
-$grey-dark: #d9d9d9;
-$primary: #3e4ca7;
-$secondary: #ff6391;
-
 .footer {
   background-color: $black;
-  color: #6c6c6c;
+  color: $grey-dark;
   font-size: 12px;
   line-height: 1.5;
 }
@@ -164,12 +165,16 @@ $secondary: #ff6391;
 
   ul {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid $grey-dark;
 
     li {
-      flex-grow: 1;
+      @media only screen and (max-width: $phone) {
+        width: 50%;
+      }
+      width: 25%;
       display: flex;
       justify-content: center;
     }
@@ -191,14 +196,18 @@ $secondary: #ff6391;
   }
 }
 
-.navbar-container {
-  width: 75%;
-  margin: auto;
+.container {
+  @media only screen and (max-width: $phone) {
+    padding: 16px;
+  }
   padding: 64px 16px 16px;
   color: $grey-dark;
 }
 
 .navbar-body {
+  @media only screen and (max-width: $phone) {
+    grid-template-columns: auto auto;
+  }
   display: grid;
   grid-template-columns: auto auto auto;
 
@@ -244,20 +253,20 @@ $secondary: #ff6391;
       }
     }
 
-    .object-media {
-      margin-top: 32px;
-      margin-bottom: 16px;
-      height: 100%;
-
-      img {
-        display: block;
-        max-height: 64px;
+    .object-media img {
+      @media only screen and (max-width: $phone) {
+        display: none;
       }
+      display: block;
+      max-height: 72px;
     }
   }
 }
 
 .navbar-bottom {
+  @media only screen and (max-width: $phone) {
+    padding: 16px 0;
+  }
   background-color: $white;
   color: #959595;
   padding: 32px 0;
@@ -265,10 +274,14 @@ $secondary: #ff6391;
 
   & .container {
     display: flex;
+    flex-wrap: wrap;
     position: relative;
   }
 
   .scroll {
+    @media only screen and (max-width: $phone) {
+      display: none;
+    }
     position: absolute;
     cursor: pointer;
     right: 15px;
@@ -284,6 +297,9 @@ $secondary: #ff6391;
   }
 
   .copyright {
+    @media only screen and (max-width: $phone) {
+      width: 100%;
+    }
     margin-bottom: 0;
     text-transform: uppercase;
     &::after {

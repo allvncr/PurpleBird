@@ -1,17 +1,21 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import { createStore } from "vuex-extensions";
+import categories from "./modules/categories";
+import produits from "./modules/produits";
+// import axios from "axios";
+// import domain from "@/environment";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+export default createStore(Vuex.Store, {
+  state: {},
+  mutations: {},
+  actions: {},
+
+  getters: {},
   modules: {
-  }
-})
+    categories,
+    produits
+  },
+});

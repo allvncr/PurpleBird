@@ -72,7 +72,11 @@
       </ul>
       <ul class="nav-pages">
         <li>
-          <router-link :to="{ name: 'panier'}" title="Votre Panier" class="shopping-cart">
+          <router-link
+            :to="{ name: 'panier' }"
+            title="Votre Panier"
+            class="shopping-cart"
+          >
             <svg
               class="img shopping-cart-icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +85,7 @@
             >
               <g>
                 <path
-                  fill="#28367a"
+                  fill="#3e4ca7"
                   d="M370.961,348.238H205.922c-7.363,0-13.281-5.918-13.281-13.277V176.078H384.16v158.883 C384.238,342.238,378.238,348.238,370.961,348.238L370.961,348.238z M370.961,348.238"
                 ></path>
                 <path
@@ -106,66 +110,116 @@
           </router-link>
         </li>
         <li>
-          <router-link to="mailto:info@purplebird.fr" title="INFO@PURPLEBIRD.FR">
+          <router-link
+            to="mailto:info@purplebird.fr"
+            title="INFO@PURPLEBIRD.FR"
+          >
             INFO@PURPLEBIRD.FR
           </router-link>
         </li>
       </ul>
     </div>
     <div class="searchBlock">
-      <form action="">
-        <label for=""> CONSULTER NOTRE CATALOGUE ET RECEVOIR UN DEVIS </label>
-        <div class="form-group">
-          <input
-            type="text"
-            v-model="search"
-            placeholder="Rechercher un object pub ou un cadeau"
-          />
-          <span class="search-icon">
-            <svg
-              class="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 11.14 11.14"
-              fill="#28367a"
-            >
-              <title>icon-search</title>
+      <SearchBar></SearchBar>
+    </div>
+    <div class="container-fluid">
+      <div class="navbar-mobile">
+        <button type="button" class="toggle" @click="navbar = !navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="brand">
+          <img src="@/assets/PURPLEBIRD.png" />
+        </a>
+        <router-link
+          :to="{ name: 'panier' }"
+          title="Votre Panier"
+          class="shopping-cart"
+        >
+          <svg
+            class="img shopping-cart-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 391.52 355.52"
+          >
+            <g>
               <path
-                class="a"
-                d="M11.14,11.42a.85.85,0,0,1-.85.85A.79.79,0,0,1,9.68,12L7.39,9.73a4.62,4.62,0,0,1-2.68.83A4.71,4.71,0,0,1,1.38,9.18,4.71,4.71,0,0,1,0,5.85,4.71,4.71,0,0,1,1.38,2.51a4.77,4.77,0,0,1,1.5-1,4.74,4.74,0,0,1,3.67,0A4.72,4.72,0,0,1,9.06,4a4.84,4.84,0,0,1,.37,1.84A4.61,4.61,0,0,1,8.6,8.52l2.3,2.29A.85.85,0,0,1,11.14,11.42ZM6.83,8a2.89,2.89,0,0,0,.88-2.12,2.86,2.86,0,0,0-.88-2.12,2.86,2.86,0,0,0-2.12-.88,2.89,2.89,0,0,0-2.12.88,2.9,2.9,0,0,0-.88,2.12,3,3,0,0,0,3,3A2.9,2.9,0,0,0,6.83,8Z"
-                transform="translate(0 -1.13)"
+                fill="#3e4ca7"
+                d="M370.961,348.238H205.922c-7.363,0-13.281-5.918-13.281-13.277V176.078H384.16v158.883 C384.238,342.238,378.238,348.238,370.961,348.238L370.961,348.238z M370.961,348.238"
               ></path>
-            </svg>
-          </span>
+              <path
+                fill="#000"
+                d="M50.32,355.441h110.719c4,0,7.281-3.281,7.281-7.281s-3.281-7.281-7.281-7.281H50.32 c-19.761,0-35.761-16.078-35.761-35.758V75.68H64v30.64c0,4,3.281,7.282,7.281,7.282c4,0,7.278-3.282,7.278-7.282V75.68h96.961 v30.64c0,4,3.281,7.282,7.281,7.282c4,0,7.277-3.282,7.277-7.282V75.68h49.442V92c0,4,3.281,7.281,7.281,7.281 c4,0,7.277-3.281,7.277-7.281V68.398c0-4-3.277-7.277-7.277-7.277h-56.723C189.121,27.199,161.281,0,127.121,0 s-62,27.281-62.961,61.121H7.281c-4,0-7.281,3.277-7.281,7.277v236.723C0.078,332.879,22.641,355.441,50.32,355.441L50.32,355.441z M126.961,14.559c26.078,0,47.437,20.722,48.48,46.64H78.559C79.52,35.281,100.879,14.559,126.961,14.559L126.961,14.559z M126.961,14.559"
+              ></path>
+              <path
+                fill="#000"
+                d="M237.039,159.121v9.758h-44.398c-4,0-7.282,3.281-7.282,7.281v145.36c0,18.718,15.2,34,34,34H357.52 c18.718,0,34-15.2,34-34V176.078c0-4-3.282-7.277-7.282-7.277H339.84v-9.762c0-28.32-23.039-51.359-51.36-51.359 C260.16,107.68,237.039,130.801,237.039,159.121L237.039,159.121z M376.961,183.359V321.52c0,10.718-8.723,19.441-19.441,19.441 H219.359c-10.718,0-19.437-8.723-19.437-19.441V183.359h37.117v20.403c0,4,3.281,7.277,7.281,7.277s7.282-3.277,7.282-7.277 v-20.403h73.757v20.403c0,4,3.282,7.277,7.282,7.277c4,0,7.281-3.277,7.281-7.277v-20.403H376.961z M288.398,122.238 c20.321,0,36.883,16.563,36.883,36.883v9.758H251.52v-9.758C251.602,138.719,268.078,122.238,288.398,122.238L288.398,122.238z M288.398,122.238"
+              ></path>
+            </g>
+          </svg>
+        </router-link>
+      </div>
+      <div class="navbar-collapse" v-show="navbar">
+        <div class="navbar-group">
+          <ul class="nav">
+            <li>
+              <router-link to="" title="Qui sommes-nous ?"
+                >Qui sommes-nous ?</router-link
+              >
+            </li>
+            <li>
+              <router-link to="" title="L’équipe">L’équipe</router-link>
+            </li>
+            <li>
+              <router-link to="" title="Notre savoir-faire"
+                >Notre savoir-faire</router-link
+              >
+            </li>
+            <li>
+              <router-link to="" title="Nos références"
+                >Nos références</router-link
+              >
+            </li>
+            <li>
+              <router-link to="" title="Nous contacter"
+                >Nous contacter</router-link
+              >
+            </li>
+          </ul>
         </div>
-      </form>
+        <div class="navbar-group">
+          <SearchBar></SearchBar>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import SearchBar from "./SearchBar.vue";
+
 export default {
   data() {
     return {
       dropdown: false,
-      search: null
+      navbar: true,
     };
   },
-  methods: {
-    
-  }
+  methods: {},
+  computed: {
+    ...mapGetters(["getCategories"]),
+  },
+  components: { SearchBar },
 };
 </script>
 
 <style lang="scss" scoped>
-// Variable definition
-$black: #2a2a2a;
-$white: #fff;
-$grey-light: #e6e6e6;
-$grey-dark: #d9d9d9;
-$primary: #3e4ca7;
-$secondary: #ff6391;
-
 .logoBlock {
+  @media only screen and (max-width: $phone) {
+    display: none;
+  }
   .logoBlock-header {
     padding: 8px 30px;
     background-color: $primary;
@@ -208,6 +262,9 @@ $secondary: #ff6391;
 }
 
 .navBlock {
+  @media only screen and (max-width: $phone) {
+    display: none;
+  }
   border-top: 1px solid $grey-dark;
   border-bottom: 1px solid $grey-dark;
   padding: 20px 0;
@@ -216,22 +273,34 @@ $secondary: #ff6391;
   justify-content: center;
 
   .nav-pages {
+    @media only screen and (max-width: $tablette) {
+      padding: 0 16px;
+      border-right: 0;
+    }
+    
     display: flex;
     align-items: center;
     border-right: 1px solid $grey-dark;
-    padding-left: 36px;
-    padding-right: 36px;
+    padding-left: 32px;
+    padding-right: 32px;
     position: relative;
     margin: 0;
 
-    li a, li .link {
+    &:last-child{  
+      @media only screen and (max-width: 1000px) {
+        display: none;
+      }
+    }
+
+    li a,
+    li .link {
       cursor: pointer;
       color: $black;
       display: block;
       font-size: 12px;
       font-weight: 600;
       line-height: 1.5;
-      padding: 10px 20px;
+      padding: 8px 16px;
       text-transform: uppercase;
 
       &:hover {
@@ -313,48 +382,91 @@ $secondary: #ff6391;
 }
 
 .searchBlock {
+  @media only screen and (max-width: $phone) {
+    display: none;
+  }
   padding: 20px 15px;
   margin: auto;
+}
 
-  form {
+.container-fluid {
+  @media only screen and (max-width: $phone) {
+    display: block;
+  }
+  position: relative;
+  display: none;
+}
+.navbar-mobile {
+  display: none;
+  @media only screen and (max-width: $phone) {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+  }
+  padding: 16px 0;
+  position: relative;
 
-    label {
+  a {
+    display: block;
+    padding: 0 15px;
+  }
+
+  .toggle {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    display: block;
+    float: left;
+    outline: 0;
+    padding: 8px 15px;
+
+    .icon-bar {
+      background-color: #000;
+      border-radius: 1px;
+      display: block;
+      height: 2px;
+      width: 22px;
+
+      & + .icon-bar {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .brand {
+    height: 42px;
+    img {
+      height: 100%;
+    }
+  }
+
+  .shopping-cart-icon {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+  }
+}
+
+.navbar-collapse {
+  position: absolute;
+  z-index: 2;
+  background-color: $white;
+  border-bottom: 1px solid $grey-dark;
+  width: 100%;
+  .navbar-group {
+    padding: 15px 0;
+    border-top: 1px solid $grey-dark;
+
+    .nav > li > a {
+      color: #000;
       display: block;
       font-size: 12px;
-      line-height: 1.5;
-      margin-bottom: 0;
-      padding: 9px 50px 9px 56px;
       font-weight: 600;
+      line-height: 1.5;
+      padding: 9px 18px;
       text-transform: uppercase;
-    }
-    .form-group {
-      position: relative;
-      width: 45%;
-      input {
-        width: 100%;
-        font-size: 16px;
-        line-height: 1.25;
-        padding: 8px 12px;
-
-        &::placeholder {
-          text-transform: uppercase;
-        }
-      }
-
-      .search-icon {
-        position: absolute;
-        padding: 8px 12px;
-        top: 0;
-        right: 0;
-        svg {
-          height: 24px;
-          vertical-align: top;
-          width: 24px;
-        }
-      }
     }
   }
 }

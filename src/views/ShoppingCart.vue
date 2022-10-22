@@ -39,13 +39,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// Variable definition
-$black: #2a2a2a;
-$white: #fff;
-$grey-light: #e6e6e6;
-$grey-dark: #d9d9d9;
-$primary: #3e4ca7;
-$secondary: #ff6391;
 
 section {
   padding: 64px 0;
