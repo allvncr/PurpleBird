@@ -73,6 +73,17 @@
           <div class="form-group-tag">
             <p>Catégories</p>
             <ul>
+              <li class="checkbox">
+                <label>
+                  <input
+                    type="radio"
+                    name="categorie"
+                    :value="{}"
+                    v-model="categorie"
+                  />
+                  <span>Aucune</span>
+                </label>
+              </li>
               <li class="checkbox" v-for="(cat, i) in getCategories" :key="i">
                 <label>
                   <input
@@ -103,7 +114,8 @@
           </p>
         </div>
         <div class="produit-list">
-          <router-view />
+          <!-- <router-view /> -->
+          <produit-list></produit-list>
         </div>
       </div>
     </section>
@@ -111,11 +123,15 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import ProduitList from "./ProduitList.vue";
 
 export default {
+  components: { ProduitList },
   data() {
     return {
+      page: 1,
+      perPage: 10,
       categorie: {},
     };
   },
@@ -123,20 +139,35 @@ export default {
     ...mapGetters(["getCategories", "getProduitRows"]),
   },
   methods: {
-    setup(route) {
-      console.log(route);
+    ...mapActions(["all_categories", "all_products", "category_products"]),
+    setup(query) {
+      this.all_products(query);
     },
   },
   mounted() {
-    this.setup(this.$route.query);
+    if (this.$route.params.id)
+      this.category_products({
+        id: this.$route.params.id,
+        page: this.page,
+        perPage: this.perPage,
+      });
+    else this.setup(this.$route.query);
+    this.all_categories();
   },
   watch: {
     $route(newRoute) {
-      this.setup(newRoute.query);
+      if (newRoute.params.id)
+        this.category_products({
+          id: newRoute.params.id,
+          page: this.page,
+          perPage: this.perPage,
+        });
+      else this.setup(newRoute.params);
     },
     categorie(cat) {
-      console.log(cat.lib);
-      this.$router.push({ name: "produitList", params: { id: cat.id } });
+      if (cat.id)
+        this.$router.push({ name: "produitList", params: { id: cat.id } });
+      else this.$router.push({ name: "categories" });
     },
   },
 };

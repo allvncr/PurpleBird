@@ -53,6 +53,9 @@ form {
   justify-content: center;
 
   label {
+    @media only screen and (max-width: $tablette) {
+      padding: 8px 16px;
+    }
     @media only screen and (max-width: $phone) {
       display: none;
     }
@@ -70,9 +73,14 @@ form {
     }
     position: relative;
     width: 45%;
+
     input {
       @media only screen and (max-width: $phone) {
         border: 0;
+      }
+      @media only screen and (max-width: $tablette) {
+        padding: 8px;
+        font-size: 12px;
       }
       outline: none;
       width: 100%;
@@ -86,6 +94,12 @@ form {
     }
 
     .search-icon {
+      @media only screen and (max-width: $phone) {
+        padding: 8px 12px;
+      }
+      @media only screen and (max-width: $tablette) {
+        padding: 6px 8px;
+      }
       position: absolute;
       padding: 8px 12px;
       cursor: pointer;

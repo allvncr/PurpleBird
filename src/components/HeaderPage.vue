@@ -198,7 +198,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import SearchBar from "./SearchBar.vue";
+import SearchBar from "./ui/SearchBar.vue";
 
 export default {
   data() {
@@ -277,7 +277,7 @@ export default {
       padding: 0 16px;
       border-right: 0;
     }
-    
+
     display: flex;
     align-items: center;
     border-right: 1px solid $grey-dark;
@@ -286,7 +286,7 @@ export default {
     position: relative;
     margin: 0;
 
-    &:last-child{  
+    &:last-child {
       @media only screen and (max-width: 1000px) {
         display: none;
       }

@@ -1,27 +1,11 @@
 import axios from "axios";
 import domain from "@/environment";
+import Categorie from "@/models/categorie";
 
 const state = {
-  categories: [
-    {
-      id: 1,
-      lib: "textile",
-    },
-    {
-      id: 2,
-      lib: "HIGH TECH",
-    },
-    {
-      id: 3,
-      lib: "Maison",
-    },
-    {
-      id: 4,
-      lib: "Accessoires",
-    },
-  ],
+  categories: [],
   categorieLoading: false,
-  categorieRows: 4,
+  categorieRows: 0,
 };
 const getters = {
   getCategories: (state) => state.categories,
@@ -39,9 +23,9 @@ const mutations = {
   },
   SET_CATEGORIES(state, payload) {
     if (payload) {
-      state.categories = payload;
+      state.categories = payload.map((item) => Categorie.create(item));
     } else {
-      state.categories = false;
+      state.categories = [];
     }
   },
   PUSH_CATEGORIE(state, payload) {
@@ -57,21 +41,12 @@ const mutations = {
 };
 
 const actions = {
-  
-  async all_clients({ commit }, payload) {
+  async all_categories({ commit }) {
     commit("SET_CATEGORIELOADING", true);
-    const params = {
-      page: payload.page,
-      per_page: payload.per_page,
-      search: payload.search,
-    };
     try {
-      const responce = await axios.get(domain + `/categories`, {
-        params,
-      });
-
-      commit("SET_CATEGORIES", responce.data.data.data);
-      commit("UPDATE_CATEGORIE_ROW", responce.data.data.total);
+      const response = await axios.get(domain + `/categories`);
+      commit("SET_CATEGORIES", response.data);
+      commit("UPDATE_CATEGORIE_ROW", response.data.length);
       commit("SET_CATEGORIELOADING", false);
       return true;
     } catch (error) {

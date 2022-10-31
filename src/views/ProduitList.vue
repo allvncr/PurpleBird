@@ -3,20 +3,27 @@
     <ul>
       <li v-for="product in getProduits" :key="product.id">
         <div class="product">
-          <router-link class="product-img img-ratio" to="" :title="product.lib">
-            <img :src="product.img" :alt="product.lib" />
+          <router-link
+            class="product-img img-ratio"
+            :to="'produit/' + product.id"
+            :title="product.name"
+          >
+            <img :src="product.img" :alt="product.name" />
           </router-link>
 
           <div class="product-details">
             <h2 class="h4 product-title">
-              <router-link to="" :title="product.lib">
-                {{ product.lib }}
+              <router-link :to="'produit/' + product.id" :title="product.name">
+                {{ product.name }}
               </router-link>
             </h2>
             <div class="product-price">{{ product.price }} € HT</div>
           </div>
           <div class="product-actions actions">
-            <router-link class="btn btn-default" to="" title="Voir produit"
+            <router-link
+              class="btn btn-default"
+              :to="'produit/' + product.id"
+              title="Voir produit"
               >Voir produit</router-link
             >
           </div>
@@ -57,6 +64,7 @@ ul {
 
       .img-ratio > img {
         width: 100%;
+        height: 220px;
       }
 
       .product-details {
