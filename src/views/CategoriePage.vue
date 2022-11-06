@@ -145,29 +145,25 @@ export default {
     },
   },
   mounted() {
-    if (this.$route.params.id)
-      this.category_products({
-        id: this.$route.params.id,
-        page: this.page,
-        perPage: this.perPage,
-      });
-    else this.setup(this.$route.query);
+    if (!this.$route.query.search) this.setup({});
     this.all_categories();
   },
   watch: {
-    $route(newRoute) {
-      if (newRoute.params.id)
+    "$route.params.id"(newParamsId) {
+      if (newParamsId)
         this.category_products({
-          id: newRoute.params.id,
-          page: this.page,
+          id: newParamsId,
+          page: 1,
           perPage: this.perPage,
         });
-      else this.setup(newRoute.params);
     },
     categorie(cat) {
       if (cat.id)
         this.$router.push({ name: "produitList", params: { id: cat.id } });
-      else this.$router.push({ name: "categories" });
+      else {
+        this.setup({});
+        this.$router.push({ name: "categories" });
+      }
     },
   },
 };

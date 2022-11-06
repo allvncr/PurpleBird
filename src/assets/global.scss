@@ -10,7 +10,6 @@ $grey-dark: #d9d9d9;
 $primary: #3e4ca7;
 $secondary: #ff6391;
 
-
 #app {
   font-family: "Raleway", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -55,6 +54,7 @@ a {
   line-height: 1.42857143;
   border-radius: 2px;
   user-select: none;
+  padding: 18px 0;
 }
 
 .btn-default {
@@ -62,7 +62,7 @@ a {
   background-color: $grey-light;
   border-color: $grey-light;
 
-  &:hover{
+  &:hover {
     background-color: $grey-dark;
     border-color: $grey-dark;
   }

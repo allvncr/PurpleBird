@@ -2,44 +2,46 @@
   <section>
     <h1>Panier</h1>
     <ul>
-      <li :class="{ active: step == 1 }">
-        <span>1</span>
-        &nbsp;Panier
+      <li>
+        <router-link to="/panier">
+          <span>1</span>
+          Panier
+        </router-link>
       </li>
-      <li :class="{ active: step == 2 }">
-        <span>2</span>
-        &nbsp;Coordonnées
+      <li>
+        <router-link to="/resume">
+          <span>2</span>
+          Coordonnées
+        </router-link>
       </li>
-      <li :class="{ active: step == 3 }">
-        <span>3</span>
-        &nbsp;Confirmation
+      <li>
+        <router-link to="/checkout">
+          <span>3</span>
+          Confirmation
+        </router-link>
       </li>
     </ul>
-    <p>
-      Vous pouvez modifier les quantités souhaitées dans les cases, puis cliquer
-      sur le bouton <strong>RECALCULER</strong> pour mettre à jour le total.
-    </p>
-    <p>Vide</p>
-    <div class="action">
-      <router-link to="" class="btn btn-default"
-        >Continuer votre selection</router-link
-      >
-    </div>
+
+    <router-view></router-view>
   </section>
 </template>
 
 <script>
+// import { mapActions, mapGetters } from "vuex";
+
 export default {
   data() {
-    return {
-      step: 1,
-    };
+    return {};
+  },
+  computed: {
+    routerName() {
+      return this.$route.name;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 section {
   padding: 64px 0;
   width: 75%;
@@ -86,17 +88,19 @@ ul {
       padding: 0;
       text-align: center;
       width: 24px;
+      margin-right: 4px;
     }
   }
 
-  .active {
+  a {
+    color: $black;
+  }
+
+  .router-link-exact-active {
     color: $primary;
     span {
       background-color: $primary;
     }
   }
-}
-p {
-  margin-bottom: 20px;
 }
 </style>

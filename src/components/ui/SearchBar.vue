@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -34,13 +36,36 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["all_products", "category_products"]),
     searchProduct() {
-      if (this.search)
+      if (this.$route.params.id) {
+        this.category_products({
+          id: this.$route.params.id,
+          search: this.search,
+        });
+      } else {
+        this.all_products({
+          search: this.search,
+        });
+      }
+
+      if (this.$route.name != "categories" && this.$route.name != "produitList")
         this.$router.push({
           name: "categories",
           query: { search: this.search },
         });
-      else this.$router.push({ name: "categories" });
+      else {
+        if (this.search != this.$route.query.search)
+          this.$router.push({
+            name: "categories",
+            query: { search: this.search },
+          });
+      }
+    },
+  },
+  watch: {
+    "$route.query.search"(newSearch) {
+      if (this.search != newSearch) this.search = newSearch;
     },
   },
 };

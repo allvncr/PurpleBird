@@ -5,7 +5,7 @@
         <div class="product">
           <router-link
             class="product-img img-ratio"
-            :to="'produit/' + product.id"
+            to=""
             :title="product.name"
           >
             <img :src="product.img" :alt="product.name" />
@@ -13,20 +13,38 @@
 
           <div class="product-details">
             <h2 class="h4 product-title">
-              <router-link :to="'produit/' + product.id" :title="product.name">
+              <router-link to="">
                 {{ product.name }}
               </router-link>
             </h2>
             <div class="product-price">{{ product.price }} € HT</div>
           </div>
           <div class="product-actions actions">
+            <div
+              class="btn btn-primary"
+              title="Ajouter au Panier"
+              v-if="!isStored(product)"
+              @click="add_product(product)"
+            >
+              Ajouter au Panier
+            </div>
+            <div
+              class="btn btn-secondary"
+              title="Retirer du Panier"
+              v-else
+              @click="remove_product(product)"
+            >
+              Retirer du Panier
+            </div>
+          </div>
+          <!-- <div class="product-actions actions">
             <router-link
-              class="btn btn-default"
+              class="btn btn-primary"
               :to="'produit/' + product.id"
               title="Voir produit"
               >Voir produit</router-link
             >
-          </div>
+          </div> -->
         </div>
       </li>
     </ul>
@@ -34,11 +52,20 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["getProduits", "getProduitRows"]),
+    ...mapGetters(["getProduits", "getProduitRows", "getPanier"]),
+  },
+  methods: {
+    ...mapActions(["add_product", "remove_product"]),
+
+    isStored(product) {
+      const find = this.getPanier.find((pro) => pro.id === product.id);
+      if (find) return true;
+      else return false;
+    },
   },
 };
 </script>
@@ -110,14 +137,6 @@ ul {
 
       .product-actions {
         display: none;
-
-        .btn-default {
-          background-color: $primary;
-          border-radius: 0;
-          color: $white;
-          display: block;
-          padding: 18px 0;
-        }
       }
 
       &:hover .product-img::after {

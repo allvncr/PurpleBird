@@ -99,7 +99,7 @@
               </g>
             </svg>
             <span class="shopping-cart-title">Votre panier</span>
-            <span class="shopping-cart-bagde">0</span>
+            <span class="shopping-cart-bagde">{{ getPanierRows }}</span>
           </router-link>
         </li>
       </ul>
@@ -111,10 +111,11 @@
         </li>
         <li>
           <router-link
+            style="text-transform: lowercase"
             to="mailto:info@purplebird.fr"
-            title="INFO@PURPLEBIRD.FR"
+            title="info@purplebird.fr"
           >
-            INFO@PURPLEBIRD.FR
+            info@purplebird.fr
           </router-link>
         </li>
       </ul>
@@ -209,7 +210,7 @@ export default {
   },
   methods: {},
   computed: {
-    ...mapGetters(["getCategories"]),
+    ...mapGetters(["getCategories", "getPanierRows"]),
   },
   components: { SearchBar },
 };

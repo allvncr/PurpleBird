@@ -14,10 +14,28 @@ const routes = [
       import(/* webpackChunkName: "home" */ "../views/HomeView.vue"),
   },
   {
-    path: "/panier",
-    name: "panier",
+    path: "/card",
+    name: "card",
     component: () => import("../views/ShoppingCart.vue"),
+    children: [
+      {
+        path: "/panier",
+        name: "panier",
+        component: () => import("../views/shopCard.vue"),
+      },
+      {
+        path: "/resume",
+        name: "resume",
+        component: () => import("../views/resumePage.vue"),
+      },
+      {
+        path: "/checkout",
+        name: "checkout",
+        component: () => import("../views/checkoutPage.vue"),
+      },
+    ],
   },
+
   {
     path: "/categories",
     name: "categories",

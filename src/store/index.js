@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import { createStore } from "vuex-extensions";
 import categories from "./modules/categories";
 import produits from "./modules/produits";
+import panier from "./modules/panier";
 // import axios from "axios";
 // import domain from "@/environment";
 
@@ -16,6 +17,7 @@ export default createStore(Vuex.Store, {
   getters: {},
   modules: {
     categories,
-    produits
+    produits,
+    panier,
   },
 });
