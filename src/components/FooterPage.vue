@@ -4,18 +4,18 @@
       <div class="container">
         <ul>
           <li>
-            <router-link to="">Notre savoir-faire</router-link>
+            <router-link :to="{ name: 'savoirFaire' }">Notre savoir-faire</router-link>
           </li>
           <li>
-            <router-link to="">Qui sommes-nous ?</router-link>
+            <router-link :to="{ name: 'quiSommeNous' }">Qui sommes-nous ?</router-link>
           </li>
           <li>
-            <router-link to="" title="Nos références"
-              >Nos références</router-link
+            <router-link :to="{ name: 'equipe'}" title="L'équipe"
+              >L'équipe</router-link
             >
           </li>
           <li>
-            <router-link to="" title="Nous contacter"
+            <router-link :to="{ name: 'contact'}" title="Nous contacter"
               >Nous contacter</router-link
             >
           </li>
@@ -126,8 +126,8 @@
           </li>
           <li>
             Site réalisé par
-            <router-link to="" title="Ablo Vianney" target="_blank"
-              >Ablo Vianney</router-link
+            <a href="https://www.linkedin.com/in/vianney-ablo-76a3ab19a/" title="Ablo Vianney" target="_blank"
+              >Ablo Vianney</a
             >
           </li>
         </ul>

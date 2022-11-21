@@ -57,12 +57,14 @@ const actions = {
       sort: payload.sort,
     };
     try {
-      const response = await axios.get(domain + `/products`, {
+      const response = await axios.get(domain + `/products/paginate`, {
         params,
       });
 
-      commit("SET_PRODUCTS", response.data.products);
-      commit("UPDATE_PRODUCT_ROW", response.data.total);
+      // commit("SET_PRODUCTS", response.data.products);
+      // commit("UPDATE_PRODUCT_ROW", response.data.total);
+      commit("SET_PRODUCTS", response.data);
+      commit("UPDATE_PRODUCT_ROW", response.data.length);
       commit("SET_PRODUCTLOADING", false);
       return true;
     } catch (error) {
@@ -74,13 +76,13 @@ const actions = {
     commit("SET_PRODUCTLOADING", true);
     const params = {
       page: payload.page,
-      perPage: payload.perPage,
+      size: payload.perPage,
       name: payload.search,
       sort: payload.sort,
     };
     try {
       const response = await axios.get(
-        domain + `/categories/${payload.id}/products`,
+        domain + `/categories/${payload.name}/products`,
         {
           params,
         }

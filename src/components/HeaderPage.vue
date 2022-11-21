@@ -36,7 +36,7 @@
         </ul>
       </div>
       <a href="/" class="brand">
-        <img src="@/assets/PURPLEBIRD.png" />
+        <img src="@/assets/PURPLEBIRD.jpg" />
       </a>
     </div>
     <div class="navBlock">
@@ -51,23 +51,27 @@
             <div class="dropdown-container" v-show="dropdown">
               <ul>
                 <li>
-                  <router-link to="">Qui sommes-nous ?</router-link>
+                  <router-link :to="{ name: 'quiSommeNous' }"
+                    >Qui sommes-nous ?</router-link
+                  >
                 </li>
                 <li>
-                  <router-link to="">L'equipe</router-link>
+                  <router-link :to="{ name: 'equipe'}">L'equipe</router-link>
                 </li>
                 <li>
-                  <router-link to="">Notre savoir-faire</router-link>
+                  <router-link :to="{ name: 'savoirFaire' }"
+                    >Notre savoir-faire</router-link
+                  >
                 </li>
               </ul>
             </div>
           </div>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="" title="Nos références">Nos références</router-link>
-        </li>
+        </li> -->
         <li>
-          <router-link to="" title="Nous contacter">Nous contacter</router-link>
+          <router-link :to="{ name: 'contact'}" title="Nous contacter">Nous contacter</router-link>
         </li>
       </ul>
       <ul class="nav-pages">
@@ -131,7 +135,7 @@
           <span class="icon-bar"></span>
         </button>
         <a href="/" class="brand">
-          <img src="@/assets/PURPLEBIRD.png" />
+          <img src="@/assets/PURPLEBIRD.jpg" />
         </a>
         <router-link
           :to="{ name: 'panier' }"
@@ -259,6 +263,10 @@ export default {
     padding: 30px 15px;
     max-width: 300px;
     margin: auto;
+
+    img{
+      width: 100%;
+    }
   }
 }
 
@@ -436,7 +444,7 @@ export default {
   }
 
   .brand {
-    height: 42px;
+    height: 58px;
     img {
       height: 100%;
     }

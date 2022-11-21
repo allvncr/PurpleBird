@@ -35,7 +35,6 @@ const routes = [
       },
     ],
   },
-
   {
     path: "/categories",
     name: "categories",
@@ -47,6 +46,26 @@ const routes = [
         component: () => import("../views/CategoriePage.vue"),
       },
     ],
+  },
+  {
+    path: "/qui-sommes-nous",
+    name: "quiSommeNous",
+    component: () => import("../views/aboutUs.vue"),
+  },
+  {
+    path: "/savoir-faire",
+    name: "savoirFaire",
+    component: () => import("../views/savoirFaire.vue"),
+  },
+  {
+    path: "/presentation",
+    name: "equipe",
+    component: () => import("../views/theTeam.vue"),
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: () => import("../views/contactUs.vue"),
   },
   {
     path: "/**",
