@@ -68,6 +68,16 @@ const routes = [
     component: () => import("../views/contactUs.vue"),
   },
   {
+    path: "/cgu",
+    name: "condition utilisation",
+    component: () => import("../views/conditionUtilisation.vue"),
+  },
+  {
+    path: "/cgv",
+    name: "condition de vente",
+    component: () => import("../views/conditionVente.vue"),
+  },
+  {
     path: "/**",
     redirect: () => {
       return { path: "/" };

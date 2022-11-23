@@ -4,18 +4,22 @@
       <div class="container">
         <ul>
           <li>
-            <router-link :to="{ name: 'savoirFaire' }">Notre savoir-faire</router-link>
+            <router-link :to="{ name: 'savoirFaire' }"
+              >Notre savoir-faire</router-link
+            >
           </li>
           <li>
-            <router-link :to="{ name: 'quiSommeNous' }">Qui sommes-nous ?</router-link>
+            <router-link :to="{ name: 'quiSommeNous' }"
+              >Qui sommes-nous ?</router-link
+            >
           </li>
           <li>
-            <router-link :to="{ name: 'equipe'}" title="L'équipe"
+            <router-link :to="{ name: 'equipe' }" title="L'équipe"
               >L'équipe</router-link
             >
           </li>
           <li>
-            <router-link :to="{ name: 'contact'}" title="Nous contacter"
+            <router-link :to="{ name: 'contact' }" title="Nous contacter"
               >Nous contacter</router-link
             >
           </li>
@@ -115,18 +119,25 @@
         <p class="copyright">© 2022&nbsp;PURPLEBIRD</p>
         <ul class="nav nav-unstyled nav-pages">
           <li>
-            <router-link to="" title="Conditions générales de vente"
+            <router-link
+              :to="{ name: 'condition utilisation' }"
+              title="Conditions générales d'utilisation"
+              >Conditions générales d'utilisation</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              :to="{ name: 'condition de vente' }"
+              title="Conditions générales de vente"
               >Conditions générales de vente</router-link
             >
           </li>
           <li>
-            <router-link to="" title="Mentions légales"
-              >Mentions légales</router-link
-            >
-          </li>
-          <li>
             Site réalisé par
-            <a href="https://www.linkedin.com/in/vianney-ablo-76a3ab19a/" title="Ablo Vianney" target="_blank"
+            <a
+              href="https://www.linkedin.com/in/vianney-ablo-76a3ab19a/"
+              title="Ablo Vianney"
+              target="_blank"
               >Ablo Vianney</a
             >
           </li>

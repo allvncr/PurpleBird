@@ -67,7 +67,7 @@
   text-align: center;
 
   span {
-    color: $secondary;
+    color: $primary;
     display: inline-block;
   }
 }
