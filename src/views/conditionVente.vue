@@ -948,7 +948,7 @@
   }
 
   ul {
-    list-style: inside;
+    list-style: inside circle !important;
   }
 }
 

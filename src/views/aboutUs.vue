@@ -40,19 +40,19 @@
       </p>
 
       <p>
-        Le savoir-faire de l’agence est complet : <br />
+        Le savoir-faire de l’agence est complet : <br /><br />
         <span class="brand">PURPLEBIRD</span> propose une large collection de
         produits “prêt à sigler” pour valoriser votre image de professionnels :
         textile, papeterie, articles high-tech, clés USB, outdoor, montres,
         parapluies, bagagerie, art de la table, gastronomie, ainsi qu’une
         sélection de marques et de produits de prestiges, actualisée
-        régulièrement en fonction des collections et des saisons. <br />
+        régulièrement en fonction des collections et des saisons. <br /><br />
 
         <span class="brand">PURPLEBIRD</span> afin de mettre en avant le
         savoir-faire de fabricants locaux et européens, nous mettons en avant
-        les fabrications made in France et made in Europe.<br />
+        les fabrications made in France et made in Europe.<br /><br />
 
-        <span class="brand">PURPLEBIRD</span> ,c’est aussi un site Internet
+        <span class="brand">PURPLEBIRD</span>, c’est aussi un site Internet
         pionner de l’objet publicitaire issu du développement durable La
         Publicité par l’Objet avec une éthique écologique et Développement
         Durable est en pleine évolution, les entreprises en font un vecteur de

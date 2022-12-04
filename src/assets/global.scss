@@ -7,8 +7,8 @@ $black: #2a2a2a;
 $white: #fff;
 $grey-light: #e6e6e6;
 $grey-dark: #d9d9d9;
-$primary: #3e4ca7;
-$secondary: #ff6391;
+$primary: #2c3e57;
+$secondary: #7d3e77;
 
 #app {
   font-family: "Raleway", sans-serif;
@@ -73,12 +73,12 @@ a {
 
 .btn-primary {
   color: $white;
-  background-color: $primary;
+  background-color: $primary !important;;
   border-color: $primary;
 }
 
 .btn-secondary {
   color: $white;
-  background-color: $secondary;
+  background-color: $secondary !important;
   border-color: $secondary;
 }

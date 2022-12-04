@@ -57,15 +57,6 @@
         </div>
 
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/Luffy.jpg" width="170" />
-          <h5>Jean</h5>
-          <p>
-            Administrateur<br />
-            <a href="mailto:admin@purplebird.fr"> admin@purplebird.fr </a>
-          </p>
-        </div>
-
-        <div class="about-feature">
           <img
             class="rounded-circle"
             src="../assets/pole-crea.png"
@@ -106,7 +97,6 @@
 
 .team {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 

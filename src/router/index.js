@@ -48,6 +48,11 @@ const routes = [
     ],
   },
   {
+    path: "/produit/:id",
+    name: "produitDetail",
+    component: () => import("../views/produitDetail.vue"),
+  },
+  {
     path: "/qui-sommes-nous",
     name: "quiSommeNous",
     component: () => import("../views/aboutUs.vue"),

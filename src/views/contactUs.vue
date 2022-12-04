@@ -4,49 +4,61 @@
       <h1 class="page-title"><span>Nous</span> contacter</h1>
 
       <form action="">
-        <div class="form-group">
-          <input
-            class="form-control"
-            maxlength="50"
-            placeholder="Prénom"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input
-            class="form-control"
-            maxlength="50"
-            placeholder="Nom"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input
-            class="form-control"
-            type="email"
-            placeholder="Email"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input
-            class="form-control"
-            type="tel"
-            maxlength="40"
-            placeholder="Telephone"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input class="form-control" maxlength="50" placeholder="Société" />
-        </div>
-        <div class="form-group">
-          <textarea
-            class="form-control"
-            rows="3"
-            placeholder="Message"
-            required
-          ></textarea>
+        <div class="block">
+          <div class="left">
+            <b-form-group>
+              <template #label>
+                Prenom <span class="required">*</span>
+              </template>
+              <b-form-input v-model="prenom" placeholder="Prenom" maxlength="50" trim required></b-form-input>
+            </b-form-group>
+
+            <b-form-group>
+              <template #label>
+                Nom <span class="required">*</span>
+              </template>
+              <b-form-input v-model="nom" placeholder="Nom" trim maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required></b-form-input>
+            </b-form-group>
+
+            <b-form-group>
+              <template #label>
+                Email <span class="required">*</span>
+              </template>
+              <b-form-input v-model="email" placeholder="Email" type="email" trim required></b-form-input>
+            </b-form-group>
+
+            <b-form-group>
+              <template #label>
+                Telephone <span class="required">*</span>
+              </template>
+              <b-form-input v-model="tel" placeholder="Telephone" maxlength="40" trim required></b-form-input>
+            </b-form-group>
+
+            <b-form-group>
+              <template #label>
+                Societé <span class="required">*</span>
+              </template>
+              <b-form-input v-model="societe" placeholder="Societé" maxlength="50" trim required></b-form-input>
+            </b-form-group>
+          </div>
+          <div class="right">
+            <b-form-group label="Sujet">
+              <b-form-input v-model="sujet" placeholder="Sujet" maxlength="50" trim></b-form-input>
+            </b-form-group>
+
+
+            <b-form-group>
+              <template #label>
+                Message <span class="required">*</span>
+              </template>
+              <b-form-textarea
+                  id="textarea"
+                  v-model="message"
+                  placeholder="Message..."
+                  rows="6"
+              ></b-form-textarea>
+            </b-form-group>
+          </div>
         </div>
 
         <div class="actions">
@@ -58,6 +70,24 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+  },
+  data() {
+    return {
+      nom: '',
+      prenom: '',
+      email: '',
+      tel: '',
+      societe: '',
+      sujet: '',
+      message: '',
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .aboutus {
@@ -92,6 +122,11 @@ form {
     position: relative;
     margin-bottom: 10px;
 
+    .required{
+      color: red;
+      font-weight: 600;
+    }
+
     .form-control {
       display: block;
       width: 100%;
@@ -113,4 +148,20 @@ form {
     }
   }
 }
+
+.block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .left, .right{
+    width: 48%;
+  }
+}
+
+.actions {
+  width: 50%;
+  margin: auto;
+}
+
 </style>

@@ -12,7 +12,7 @@
           class="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 11.14 11.14"
-          fill="#3e4ca7"
+          fill="#2c3e57"
         >
           <title>icon-search</title>
           <path
@@ -112,6 +112,7 @@ form {
       font-size: 16px;
       line-height: 1.25;
       padding: 8px 12px;
+      border: 1px solid $black;
 
       &::placeholder {
         text-transform: uppercase;
@@ -131,7 +132,7 @@ form {
       top: 0;
       right: 0;
       svg {
-        height: 24px;
+        height: 20px;
         vertical-align: top;
         width: 24px;
       }

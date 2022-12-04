@@ -1,10 +1,58 @@
 <template>
   <div class="home">
+    <b-carousel
+        id="carousel-1"
+        v-model="slide"
+        no-animation
+        :interval="5000"
+        controls
+        indicators
+        background="#ababab"
+        @sliding-start="onSlideStart"
+        @sliding-end="onSlideEnd"
+    >
+
+      <!-- Slides with image only -->
+      <b-carousel-slide>
+        <template #img>
+          <img
+              class="d-block w-100"
+              width="1024"
+              height="400"
+              src="https://m3.extradtp.net/Org/M97x251006.jpg"
+              alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
+      <b-carousel-slide>
+        <template #img>
+          <img
+              class="d-block w-100"
+              width="1024"
+              height="400"
+              src="https://m3.extradtp.net/Org/M97x153414.png"
+              alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
+      <b-carousel-slide>
+        <template #img>
+          <img
+              class="d-block w-100"
+              width="1024"
+              height="400"
+              src="https://m3.extradtp.net/Org/M97x153412.jpg"
+              alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
+    </b-carousel>
+
     <section
-      class="section py-4"
-      id="featured-products"
-      data-section="featured-products"
-      data-category-id="3300"
+        class="section py-4"
+        id="featured-products"
+        data-section="featured-products"
+        data-category-id="3300"
     >
       <div class="section-content">
         <div class="container">
@@ -13,45 +61,63 @@
           </h2>
         </div>
       </div>
-      <div class="section-content backdrop-primary">
-        <div class="container">
-          <div class="group">
-            <div class="item" v-for="i in 4" :key="i">
-              <div class="product">
-                <a
-                  class="product-img"
-                  href=""
-                  title="Parapluie de poche - FARE
-"
-                >
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-3 mb-4" v-for="i in 4" :key="i">
+            <!-- Card -->
+            <div class="product">
+              <div class="view zoom overlay z-depth-2 rounded d-flex flex-wrap align-items-center  justify-content-center">
+                <router-link :to="/produit/+i">
                   <img
-                    src="//www.extradtp.net/Datas/Pdts/Ima/P360548.jpg"
-                    alt="Parapluie de poche - FARE
-"
-                  />
-                </a>
-                <div class="product-details">
-                  <h4 class="product-title">
-                    <a
-                      href=""
-                      title="Parapluie de poche - FARE
-"
-                      >Parapluie de poche - FARE
-                    </a>
-                  </h4>
-                  <div class="product-price">18,12&nbsp;€</div>
-                </div>
-                <div class="product-actions">
-                  <a
-                    class="btn btn-secondary"
-                    href=""
-                    title="Parapluie de poche - FARE
-                  "
-                    ><span class="glyphicon"></span> Voir produit</a
+                      class="img-fluid w-100"
+                      src="https://stopcom.maqprint.fr/files/visuals/medium/9-1886-8.jpg"
+                      alt="Carnet de notes A5 en cuir recyclé"
+                      title="Carnet de notes A5 en cuir recyclé"
                   >
-                </div>
+                </router-link>
+              </div>
+              <div class="text-center pt-2">
+                <h5><router-link :to="/produit/+i">Carnet de notes A5 en cuir recyclé</router-link></h5>
+
+                <h6 class="mb-3">
+                  <span class="text-grey"><small>à partir de</small>
+
+                    <span class="text-grey">
+                    4,71 €
+                    </span>
+                  </span>
+                </h6>
               </div>
             </div>
+            <!-- Card -->
+          </div>
+          <div class="col-6 col-md-3 mb-4" v-for="i in 4" :key="i">
+            <!-- Card -->
+            <div class="product">
+              <div class="view zoom overlay z-depth-2 rounded d-flex flex-wrap align-items-center justify-content-center">
+                <router-link :to="/produit/+i">
+                  <img
+                      class="img-fluid w-100"
+                      src="https://stopcom.maqprint.fr/files/visuals/medium/9-2146-3.jpg"
+                      alt="Enceinte en liège 10W Baia"
+                      title="Enceinte en liège 10W Baia"
+                  >
+                </router-link>
+              </div>
+              <div class="text-center pt-2">
+                <h5><router-link :to="/produit/+i">Enceinte en liège 10W Baia</router-link></h5>
+
+                <h6 class="mb-3">
+                  <span class="text-grey"><small>à partir de</small>
+
+                    <span class="text-grey">
+                    50,01 €
+                    </span>
+                  </span>
+                </h6>
+              </div>
+            </div>
+            <!-- Card -->
           </div>
         </div>
       </div>
@@ -60,14 +126,31 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      slide: 0,
+      sliding: null
+    }
+  },
+  methods: {
+    onSlideStart() {
+      this.sliding = true
+    },
+    onSlideEnd() {
+      this.sliding = false
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .section-content {
   h2 {
+    text-align: center;
     font-size: 56px;
     line-height: 1.5;
+    margin-bottom: 24px;
     font-weight: 600;
     overflow: hidden;
     text-decoration: none;
@@ -109,46 +192,19 @@ export default {};
 }
 
 .product {
-  margin-bottom: 48px;
-  position: relative;
+  padding: 0 15px;
+}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-    img {
-      display: block;
-      max-height: 100%;
-      max-width: 100%;
-    }
-  }
-
-  .product-details {
-    background-color: #fafafa;
-    padding: 14px 15px;
-    text-align: center;
-
-    .product-title {
-      color: #000;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1.5;
-      margin: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .product-price {
-      color: #d41b8b;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1.5;
-    }
-  }
-  .product-actions {
-    display: none;
-    color: #fff;
-  }
+.z-depth-2 {
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,.07),0 6px 20px 0 rgba(0,0,0,.07);
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,.07),0 6px 20px 0 rgba(0,0,0,.07);
+  height: 390px;
+  border-radius: .375rem;
+}
+h1, h2, h3, h4, h5, h6, h5 a {
+  color: #15273e;
+  margin-top: 0;
+  font-style: normal;
+  font-weight: 400;
 }
 </style>

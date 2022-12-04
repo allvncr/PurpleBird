@@ -29,15 +29,6 @@
     <div class="container">
       <div class="navbar-body">
         <div class="block">
-          <div class="office">
-            <div class="office-title">Siège social &amp; showroom</div>
-            <div class="office-addr">
-              31, rue des Poissonniers<br />92200 Neuilly-sur-Seine<br />France
-            </div>
-            <div class="office-directions">ligne 1 - Pont de Neuilly</div>
-          </div>
-        </div>
-        <div class="block">
           <ul class="nav-contact">
             <li>
               Tél:
@@ -48,9 +39,9 @@
             <li class="text-truncate">
               Email:
               <router-link
-                to="mailto:info@purplebird.fr"
-                title="mailto:info@purplebird.fr"
-                >info@purplebird.fr</router-link
+                to="mailto:contact@purplebird.fr"
+                title="mailto:contact@purplebird.fr"
+                >contact@purplebird.fr</router-link
               >
             </li>
           </ul>
@@ -97,7 +88,7 @@
         </div>
         <div class="block">
           <div class="object-media">
-            <img src="@/assets/PURPLEBIRD.png" alt="logo" />
+            <img src="@/assets/PURPLEBIRD.jpg" alt="logo" />
           </div>
         </div>
       </div>
@@ -175,6 +166,7 @@ export default {
   position: static;
 
   ul {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -268,6 +260,9 @@ export default {
       @media only screen and (max-width: $phone) {
         display: none;
       }
+
+      background: #fff;
+      padding: 4px;
       display: block;
       max-height: 72px;
     }

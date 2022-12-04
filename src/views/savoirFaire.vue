@@ -1,7 +1,7 @@
 <template>
   <div class="aboutus">
     <div class="container">
-      <h1 class="page-title"><span>Notre</span> savoir faire</h1>
+      <h1 class="page-title"><span>Notre</span> savoir-faire</h1>
 
       <p>
         <span class="brand">Pour qui et pourquoi un objet publicitaire ? </span>
@@ -76,7 +76,7 @@ p {
   margin-bottom: 14px;
 
   ul {
-    list-style: circle !important;
+    list-style: inside circle !important;
   }
 
   .brand {

@@ -89,7 +89,7 @@
             >
               <g>
                 <path
-                  fill="#3e4ca7"
+                  fill="#2c3e57"
                   d="M370.961,348.238H205.922c-7.363,0-13.281-5.918-13.281-13.277V176.078H384.16v158.883 C384.238,342.238,378.238,348.238,370.961,348.238L370.961,348.238z M370.961,348.238"
                 ></path>
                 <path
@@ -116,10 +116,10 @@
         <li>
           <router-link
             style="text-transform: lowercase"
-            to="mailto:info@purplebird.fr"
-            title="info@purplebird.fr"
+            to="mailto:contact@purplebird.fr"
+            title="contact@purplebird.fr"
           >
-            info@purplebird.fr
+            contact@purplebird.fr
           </router-link>
         </li>
       </ul>
@@ -150,7 +150,7 @@
           >
             <g>
               <path
-                fill="#3e4ca7"
+                fill="#2c3e57"
                 d="M370.961,348.238H205.922c-7.363,0-13.281-5.918-13.281-13.277V176.078H384.16v158.883 C384.238,342.238,378.238,348.238,370.961,348.238L370.961,348.238z M370.961,348.238"
               ></path>
               <path
@@ -373,7 +373,7 @@ export default {
       position: absolute;
       top: 100%;
       left: 0;
-      min-width: 160px;
+      min-width: 175px;
       padding: 5px 0;
       margin: 2px 0 0;
       font-size: 14px;
@@ -382,6 +382,7 @@ export default {
       border: 1px solid rgba(0, 0, 0, 0.15);
       background-color: $white;
       background-clip: padding-box;
+      z-index: 1;
     }
   }
 
