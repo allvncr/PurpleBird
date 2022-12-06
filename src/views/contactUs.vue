@@ -55,7 +55,7 @@
                   id="textarea"
                   v-model="message"
                   placeholder="Message..."
-                  rows="6"
+                  rows="14"
               ></b-form-textarea>
             </b-form-group>
           </div>
