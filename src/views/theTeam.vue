@@ -3,12 +3,6 @@
     <div class="container">
       <h1 class="page-title"><span>L'</span>équipe</h1>
 
-      <p class="lead">
-        <span class="brand">PURPLEBIRD</span>, c’est une équipe de consultantes
-        expérimentées et complémentaires. Le savoir-faire de l’agence est
-        complet&nbsp;:
-      </p>
-
       <div class="team">
         <div class="about-feature">
           <img class="rounded-circle" src="../assets/WW.jpg" width="170" />

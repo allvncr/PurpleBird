@@ -33,6 +33,27 @@
               </svg>
             </a>
           </li>
+          <li>
+            <a
+              href=""
+              target="_blank"
+              style="display: flex; justify-content: center"
+            >
+              <svg
+                class="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 5.79 11.14"
+                height="15"
+                width="15"
+              >
+                <title>icon-facebook</title>
+                <path
+                  d="M6.42.35V2.12h-1a1,1,0,0,0-.78.24,1.16,1.16,0,0,0-.2.73V4.35h2l-.26,2H4.39v5.09h-2V6.33H.64v-2h1.7V2.89A2.61,2.61,0,0,1,3,1,2.51,2.51,0,0,1,4.9.27,11.63,11.63,0,0,1,6.42.35Z"
+                  transform="translate(-0.64 -0.27)"
+                ></path>
+              </svg>
+            </a>
+          </li>
         </ul>
       </div>
       <a href="/" class="brand">
@@ -56,7 +77,7 @@
                   >
                 </li>
                 <li>
-                  <router-link :to="{ name: 'equipe'}">L'equipe</router-link>
+                  <router-link :to="{ name: 'equipe' }">L'equipe</router-link>
                 </li>
                 <li>
                   <router-link :to="{ name: 'savoirFaire' }"
@@ -71,7 +92,9 @@
           <router-link to="" title="Nos références">Nos références</router-link>
         </li> -->
         <li>
-          <router-link :to="{ name: 'contact'}" title="Nous contacter">Nous contacter</router-link>
+          <router-link :to="{ name: 'contact' }" title="Nous contacter"
+            >Nous contacter</router-link
+          >
         </li>
       </ul>
       <ul class="nav-pages">
@@ -109,8 +132,8 @@
       </ul>
       <ul class="nav-pages nav-unstyled">
         <li>
-          <router-link to="tel:0147476667" title="tel:01 47 47 66 67">
-            01 47 47 66 67
+          <router-link to="tel:+33983374491" title="tel:+33 9 83 37 44 91">
+            +33 9 83 37 44 91
           </router-link>
         </li>
         <li>
@@ -264,7 +287,7 @@ export default {
     max-width: 300px;
     margin: auto;
 
-    img{
+    img {
       width: 100%;
     }
   }
