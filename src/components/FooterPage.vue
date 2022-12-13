@@ -148,6 +148,13 @@
           </li>
           <li>
             <router-link
+              :to="{ name: 'politique' }"
+              title="Politique de confidentialité"
+              >Politique de confidentialité</router-link
+            >
+          </li>
+          <li>
+            <router-link
               :to="{ name: 'condition de vente' }"
               title="tous droits réservés © 2022"
               >tous droits réservés © 2022&nbsp;PURPLEBIRD</router-link
