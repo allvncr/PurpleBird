@@ -159,6 +159,7 @@ export default {
     border-radius: 2px;
     box-shadow: none;
     outline: 0;
+    border-radius: 10px;
   }
 
   textarea.form-control {

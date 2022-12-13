@@ -10,52 +10,85 @@
               <template #label>
                 Prenom <span class="required">*</span>
               </template>
-              <b-form-input v-model="prenom" placeholder="Prenom" maxlength="50" trim required></b-form-input>
+              <b-form-input
+                v-model="prenom"
+                placeholder="Prenom"
+                maxlength="50"
+                trim
+                required
+              ></b-form-input>
             </b-form-group>
 
             <b-form-group>
-              <template #label>
-                Nom <span class="required">*</span>
-              </template>
-              <b-form-input v-model="nom" placeholder="Nom" trim maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required></b-form-input>
+              <template #label> Nom <span class="required">*</span> </template>
+              <b-form-input
+                v-model="nom"
+                placeholder="Nom"
+                trim
+                maxlength="20"
+                onkeyup="this.value = this.value.toUpperCase();"
+                required
+              ></b-form-input>
             </b-form-group>
 
             <b-form-group>
               <template #label>
                 Email <span class="required">*</span>
               </template>
-              <b-form-input v-model="email" placeholder="Email" type="email" trim required></b-form-input>
+              <b-form-input
+                v-model="email"
+                placeholder="Email"
+                type="email"
+                trim
+                required
+              ></b-form-input>
             </b-form-group>
 
             <b-form-group>
               <template #label>
                 Telephone <span class="required">*</span>
               </template>
-              <b-form-input v-model="tel" placeholder="Telephone" maxlength="40" trim required></b-form-input>
+              <b-form-input
+                v-model="tel"
+                placeholder="Telephone"
+                maxlength="40"
+                trim
+                required
+              ></b-form-input>
             </b-form-group>
 
             <b-form-group>
               <template #label>
                 Societé <span class="required">*</span>
               </template>
-              <b-form-input v-model="societe" placeholder="Societé" maxlength="50" trim required></b-form-input>
+              <b-form-input
+                v-model="societe"
+                placeholder="Societé"
+                maxlength="50"
+                trim
+                required
+              ></b-form-input>
             </b-form-group>
           </div>
           <div class="right">
             <b-form-group label="Sujet">
-              <b-form-input v-model="sujet" placeholder="Sujet" maxlength="50" trim></b-form-input>
+              <b-form-input
+                v-model="sujet"
+                placeholder="Sujet"
+                maxlength="50"
+                trim
+              ></b-form-input>
             </b-form-group>
-
 
             <b-form-group>
               <template #label>
                 Message <span class="required">*</span>
               </template>
               <b-form-textarea
-                  id="textarea"
-                  v-model="message"
-                  placeholder="Message..."
-                  rows="14"
+                id="textarea"
+                v-model="message"
+                placeholder="Message..."
+                rows="14"
               ></b-form-textarea>
             </b-form-group>
           </div>
@@ -82,20 +115,19 @@
 
 <script>
 export default {
-  computed: {
-  },
+  computed: {},
   data() {
     return {
-      nom: '',
-      prenom: '',
-      email: '',
-      tel: '',
-      societe: '',
-      sujet: '',
-      message: '',
-    }
-  }
-}
+      nom: "",
+      prenom: "",
+      email: "",
+      tel: "",
+      societe: "",
+      sujet: "",
+      message: "",
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -131,7 +163,7 @@ form {
     position: relative;
     margin-bottom: 10px;
 
-    .required{
+    .required {
       color: red;
       font-weight: 600;
     }
@@ -150,6 +182,7 @@ form {
       border-radius: 2px;
       box-shadow: none;
       outline: 0;
+      border-radius: 10px;
     }
 
     textarea.form-control {
@@ -163,7 +196,8 @@ form {
   flex-wrap: wrap;
   justify-content: space-between;
 
-  .left, .right{
+  .left,
+  .right {
     width: 48%;
   }
 }
@@ -172,5 +206,4 @@ form {
   width: 50%;
   margin: auto;
 }
-
 </style>

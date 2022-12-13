@@ -4,7 +4,7 @@
       <div class="logoBlock-header">
         <ul>
           <li>
-            <a href="">
+            <router-link to="">
               <svg
                 class="img"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@
                   transform="translate(0 -1.27)"
                 ></path>
               </svg>
-            </a>
+            </router-link>
           </li>
           <li>
             <a href="">
@@ -56,9 +56,9 @@
           </li>
         </ul>
       </div>
-      <a href="/" class="brand">
+      <router-link to="/" class="brand">
         <img src="@/assets/PURPLEBIRD.jpg" />
-      </a>
+      </router-link>
     </div>
     <div class="navBlock">
       <ul class="nav-pages">

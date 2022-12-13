@@ -1,58 +1,57 @@
 <template>
   <div class="home">
     <b-carousel
-        id="carousel-1"
-        v-model="slide"
-        no-animation
-        :interval="5000"
-        controls
-        indicators
-        background="#ababab"
-        @sliding-start="onSlideStart"
-        @sliding-end="onSlideEnd"
+      id="carousel-1"
+      v-model="slide"
+      no-animation
+      :interval="5000"
+      controls
+      indicators
+      background="#ababab"
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
     >
-
       <!-- Slides with image only -->
       <b-carousel-slide>
         <template #img>
           <img
-              class="d-block w-100"
-              width="1024"
-              height="400"
-              src="https://m3.extradtp.net/Org/M97x251006.jpg"
-              alt="image slot"
-          >
+            class="d-block w-100"
+            width="1024"
+            height="400"
+            src="https://m3.extradtp.net/Org/M97x251006.jpg"
+            alt="image slot"
+          />
         </template>
       </b-carousel-slide>
       <b-carousel-slide>
         <template #img>
           <img
-              class="d-block w-100"
-              width="1024"
-              height="400"
-              src="https://m3.extradtp.net/Org/M97x153414.png"
-              alt="image slot"
-          >
+            class="d-block w-100"
+            width="1024"
+            height="400"
+            src="https://m3.extradtp.net/Org/M97x153414.png"
+            alt="image slot"
+          />
         </template>
       </b-carousel-slide>
       <b-carousel-slide>
         <template #img>
           <img
-              class="d-block w-100"
-              width="1024"
-              height="400"
-              src="https://m3.extradtp.net/Org/M97x153412.jpg"
-              alt="image slot"
-          >
+            class="d-block w-100"
+            width="1024"
+            height="400"
+            src="https://m3.extradtp.net/Org/M97x153412.jpg"
+            alt="image slot"
+          />
         </template>
       </b-carousel-slide>
     </b-carousel>
 
     <section
-        class="section py-4"
-        id="featured-products"
-        data-section="featured-products"
-        data-category-id="3300"
+      class="section py-4"
+      id="featured-products"
+      data-section="featured-products"
+      data-category-id="3300"
     >
       <div class="section-content">
         <div class="container">
@@ -66,53 +65,30 @@
           <div class="col-6 col-md-3 mb-4" v-for="i in 4" :key="i">
             <!-- Card -->
             <div class="product">
-              <div class="view zoom overlay z-depth-2 rounded d-flex flex-wrap align-items-center  justify-content-center">
-                <router-link :to="/produit/+i">
+              <div
+                class="view zoom overlay z-depth-2 d-flex flex-wrap align-items-center justify-content-center"
+              >
+                <router-link :to="/produit/ + i">
                   <img
-                      class="img-fluid w-100"
-                      src="https://stopcom.maqprint.fr/files/visuals/medium/9-1886-8.jpg"
-                      alt="Carnet de notes A5 en cuir recyclé"
-                      title="Carnet de notes A5 en cuir recyclé"
-                  >
+                    class="img-fluid w-100"
+                    src="https://stopcom.maqprint.fr/files/visuals/medium/9-1886-8.jpg"
+                    alt="Carnet de notes A5 en cuir recyclé"
+                    title="Carnet de notes A5 en cuir recyclé"
+                  />
                 </router-link>
               </div>
               <div class="text-center pt-2">
-                <h5><router-link :to="/produit/+i">Carnet de notes A5 en cuir recyclé</router-link></h5>
-
-                <h6 class="mb-3">
-                  <span class="text-grey"><small>à partir de</small>
-
-                    <span class="text-grey">
-                    4,71 €
-                    </span>
-                  </span>
-                </h6>
-              </div>
-            </div>
-            <!-- Card -->
-          </div>
-          <div class="col-6 col-md-3 mb-4" v-for="i in 4" :key="i">
-            <!-- Card -->
-            <div class="product">
-              <div class="view zoom overlay z-depth-2 rounded d-flex flex-wrap align-items-center justify-content-center">
-                <router-link :to="/produit/+i">
-                  <img
-                      class="img-fluid w-100"
-                      src="https://stopcom.maqprint.fr/files/visuals/medium/9-2146-3.jpg"
-                      alt="Enceinte en liège 10W Baia"
-                      title="Enceinte en liège 10W Baia"
+                <h5>
+                  <router-link :to="/produit/ + i"
+                    >Carnet de notes A5 en cuir recyclé</router-link
                   >
-                </router-link>
-              </div>
-              <div class="text-center pt-2">
-                <h5><router-link :to="/produit/+i">Enceinte en liège 10W Baia</router-link></h5>
+                </h5>
 
                 <h6 class="mb-3">
-                  <span class="text-grey"><small>à partir de</small>
+                  <span class="text-grey"
+                    ><small>à partir de</small>
 
-                    <span class="text-grey">
-                    50,01 €
-                    </span>
+                    <span class="text-grey"> 4,71 € </span>
                   </span>
                 </h6>
               </div>
@@ -130,18 +106,18 @@ export default {
   data() {
     return {
       slide: 0,
-      sliding: null
-    }
+      sliding: null,
+    };
   },
   methods: {
     onSlideStart() {
-      this.sliding = true
+      this.sliding = true;
     },
     onSlideEnd() {
-      this.sliding = false
-    }
-  }
-}
+      this.sliding = false;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -196,12 +172,17 @@ export default {
 }
 
 .z-depth-2 {
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,.07),0 6px 20px 0 rgba(0,0,0,.07);
-  box-shadow: 0 8px 17px 0 rgba(0,0,0,.07),0 6px 20px 0 rgba(0,0,0,.07);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.07), 0 6px 20px 0 rgba(0, 0, 0, 0.07);
   height: 390px;
-  border-radius: .375rem;
+  border-radius: 10px;
 }
-h1, h2, h3, h4, h5, h6, h5 a {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h5 a {
   color: #15273e;
   margin-top: 0;
   font-style: normal;
