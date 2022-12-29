@@ -8,7 +8,7 @@
             to=""
             :title="product.name"
           >
-            <img :src="product.img" :alt="product.name" />
+            <img :src="product.urlimages[0]" :alt="product.name" />
           </router-link>
 
           <div class="product-details">
@@ -19,7 +19,7 @@
             </h2>
             <div class="product-price">{{ product.price }} € HT</div>
           </div>
-          <div class="product-actions actions">
+          <!-- <div class="product-actions actions">
             <div
               class="btn btn-primary"
               title="Ajouter au Panier"
@@ -36,15 +36,16 @@
             >
               Retirer du Panier
             </div>
-          </div>
-          <!-- <div class="product-actions actions">
+          </div>-->
+          <div class="product-actions actions">
             <router-link
+                style="border-radius: 0; padding: 18px 0"
               class="btn btn-primary"
               :to="'produit/' + product.id"
               title="Voir produit"
               >Voir produit</router-link
             >
-          </div> -->
+          </div>
         </div>
       </li>
     </ul>

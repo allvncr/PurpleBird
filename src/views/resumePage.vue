@@ -107,8 +107,8 @@
       </div>
       <div>
         <input name="infoValid" id="infoValid" type="checkbox" required />
-        <label for="infoValid" style="cursor: pointer">
-          En soumettant ce formulaire, j'accepte que les informations saisies
+        <label for="infoValid" style="cursor: pointer; margin: 0 0 0 4px">
+          J'accepte que les informations saisies
           soient exploitées dans le cadre d'une relation commerciale avec
           PURPLEBIRD
         </label>

@@ -16,8 +16,6 @@ $secondary: #7d3e77;
   -moz-osx-font-smoothing: grayscale;
 }
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -53,11 +51,10 @@ a {
   border: 1px solid transparent;
   white-space: nowrap;
   padding: 12px 24px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
-  border-radius: 2px;
+  border-radius: 10px;
   user-select: none;
-  padding: 18px 0;
 }
 
 .btn-default {

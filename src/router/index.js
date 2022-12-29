@@ -83,6 +83,26 @@ const routes = [
     component: () => import("../views/conditionVente.vue"),
   },
   {
+    path: "/pdc",
+    name: "politique de confidentialité",
+    component: () => import("../views/politiqueConfidentialite.vue"),
+  },
+  {
+    path: "/recrutement",
+    name: "recrutement",
+    component: () => import("../views/recrutement.vue"),
+  },
+  {
+    path: "/candidatures",
+    name: "candidatures",
+    component: () => import("../views/candidaturePage.vue"),
+  },
+  {
+    path: "/candidature-spontannee",
+    name: "candidature-spontannée",
+    component: () => import("../views/candidatureSpontannee.vue"),
+  },
+  {
     path: "/**",
     redirect: () => {
       return { path: "/" };

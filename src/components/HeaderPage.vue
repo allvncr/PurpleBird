@@ -488,9 +488,18 @@ export default {
   background-color: $white;
   border-bottom: 1px solid $grey-dark;
   width: 100%;
+  left: 0;
   .navbar-group {
     padding: 15px 0;
     border-top: 1px solid $grey-dark;
+
+    .nav {
+      @media only screen and (max-width: $phone) {
+        align-items: center;
+        justify-content: center;
+      }
+
+    }
 
     .nav > li > a {
       color: #000;

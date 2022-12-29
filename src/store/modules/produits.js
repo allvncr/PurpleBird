@@ -3,18 +3,13 @@ import domain from "@/environment";
 import Product from "@/models/product";
 
 const state = {
-  produits: [
-    // {
-    //   id: 1,
-    //   lib: "T-Shirt Technique Homme",
-    //   img: "//www.extradtp.net/Datas/Pdts/Ima/P154832.jpg",
-    //   price: 5.44,
-    // },
-  ],
+  produit: null,
+  produits: [],
   produitRows: 0,
   produitLoading: false,
 };
 const getters = {
+  getProduit: (state) => state.produit,
   getProduits: (state) => state.produits,
   getProduitRows: (state) => state.produitRows,
   getProduitLoading: (state) => state.produitLoading,
@@ -26,6 +21,13 @@ const mutations = {
       state.produitLoading = payload;
     } else {
       state.produitLoading = false;
+    }
+  },
+  SET_PRODUCT(state, payload) {
+    if (payload) {
+      state.produit = Product.create(payload);
+    } else {
+      state.produit = {};
     }
   },
   SET_PRODUCTS(state, payload) {
@@ -57,12 +59,10 @@ const actions = {
       sort: payload.sort,
     };
     try {
-      const response = await axios.get(domain + `/products/paginate`, {
+      const response = await axios.get(domain + `/products`, {
         params,
       });
 
-      // commit("SET_PRODUCTS", response.data.products);
-      // commit("UPDATE_PRODUCT_ROW", response.data.total);
       commit("SET_PRODUCTS", response.data);
       commit("UPDATE_PRODUCT_ROW", response.data.length);
       commit("SET_PRODUCTLOADING", false);
@@ -90,6 +90,21 @@ const actions = {
 
       commit("SET_PRODUCTS", response.data.products);
       commit("UPDATE_PRODUCT_ROW", response.data.total);
+      commit("SET_PRODUCTLOADING", false);
+      return true;
+    } catch (error) {
+      commit("SET_PRODUCTLOADING", false);
+      return error;
+    }
+  },
+
+  async one_product({ commit }, payload) {
+    commit("SET_PRODUCTLOADING", true);
+    try {
+      const response = await axios.get(domain + `/products/single-product/` + payload.id, {
+      });
+
+      commit("SET_PRODUCT", response.data);
       commit("SET_PRODUCTLOADING", false);
       return true;
     } catch (error) {

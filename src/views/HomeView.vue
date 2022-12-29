@@ -1,51 +1,33 @@
 <template>
   <div class="home">
-    <b-carousel
-      id="carousel-1"
-      v-model="slide"
-      no-animation
-      :interval="5000"
-      controls
-      indicators
-      background="#ababab"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
-    >
-      <!-- Slides with image only -->
-      <b-carousel-slide>
-        <template #img>
+    <div class="sliders">
+      <Flicking :options="{ circular: true }">
+        <div style="width: 95%;">
           <img
-            class="d-block w-100"
-            width="1024"
-            height="400"
-            src="https://m3.extradtp.net/Org/M97x251006.jpg"
-            alt="image slot"
+              src="../assets/sliders/ban.jpeg"
+              alt="image slot"
           />
-        </template>
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <template #img>
+        </div>
+        <div style="width: 95%;">
           <img
-            class="d-block w-100"
-            width="1024"
-            height="400"
-            src="https://m3.extradtp.net/Org/M97x153414.png"
-            alt="image slot"
+              src="../assets/sliders/BC_2022_1800×600_01.jpg"
+              alt="image slot"
           />
-        </template>
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <template #img>
+        </div>
+        <div style="width: 95%;">
           <img
-            class="d-block w-100"
-            width="1024"
-            height="400"
-            src="https://m3.extradtp.net/Org/M97x153412.jpg"
-            alt="image slot"
+              src="../assets/sliders/gogreen_2022_1800×600_03.jpg"
+              alt="image slot"
           />
-        </template>
-      </b-carousel-slide>
-    </b-carousel>
+        </div>
+        <div style="width: 95%;">
+          <img
+              src="../assets/sliders/New.jpeg"
+              alt="image slot"
+          />
+        </div>
+      </Flicking>
+    </div>
 
     <section
       class="section py-4"
@@ -96,6 +78,129 @@
             <!-- Card -->
           </div>
         </div>
+      </div>
+      <div class="section-content">
+        <div class="container">
+          <h2 class="page-title">
+            <a href="" title="Partenaires"><span>Nos</span> partenaires</a>
+          </h2>
+        </div>
+      </div>
+      <div class="partenaires">
+        <Flicking :options="{ circular: true }">
+          <div style="width: 35%;">
+            <img
+                src="../assets/partenaires/LOGO_RTP_RVB.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                src="../assets/partenaires/Logo_SOLO-Group.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                src="../assets/partenaires/atf_Noir_CMJN.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                src="../assets/partenaires/NEO BLU logo avec baseline Bleu RVB.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                src="../assets/partenaires/SOLS logo avec baseline Noir RVB.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 16px"
+                src="../assets/partenaires/Joy Thai_ logotype_Noir.png"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                src="../assets/partenaires/XDXCLUSIVE_primary_logo.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                src="../assets/partenaires/XD_Design_primary_logo_black.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 16px"
+                src="../assets/partenaires/XDConnects_Logo_Black_Tagline.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 32px 8px"
+                src="../assets/partenaires/Urban-Vitamin_black_primary_RGB.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                src="../assets/partenaires/SwissPeak_primary_logo.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 24px"
+                src="../assets/partenaires/Impact_the-collection-of-tomorrow.png"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 16px"
+                src="../assets/partenaires/GEAR-X_primary_black_RGB.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 84px 4px"
+                src="../assets/partenaires/philips-primary_black.png"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 16px"
+                src="../assets/partenaires/Vinga_Sweden_logo_v2.png"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 16px"
+                src="../assets/partenaires/iqoniq_tagline_grey.jpg"
+                alt="image slot"
+            />
+          </div>
+          <div style="width: 35%;">
+            <img
+                style="background-color: #fff;padding: 84px 4px"
+                src="../assets/partenaires/motorola-primary_black.png"
+                alt="image slot"
+            />
+          </div>
+        </Flicking>
+
       </div>
     </section>
   </div>
@@ -178,7 +283,6 @@ export default {
 }
 h1,
 h2,
-h3,
 h4,
 h5,
 h6,
@@ -187,5 +291,42 @@ h5 a {
   margin-top: 0;
   font-style: normal;
   font-weight: 400;
+}
+h3{
+  color: $secondary;
+}
+p{
+  font-size: 18px;
+}
+a {
+  color: $secondary;
+}
+
+.partenaires{
+  @media only screen and (max-width: $phone) {
+    display: none;
+  }
+  padding: 12px 0;
+  background-color: $primary;
+
+  img{
+    height: 250px;
+    width: 350px;
+    border-radius: 15px;
+  }
+}
+
+.sliders{
+  @media only screen and (max-width: $phone) {
+    display: none;
+  }
+  padding: 12px 0;
+  background-color: $primary;
+
+  img{
+    height: 370px;
+    width: 97%;
+    border-radius: 15px;
+  }
 }
 </style>

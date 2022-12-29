@@ -18,20 +18,28 @@
               >L'équipe</router-link
             >
           </li>
-          <li>
-            <router-link :to="{ name: 'contact' }" title="Nous contacter"
+          <li >
+            <router-link :to="{ name: 'contact' }" title="Nous contacter" style="padding: 0"
               >Nous contacter</router-link
             >
           </li>
+        </ul>
+        <ul style="border: 0;justify-content: space-between">
           <li>
             <router-link :to="{ name: 'contact' }" title="Catalogues"
-              >Catalogues</router-link
+            >Catalogues</router-link
+            >
+          </li>
+
+          <li>
+            <router-link :to="{ name: 'recrutement' }" title="Nous Rejoindre" style="padding: 0"
+            >Nous Rejoindre</router-link
             >
           </li>
         </ul>
       </div>
     </div>
-    <div class="container">
+    <div class="container" style="padding-top: 0">
       <div class="navbar-body">
         <div class="block">
           <ul class="nav-contact">
@@ -115,7 +123,7 @@
         </div>
         <div class="block">
           <div class="object-media">
-            <img src="@/assets/PURPLEBIRD.jpg" alt="logo" />
+            <img src="@/assets/purplebird-white.jpg" alt="logo" />
           </div>
         </div>
       </div>
@@ -141,16 +149,16 @@
           </li>
           <li>
             <router-link
-              :to="{ name: 'condition de vente' }"
-              title="Conditions générales de vente"
-              >Conditions générales de vente</router-link
+                :to="{ name: 'politique de confidentialité' }"
+                title="Politique de confidentialité"
+            >Politique de confidentialité</router-link
             >
           </li>
           <li>
             <router-link
-              :to="{ name: 'politique' }"
-              title="Politique de confidentialité"
-              >Politique de confidentialité</router-link
+              :to="{ name: 'condition de vente' }"
+              title="Conditions générales de vente"
+              >Conditions générales de vente</router-link
             >
           </li>
           <li>
@@ -209,6 +217,7 @@ export default {
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid $grey-dark;
+    margin: 0;
 
     li {
       @media only screen and (max-width: $phone) {
@@ -249,7 +258,7 @@ export default {
     grid-template-columns: auto auto;
   }
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
 
   .block {
     font-size: 16px;
@@ -298,10 +307,8 @@ export default {
         display: none;
       }
 
-      background: #fff;
-      padding: 4px;
       display: block;
-      max-height: 72px;
+      max-height: 84px;
     }
   }
 }

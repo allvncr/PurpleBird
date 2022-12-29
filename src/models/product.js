@@ -1,23 +1,22 @@
-import Categorie from "@/models/categorie";
 
 export default class Product {
   constructor(data) {
-    this.id = data._id;
+    this.id = data.id;
     this.name = data.name;
-    this.img = data.imagesList;
-    this.category = Categorie.create(data.category);
+    this.urlimages = data.urlimages;
     this.price = data.price;
-    this.featured = data.featured;
-    this.created_at = data.created_at;
+    this.reference = data.reference;
+    this.description = data.description;
+    this.colorList = data.colorList;
   }
   update(data) {
-    this.id = data._id;
+    this.id = data.id;
     this.name = data.name;
-    this.img = data.imagesList;
-    this.category = Categorie.create(data.category);
+    this.urlimages = data.urlimages;
     this.price = data.price;
-    this.featured = data.featured;
-    this.created_at = data.created_at;
+    this.reference = data.reference;
+    this.description = data.description;
+    this.colorList = data.colorList;
   }
 
   static create(data) {

@@ -20,14 +20,14 @@
             <button
               class="btn"
               aria-label="Accepter"
-              @click="showCookie = false"
+              @click="setCookie(true)"
             >
               Accepter
             </button>
             <button
               class="btn"
               aria-label="Rejeter"
-              @click="showCookie = false"
+              @click="setCookie(false)"
             >
               Rejeter
             </button>
@@ -46,8 +46,16 @@ export default {
     };
   },
 
+  methods: {
+    setCookie(bool){
+      localStorage.setItem("Cookie", bool)
+      this.showCookie = false
+    }
+  },
+
   mounted() {
-    this.showCookie = true;
+    if(localStorage.getItem("Cookie") == undefined)
+      this.showCookie = true;
   },
 };
 </script>

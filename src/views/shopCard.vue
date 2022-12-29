@@ -1,14 +1,11 @@
 <template>
   <div>
-    <p>
-      Vous pouvez modifier les quantités souhaitées dans les cases, puis cliquer
-      sur le bouton <strong>RECALCULER</strong> pour mettre à jour le total.
-    </p>
+
     <p v-if="!getPanierRows">Vide</p>
     <table class="PanierTable" v-else>
       <thead>
         <tr class="PanierTRTitle">
-          <th></th>
+          <th class="caddi1">Produit</th>
           <th class="caddi1">Désignation</th>
           <th class="caddi1">Quantité</th>
 
@@ -20,13 +17,13 @@
       <tbody>
         <tr v-for="(product, i) in getPanier" :key="i">
           <td>
-            <router-link to=""><img :src="product.img" /></router-link>
+            <router-link to=""><img :src="product.urlimages[0]" /></router-link>
           </td>
           <td class="panierCol">
             {{ product.name }}
           </td>
           <td class="panierCol">
-            <input type="number" v-model="product.quantite" min="1" />
+            <input type="number" v-model="product.quantite" min="1" @input="getTotal"/>
           </td>
           <td class="panierCol" align="right">{{ product.price }} €</td>
           <td class="panierCol" align="right">{{ productTotal(product) }} €</td>
@@ -58,19 +55,21 @@
         <tr class="PanierTRTVA">
           <td></td>
           <td colspan="2"></td>
-          <td align="right">TVA</td>
-          <td align="right" class="panierCol">0 €</td>
+          <td align="right">TVA ( 20% ) </td>
+          <td align="right" class="panierCol">{{ getTVA }} €</td>
           <td></td>
         </tr>
         <tr class="PanierTRTTC">
           <td></td>
           <td colspan="2"></td>
           <td align="right">Total TTC</td>
-          <td align="right" class="panierCol">{{ getTotal }} €</td>
+          <td align="right" class="panierCol">{{ getTotal + getTVA }} €</td>
           <td></td>
         </tr>
       </tbody>
     </table>
+
+    <p class="remarque">** Prix indicatif hors marquage et hors frais de livraison</p>
 
     <div class="actions">
       <router-link to="/categories" class="btn btn-default">
@@ -96,6 +95,14 @@ export default {
       });
       return total;
     },
+    getTVA(){
+      var total = 0;
+      this.getPanier.forEach((product) => {
+        total += product.price * product.quantite;
+      });
+      total = (total * 20) / 100
+      return total;
+    }
   },
   methods: {
     ...mapActions(["add_product", "remove_product"]),
@@ -198,5 +205,12 @@ p {
   a {
     width: 30%;
   }
+}
+
+.remarque{
+  font-size: 14px;
+  text-align: right;
+  font-style: italic;
+  font-weight: 600;
 }
 </style>

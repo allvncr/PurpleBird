@@ -109,6 +109,7 @@ form {
       }
       outline: none;
       width: 100%;
+      border-radius: 10px;
       font-size: 16px;
       line-height: 1.25;
       padding: 8px 12px;
