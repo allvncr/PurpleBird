@@ -103,6 +103,30 @@ const routes = [
     component: () => import("../views/candidatureSpontannee.vue"),
   },
   {
+    path: "/admin",
+    name: "admin",
+    component: () => import("../views/admin/adminLogin.vue"),
+    meta: { disableHeader: true },
+  },
+  {
+    path: "/admin/home",
+    name: "admin home",
+    component: () => import("../views/admin/adminHome.vue"),
+    meta: { disableHeader: true },
+  },
+  {
+    path: "/pdf",
+    name: "pdf",
+    component: () => import("../views/pdfPage.vue"),
+    meta: { disableHeader: true },
+  },
+  {
+    path: "/admin/:obj",
+    name: "admin object",
+    component: () => import("../views/admin/objectDetail.vue"),
+    meta: { disableHeader: true },
+  },
+  {
     path: "/**",
     redirect: () => {
       return { path: "/" };

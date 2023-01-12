@@ -1,13 +1,8 @@
 <template>
   <form @submit.prevent="searchProduct">
-    <label for=""> CONSULTER NOTRE CATALOGUE ET RECEVOIR UN DEVIS </label>
-    <div class="form-group">
-      <input
-        type="text"
-        v-model="search"
-        placeholder="Rechercher un object pub ou un cadeau"
-      />
-      <span class="search-icon" @click="searchProduct">
+    <div class="form-group search">
+      <input type="text" v-model="filtre.search" placeholder="Rechercher" />
+      <!-- <span class="search-icon" @click="searchProduct">
         <svg
           class="img"
           xmlns="http://www.w3.org/2000/svg"
@@ -21,45 +16,67 @@
             transform="translate(0 -1.13)"
           ></path>
         </svg>
-      </span>
+      </span> -->
     </div>
+    <div class="form-group select">
+      <b-select
+        plain
+        v-model="filtre.categorie"
+        :options="[
+          {
+            lib: 'Categorie',
+          },
+          ...getCategories,
+        ]"
+        text-field="lib"
+        value-field="lib"
+      ></b-select>
+    </div>
+    <div class="form-group">
+      <input type="text" v-model="filtre.min" placeholder="Min" />
+    </div>
+    <div class="form-group">
+      <input type="text" v-model="filtre.max" placeholder="Max" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Valider</button>
   </form>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
-      search: null,
+      filtre: {
+        search: null,
+        categorie: "Categorie",
+        min: null,
+        max: null,
+      },
     };
   },
+  computed: {
+    ...mapGetters(["getCategories"]),
+  },
   methods: {
-    ...mapActions(["all_products", "category_products"]),
+    ...mapActions(["all_products", "all_categories"]),
     searchProduct() {
-      if (this.$route.params.id) {
-        this.category_products({
-          id: this.$route.params.id,
-          search: this.search,
-        });
-      } else {
-        this.all_products({
-          search: this.search,
-        });
-      }
+      var data = {
+        search: this.filtre.search,
+        min: this.filtre.min,
+        max: this.filtre.max,
+      };
+      if (this.filtre.categorie != "Categorie")
+        data.categorie = this.filtre.categorie;
 
-      if (this.$route.name != "categories" && this.$route.name != "produitList")
-        this.$router.push({
-          name: "categories",
-          query: { search: this.search },
-        });
-      else {
-        if (this.search != this.$route.query.search)
-          this.$router.push({
-            name: "categories",
-            query: { search: this.search },
-          });
+      this.all_products(data);
+      if (
+        this.$route.name != "categories" &&
+        this.$route.name != "produitList"
+      ) {
+        this.$router.push("/categories");
       }
     },
   },
@@ -75,31 +92,19 @@ export default {
 form {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  label {
-    @media only screen and (max-width: $tablette) {
-      padding: 8px 16px;
-    }
-    @media only screen and (max-width: $phone) {
-      display: none;
-    }
-    display: block;
-    font-size: 12px;
-    line-height: 1.5;
-    margin-bottom: 0;
-    padding: 9px 50px 9px 56px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
+  justify-content: space-between;
+  width: 75%;
+  margin: auto;
   .form-group {
     @media only screen and (max-width: $phone) {
       width: 100%;
     }
     position: relative;
-    width: 45%;
+    margin: 0;
+    width: 10%;
 
-    input {
+    input,
+    select {
       @media only screen and (max-width: $phone) {
         border: 0;
       }
@@ -109,35 +114,33 @@ form {
       }
       outline: none;
       width: 100%;
-      border-radius: 10px;
+      border-radius: 5px;
       font-size: 16px;
       line-height: 1.25;
       padding: 8px 12px;
       border: 1px solid $black;
 
+      &:focus {
+        box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+      }
+
       &::placeholder {
         text-transform: uppercase;
       }
     }
+  }
 
-    .search-icon {
-      @media only screen and (max-width: $phone) {
-        padding: 8px 12px;
-      }
-      @media only screen and (max-width: $tablette) {
-        padding: 6px 8px;
-      }
-      position: absolute;
-      padding: 8px 12px;
-      cursor: pointer;
-      top: 0;
-      right: 0;
-      svg {
-        height: 20px;
-        vertical-align: top;
-        width: 24px;
-      }
-    }
+  .btn {
+    width: 15%;
+    padding: 8px 12px;
+  }
+
+  .search {
+    width: 40%;
+  }
+
+  .select {
+    width: 20%;
   }
 }
 </style>

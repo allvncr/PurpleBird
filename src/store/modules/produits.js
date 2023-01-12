@@ -53,10 +53,11 @@ const actions = {
   async all_products({ commit }, payload) {
     commit("SET_PRODUCTLOADING", true);
     const params = {
-      page: payload.page,
-      perPage: payload.perPage,
       name: payload.search,
-      sort: payload.sort,
+      category: payload.categorie,
+      min: payload.min,
+      max: payload.max,
+      sort: payload.sort
     };
     try {
       const response = await axios.get(domain + `/products`, {
@@ -72,37 +73,14 @@ const actions = {
       return error;
     }
   },
-  async category_products({ commit }, payload) {
-    commit("SET_PRODUCTLOADING", true);
-    const params = {
-      page: payload.page,
-      size: payload.perPage,
-      name: payload.search,
-      sort: payload.sort,
-    };
-    try {
-      const response = await axios.get(
-        domain + `/categories/${payload.name}/products`,
-        {
-          params,
-        }
-      );
-
-      commit("SET_PRODUCTS", response.data.products);
-      commit("UPDATE_PRODUCT_ROW", response.data.total);
-      commit("SET_PRODUCTLOADING", false);
-      return true;
-    } catch (error) {
-      commit("SET_PRODUCTLOADING", false);
-      return error;
-    }
-  },
 
   async one_product({ commit }, payload) {
     commit("SET_PRODUCTLOADING", true);
     try {
-      const response = await axios.get(domain + `/products/single-product/` + payload.id, {
-      });
+      const response = await axios.get(
+        domain + `/products/single-product/` + payload.id,
+        {}
+      );
 
       commit("SET_PRODUCT", response.data);
       commit("SET_PRODUCTLOADING", false);

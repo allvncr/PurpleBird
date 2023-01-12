@@ -3,43 +3,30 @@
     <ul>
       <li v-for="product in getProduits" :key="product.id">
         <div class="product">
+          <img
+            src="../assets/new.png"
+            class="new"
+            v-if="dateDiff(product.created_at)"
+          />
           <router-link
             class="product-img img-ratio"
-            to=""
+            :to="'/produit/' + product.id"
             :title="product.name"
           >
-            <img :src="product.urlimages[0]" :alt="product.name" />
+            <img :src="product.urlimage" :alt="product.name" />
           </router-link>
 
           <div class="product-details">
             <h2 class="h4 product-title">
-              <router-link to="">
+              <router-link :to="'/produit/' + product.id">
                 {{ product.name }}
               </router-link>
             </h2>
             <div class="product-price">{{ product.price }} € HT</div>
           </div>
-          <!-- <div class="product-actions actions">
-            <div
-              class="btn btn-primary"
-              title="Ajouter au Panier"
-              v-if="!isStored(product)"
-              @click="add_product(product)"
-            >
-              Ajouter au Panier
-            </div>
-            <div
-              class="btn btn-secondary"
-              title="Retirer du Panier"
-              v-else
-              @click="remove_product(product)"
-            >
-              Retirer du Panier
-            </div>
-          </div>-->
           <div class="product-actions actions">
             <router-link
-                style="border-radius: 0; padding: 18px 0"
+              style="border-radius: 0; padding: 18px 0"
               class="btn btn-primary"
               :to="'produit/' + product.id"
               title="Voir produit"
@@ -67,6 +54,18 @@ export default {
       if (find) return true;
       else return false;
     },
+
+    dateDiff(date1) {
+      date1 = new Date(date1);
+      const date2 = new Date();
+      const diffInMilliseconds = date2.getTime() - date1.getTime();
+      const diffInSeconds = diffInMilliseconds / 1000;
+      const diffInMinutes = diffInSeconds / 60;
+      const diffInHours = diffInMinutes / 60;
+      const diffInDays = diffInHours / 24;
+      const diffInWeeks = diffInDays / 7;
+      return diffInWeeks.toFixed(0) < 4;
+    },
   },
 };
 </script>
@@ -75,13 +74,15 @@ export default {
 ul {
   display: flex;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 
   li {
     @media only screen and (max-width: $tablette) {
-      width: 33%;
+      width: 25%;
     }
     @media only screen and (max-width: $phone) {
-      width: 50%;
+      width: 33%;
     }
     width: 25%;
     padding: 0 15px;
@@ -89,6 +90,14 @@ ul {
     .product {
       position: relative;
       margin-bottom: 24px;
+
+      .new {
+        position: absolute;
+        width: 42px;
+        height: 42px;
+        top: 0;
+        left: 0;
+      }
 
       .img-ratio > img {
         width: 100%;

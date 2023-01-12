@@ -26,7 +26,7 @@
         </ul>
         <ul style="border: 0;justify-content: space-between">
           <li>
-            <router-link :to="{ name: 'contact' }" title="Catalogues"
+            <router-link :to="{ name: 'categories' }" title="Catalogues"
             >Catalogues</router-link
             >
           </li>

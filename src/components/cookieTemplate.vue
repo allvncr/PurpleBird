@@ -48,13 +48,13 @@ export default {
 
   methods: {
     setCookie(bool){
-      localStorage.setItem("Cookie", bool)
+      sessionStorage.setItem("Cookie", bool)
       this.showCookie = false
     }
   },
 
   mounted() {
-    if(localStorage.getItem("Cookie") == undefined)
+    if(sessionStorage.getItem("Cookie") == undefined)
       this.showCookie = true;
   },
 };

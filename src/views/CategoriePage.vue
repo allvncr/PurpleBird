@@ -12,101 +12,13 @@
       </div>
     </section>
     <section class="section">
-      <div class="left">
-        <form @submit.prevent="">
-          <div class="form-group form-group-budget">
-            <label>Budget (€)</label>
-            <input
-              class="form-control"
-              type="text"
-              value=""
-              placeholder="min."
-            />
-            <input
-              class="form-control"
-              type="text"
-              value=""
-              placeholder="max."
-            />
-          </div>
-          <div class="form-group form-group-color">
-            <label>Couleur</label>
-            <select class="form-control" name="_color">
-              <option value="">Toutes</option>
-              <option value="argent">argent</option>
-              <option value="beige">beige</option>
-              <option value="blanc">blanc</option>
-              <option value="bleu">bleu</option>
-              <option value="gris">gris</option>
-              <option value="jaune">jaune</option>
-              <option value="marron">marron</option>
-              <option value="noir">noir</option>
-              <option value="orange">orange</option>
-              <option value="rose">rose</option>
-              <option value="rouge">rouge</option>
-              <option value="vert">vert</option>
-            </select>
-          </div>
-          <div class="form-group form-group-size">
-            <label>Taille</label>
-            <select class="form-control" name="_size">
-              <option value="">Toutes</option>
-              <optgroup label="Textile">
-                <option value="XS">XS</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
-              </optgroup>
-              <optgroup label="Memoire">
-                <option value="512 Mo">512 Mo</option>
-                <option value="1 Go">1 Go</option>
-                <option value="2 Go">2 Go</option>
-                <option value="4 Go">4 Go</option>
-                <option value="8 Go">8 Go</option>
-                <option value="16 Go">16 Go</option>
-                <option value="32 Go">32 Go</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="form-group-tag">
-            <p>Catégories</p>
-            <ul>
-              <li class="checkbox">
-                <label>
-                  <input
-                    type="radio"
-                    name="categorie"
-                    :value="{}"
-                    v-model="categorie"
-                  />
-                  <span>Aucune</span>
-                </label>
-              </li>
-              <li class="checkbox" v-for="(cat, i) in getCategories" :key="i">
-                <label>
-                  <input
-                    type="radio"
-                    name="categorie"
-                    :value="cat"
-                    v-model="categorie"
-                  />
-                  <span>{{ cat.lib }}</span>
-                </label>
-              </li>
-            </ul>
-          </div>
-          <div class="actions">
-            <button class="btn btn-primary" type="submit">Filtrer</button>
-          </div>
-        </form>
-      </div>
       <div class="right">
         <div class="searchnone">
           <h1 class="page-title category-title">Recherche</h1>
           <div class="category-total">
-            <strong>{{ getProduitRows }}</strong> produit(s)
+            <p>
+              <strong>{{ getProduitRows }}</strong> produit(s)
+            </p>
           </div>
           <p v-if="!getProduitRows">
             Il n'y a aucun produit pour cette recherche. Merci de nous
@@ -304,7 +216,7 @@ export default {
       width: 100%;
       padding: 0;
     }
-    width: 75%;
+    width: 100%;
     padding: 0 15px 0 30px;
 
     .searchnone {
@@ -325,6 +237,8 @@ export default {
 
     .category-total {
       text-align: right;
+      border-bottom: 1px solid $grey-dark;
+      margin-bottom: 4px;
     }
   }
 }

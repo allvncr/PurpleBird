@@ -4,6 +4,7 @@
       <h4>Commentaires</h4>
       <div class="form-group">
         <textarea
+          v-model="form.commentaires"
           class="form-control"
           rows="3"
           placeholder="Commentaires"
@@ -12,6 +13,7 @@
       <h4>Coordonnées</h4>
       <div class="form-group">
         <input
+          v-model="form.societe"
           class="form-control"
           type="text"
           maxlength="50"
@@ -22,6 +24,7 @@
       <div class="double">
         <div class="form-group">
           <input
+            v-model="form.prenom"
             class="form-control"
             type="text"
             maxlength="20"
@@ -31,6 +34,7 @@
         </div>
         <div class="form-group">
           <input
+            v-model="form.nom"
             class="form-control"
             type="text"
             maxlength="30"
@@ -41,6 +45,7 @@
       </div>
       <div class="form-group">
         <input
+          v-model="form.adresse"
           class="form-control"
           type="text"
           maxlength="50"
@@ -50,6 +55,7 @@
       </div>
       <div class="form-group">
         <input
+          v-model="form.adresse_comp"
           class="form-control"
           type="text"
           maxlength="50"
@@ -59,6 +65,7 @@
       <div class="triple">
         <div class="form-group">
           <input
+            v-model="form.cp"
             class="form-control"
             type="text"
             maxlength="20"
@@ -68,6 +75,7 @@
         </div>
         <div class="form-group">
           <input
+            v-model="form.ville"
             class="form-control"
             type="text"
             maxlength="20"
@@ -76,18 +84,21 @@
           />
         </div>
         <div class="form-group">
-          <input
-            class="form-control"
-            type="text"
-            maxlength="20"
-            placeholder="Pays"
+          <b-select
+            v-model="form.pays"
+            :options="getPays"
+            text-field="name"
+            value-field="name"
+            plain
             required
-          />
+            class="form-control"
+          ></b-select>
         </div>
       </div>
       <div class="double">
         <div class="form-group">
           <input
+            v-model="form.email"
             class="form-control"
             type="email"
             maxlength="30"
@@ -97,8 +108,9 @@
         </div>
         <div class="form-group">
           <input
+            v-model="form.tel"
             class="form-control"
-            type="number"
+            type="tel"
             maxlength="50"
             placeholder="Téléphone"
             required
@@ -108,9 +120,8 @@
       <div>
         <input name="infoValid" id="infoValid" type="checkbox" required />
         <label for="infoValid" style="cursor: pointer; margin: 0 0 0 4px">
-          J'accepte que les informations saisies
-          soient exploitées dans le cadre d'une relation commerciale avec
-          PURPLEBIRD
+          J'accepte que les informations saisies soient exploitées dans le cadre
+          d'une relation commerciale avec PURPLEBIRD
         </label>
       </div>
       <div class="actions">
@@ -123,11 +134,41 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
+  data() {
+    return {
+      form: {
+        prenom: null,
+        nom: null,
+        societe: null,
+        adresse: null,
+        adresse_comp: null,
+        cp: null,
+        ville: null,
+        pays: null,
+        email: null,
+        tel: null,
+        commentaires: null,
+      },
+    };
+  },
+  computed: {
+    ...mapGetters(["getForm", "getPays"]),
+  },
   methods: {
+    ...mapActions(["add_form", "all_pays"]),
+
     nextStep() {
+      this.add_form(this.form);
       this.$router.push("/checkout");
     },
+  },
+
+  mounted() {
+    this.all_pays()
+    this.form = { ...this.getForm };
   },
 };
 </script>

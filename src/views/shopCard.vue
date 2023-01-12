@@ -1,75 +1,103 @@
 <template>
   <div>
-
     <p v-if="!getPanierRows">Vide</p>
-    <table class="PanierTable" v-else>
-      <thead>
-        <tr class="PanierTRTitle">
-          <th class="caddi1">Produit</th>
-          <th class="caddi1">Désignation</th>
-          <th class="caddi1">Quantité</th>
 
-          <th class="caddi1" nowrap="">Prix unitaire HT</th>
-          <th class="caddi1" nowrap="">Prix total HT</th>
-          <th class="caddi1 skip-xs"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(product, i) in getPanier" :key="i">
-          <td>
-            <router-link to=""><img :src="product.urlimages[0]" /></router-link>
-          </td>
-          <td class="panierCol">
-            {{ product.name }}
-          </td>
-          <td class="panierCol">
-            <input type="number" v-model="product.quantite" min="1" @input="getTotal"/>
-          </td>
-          <td class="panierCol" align="right">{{ product.price }} €</td>
-          <td class="panierCol" align="right">{{ productTotal(product) }} €</td>
+    <div v-else>
+      <table class="PanierTable">
+        <thead>
+          <tr class="PanierTRTitle">
+            <th class="caddi1">Produit</th>
+            <th class="caddi1">Désignation</th>
+            <th class="caddi1">Couleur</th>
+            <th class="caddi1">Marquage</th>
+            <th class="caddi1">Quantité</th>
 
-          <td class="panierCol action">
-            <div @click="remove_product(product)">
-              <svg viewBox="0 0 24 24">
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"
-                />
-              </svg>
-            </div>
-          </td>
-        </tr>
+            <th class="caddi1" nowrap="">Prix unitaire HT</th>
+            <th class="caddi1" nowrap="">Prix total HT</th>
+            <th class="caddi1 skip-xs"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(product, i) in getPanier" :key="i">
+            <td>
+              <img :src="product.image.imageStoreLocation" />
+            </td>
+            <td class="panierCol">
+              {{ product.name }}
+            </td>
+            <td class="panierCol">
+              <div
+                class="color"
+                :style="'background-color:' + product.color"
+              ></div>
+            </td>
+            <td>
+              {{ product.marking ? product.marking.marque : "-" }}
+            </td>
+            <td class="panierCol">
+              <input
+                type="number"
+                v-model="product.quantite"
+                min="1"
+                @input="getTotal"
+              />
+            </td>
+            <td class="panierCol" align="right">{{ product.price }} €</td>
+            <td class="panierCol" align="right">
+              {{ productTotal(product) }} €
+            </td>
 
-        <tr class="PanierTRHT">
-          <td></td>
-          <td colspan="2"></td>
-          <td align="right">Sous-total HT</td>
-          <td align="right" class="panierCol">{{ getTotal }} €</td>
-          <td></td>
-        </tr>
+            <td class="panierCol action">
+              <div @click="remove_product(i)">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"
+                  />
+                </svg>
+              </div>
+            </td>
+          </tr>
 
-        <tr class="PanierTRTVA">
-          <td></td>
-          <td colspan="2"></td>
-          <td align="right">TVA ( 20% ) </td>
-          <td align="right" class="panierCol">{{ getTVA }} €</td>
-          <td></td>
-        </tr>
-        <tr class="PanierTRTTC">
-          <td></td>
-          <td colspan="2"></td>
-          <td align="right">Total TTC</td>
-          <td align="right" class="panierCol">{{ getTotal + getTVA }} €</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+          <tr class="PanierTRHT">
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td align="right">Sous-total HT</td>
+            <td align="right" class="panierCol">{{ getTotal }} €</td>
+            <td></td>
+          </tr>
 
-    <p class="remarque">** Prix indicatif hors marquage et hors frais de livraison</p>
+          <tr class="PanierTRTVA">
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td align="right">TVA ( 20% )</td>
+            <td align="right" class="panierCol">{{ getTVA }} €</td>
+            <td></td>
+          </tr>
+          <tr class="PanierTRTTC">
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td align="right">Total TTC</td>
+            <td align="right" class="panierCol">{{ getTotal + getTVA }} €</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="remarque">
+        ** Prix indicatif hors marquage et hors frais de livraison
+      </p>
+    </div>
 
     <div class="actions">
       <router-link to="/categories" class="btn btn-default">
@@ -95,14 +123,14 @@ export default {
       });
       return total;
     },
-    getTVA(){
+    getTVA() {
       var total = 0;
       this.getPanier.forEach((product) => {
         total += product.price * product.quantite;
       });
-      total = (total * 20) / 100
+      total = (total * 20) / 100;
       return total;
-    }
+    },
   },
   methods: {
     ...mapActions(["add_product", "remove_product"]),
@@ -197,6 +225,11 @@ p {
   }
 }
 
+.color {
+  width: 24px;
+  height: 24px;
+}
+
 .actions {
   display: flex;
   align-items: center;
@@ -207,7 +240,7 @@ p {
   }
 }
 
-.remarque{
+.remarque {
   font-size: 14px;
   text-align: right;
   font-style: italic;
