@@ -279,7 +279,7 @@ export default {
 
       this.quantiteColor.forEach((c) => {
         if (c.name == this.currentColor) {
-          product.color = c.code;
+          product.color = c;
           product.quantite = c.number;
         }
       });
@@ -382,8 +382,7 @@ export default {
     computedList() {
       var list = [];
       this.images.forEach((img) => {
-        // if (img.color == this.images[0].color)
-        list.push(img);
+        if (img.color == this.images[0].color) list.push(img);
       });
       return list.slice(1);
     },

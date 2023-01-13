@@ -28,7 +28,7 @@
             <td class="panierCol">
               <div
                 class="color"
-                :style="'background-color:' + product.color"
+                :style="'background-color:' + product.color.code"
               ></div>
             </td>
             <td>

@@ -46,12 +46,12 @@ export default {
     ...mapActions(["create_order"]),
     generateReport() {
       let produit = {
-        description: '',
-        markingChoice: '',
-        name: '',
-        reference: '',
-        url_Image: '',
-        url_Logo: '',
+        description: "",
+        markingChoice: "",
+        name: "",
+        reference: "",
+        url_Image: "",
+        url_Logo: "",
         detailsProductList: [],
         estimate: {
           infographicHT: 0,
@@ -74,50 +74,51 @@ export default {
       this.getPanier.forEach((el) => {
         let exist = estimateProductList.findIndex((p) => p.name == el.name);
         if (exist >= 0) {
-          detail.color = el.color;
-          detail.size = '';
+          detail.color = el.color.name;
+          detail.size = "";
           detail.unitPriceHT = +el.price;
           detail.totalPriceHT = +el.quantite * +el.price;
           detail.tva = (detail.totalPriceHT * 20) / 100;
           detail.totalPriceTTC = detail.totalPriceHT + detail.tva;
 
-          estimateProductList[exist].subTotal.quantity += +el.quantite
-          estimateProductList[exist].subTotal.unitPriceHT += detail.unitPriceHT
-          estimateProductList[exist].subTotal.totalPriceHT +=  detail.totalPriceHT
-          estimateProductList[exist].subTotal.tva += detail.tva
-          estimateProductList[exist].subTotal.totalPriceTTC += detail.totalPriceTTC
+          estimateProductList[exist].subTotal.quantity += +el.quantite;
+          estimateProductList[exist].subTotal.unitPriceHT += detail.unitPriceHT;
+          estimateProductList[exist].subTotal.totalPriceHT +=
+            detail.totalPriceHT;
+          estimateProductList[exist].subTotal.tva += detail.tva;
+          estimateProductList[exist].subTotal.totalPriceTTC +=
+            detail.totalPriceTTC;
 
-          estimateProductList[exist].estimate.totalHT +=  detail.totalPriceHT
-          estimateProductList[exist].estimate.tvaamount += detail.tva
-          estimateProductList[exist].estimate.totalTTC += detail.totalPriceTTC
+          estimateProductList[exist].estimate.totalHT += detail.totalPriceHT;
+          estimateProductList[exist].estimate.tvaamount += detail.tva;
+          estimateProductList[exist].estimate.totalTTC += detail.totalPriceTTC;
 
           estimateProductList[exist].detailsProductList.push(detail);
         } else {
-          produit.description = el.description ? el.description : '';
+          produit.description = el.description ? el.description : "";
           produit.name = el.name;
           produit.reference = el.reference;
-          produit.markingChoice = el.marking ? el.marking : '';
-          produit.url_Image = el.image ? el.image.imageStoreLocation : '';
-          produit.url_Logo = this.getMinio ? this.getMinio : '';
+          produit.markingChoice = el.marking ? el.marking : "";
+          produit.url_Image = el.image ? el.image.imageStoreLocation : "";
+          produit.url_Logo = this.getMinio ? this.getMinio : "";
 
-          detail.color = el.color;
-          detail.size = '';
+          detail.color = el.color.name;
+          detail.size = "";
           detail.unitPriceHT = +el.price;
           detail.totalPriceHT = +el.quantite * +el.price;
           detail.tva = (detail.totalPriceHT * 20) / 100;
           detail.totalPriceTTC = detail.totalPriceHT + detail.tva;
           produit.detailsProductList.push(detail);
 
-          produit.subTotal.quantity = +el.quantite
-          produit.subTotal.unitPriceHT = detail.unitPriceHT
-          produit.subTotal.totalPriceHT = detail.totalPriceHT
-          produit.subTotal.tva = detail.tva
-          produit.subTotal.totalPriceTTC = detail.totalPriceTTC
+          produit.subTotal.quantity = +el.quantite;
+          produit.subTotal.unitPriceHT = detail.unitPriceHT;
+          produit.subTotal.totalPriceHT = detail.totalPriceHT;
+          produit.subTotal.tva = detail.tva;
+          produit.subTotal.totalPriceTTC = detail.totalPriceTTC;
 
-          produit.estimate.totalHT = detail.totalPriceHT
-          produit.estimate.tvaamount = detail.tva
-          produit.estimate.totalTTC = detail.totalPriceTTC
-
+          produit.estimate.totalHT = detail.totalPriceHT;
+          produit.estimate.tvaamount = detail.tva;
+          produit.estimate.totalTTC = detail.totalPriceTTC;
 
           estimateProductList.push(produit);
         }
@@ -127,17 +128,17 @@ export default {
       });
 
       console.log(estimateProductList);
-      this.create_order(estimateProductList).then(()=>{
+      this.create_order(estimateProductList).then(() => {
         this.cleanPanier();
-      })
+      });
     },
 
     cleanPanier() {
-      localStorage.removeItem('minio')
-      localStorage.removeItem('panier')
+      localStorage.removeItem("minio");
+      localStorage.removeItem("panier");
 
-      this.$router.push('/')
-    }
+      this.$router.push("/");
+    },
   },
 };
 </script>
