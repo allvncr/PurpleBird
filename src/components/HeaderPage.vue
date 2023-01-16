@@ -95,8 +95,8 @@
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'recrutement' }" title="Nous rejoindre">
-              Nous rejoindre
+            <router-link :to="{ name: 'catalogue' }" title="Nous rejoindre">
+              Catalogue
             </router-link>
           </li>
         </ul>
