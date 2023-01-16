@@ -345,8 +345,8 @@ export default {
       this.currentColor = color.toLowerCase();
       this.images = [];
       this.getProduit.imagesList.forEach((img) => {
-        // if (img.color.toLowerCase() == color.toLowerCase())
-        this.images.push(img);
+        if (img.color.toLowerCase() == color.toLowerCase())
+          this.images.push(img);
       });
     },
   },

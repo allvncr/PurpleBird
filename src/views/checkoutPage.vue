@@ -37,6 +37,7 @@ export default {
           letterRendering: true,
         },
       },
+      boxOne: "",
     };
   },
   computed: {
@@ -127,17 +128,29 @@ export default {
         produit = {};
       });
 
-      console.log(estimateProductList);
-      this.create_order(estimateProductList).then(() => {
-        this.cleanPanier();
-      });
+      this.create_order(estimateProductList)
+      this.showMsgBoxOne();
     },
 
-    cleanPanier() {
-      localStorage.removeItem("minio");
-      localStorage.removeItem("panier");
-
-      this.$router.push("/");
+    showMsgBoxOne() {
+      this.boxOne = "";
+      this.$bvModal
+        .msgBoxOk(
+          "Votre devis à bien été reçu, nous reviendrons vers vous bientôt !",
+          {
+            title: "Validation",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "success",
+            headerClass: "p-2 border-bottom-0",
+            footerClass: "p-2 border-top-0",
+            centered: true,
+          }
+        )
+        .then(() => {
+          this.clean_panier();
+          this.$router.push("/");
+        });
     },
   },
 };

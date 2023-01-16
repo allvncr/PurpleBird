@@ -27,6 +27,12 @@ const mutations = {
   SET_PANIER(state) {
     localStorage.setItem("panier", JSON.stringify(state.panier));
   },
+  CLEAN_PANIER(state) {
+    localStorage.removeItem("minio");
+    localStorage.removeItem("panier");
+    state.panier = []
+    state.minio = null
+  },
   SET_FORM(state, payload) {
     state.form = payload;
     localStorage.setItem("form", JSON.stringify(payload));
@@ -96,6 +102,10 @@ const actions = {
   remove_product({ commit }, payload) {
     commit("REMOVE_PRODUCT", payload);
     commit("SET_PANIER");
+    return true;
+  },
+  clean_panier({ commit }) {
+    commit("CLEAN_PANIER");
     return true;
   },
 
