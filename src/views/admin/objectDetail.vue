@@ -8,7 +8,9 @@
     <div class="container">
       <div class="head">
         <h2 v-if="$route.params">{{ $route.params.obj }}</h2>
-        <button class="btn btn-primary add">Ajouter</button>
+        <button class="btn btn-primary add" @click="openModal('add-category')">
+          Ajouter
+        </button>
       </div>
       <table class="table table-bordered mt-4 table-hover" v-if="isCategorie">
         <thead>
@@ -95,18 +97,27 @@
         </p>
       </div>
     </div>
+
+    <add-categorie></add-categorie>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import addCategorie from "@/components/modal/add/addCategorie.vue";
 
 export default {
+  components: {
+    addCategorie,
+  },
   data() {
     return {};
   },
   methods: {
-    ...mapActions(["all_categories", "all_products"]),
+    ...mapActions(["all_categories", "all_products", "add_categorie"]),
+    openModal(name) {
+      this.$root.$emit('bv::show::modal', name)
+    },
   },
   computed: {
     ...mapGetters([
