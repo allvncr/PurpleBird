@@ -5,11 +5,12 @@
 
       <ul class="group">
         <li class="media">
-          <div class="media-img">
-            <img src="https://www.rose.fr/images/feature-pink-1.jpg">
-          </div>
+          <div
+            class="media-img"
+            :style="{ backgroundImage: `url(${savoirFaire1})` }"
+          ></div>
           <div class="media-main">
-            <h2> <span>Un objet</span> publicitaire ?</h2>
+            <h2><span>Un objet</span> publicitaire ?</h2>
             <div class="media-desc">
               <p>Pour Qui ? Pour Quoi ?</p>
               <ul>
@@ -20,15 +21,23 @@
                 <li>Remercier vos collaborateurs</li>
                 <li>Stimuler votre réseau de ventes</li>
               </ul>
-              <br>
+              <br />
               <p>Saviez-vous que ?</p>
               <ul>
-                <li>99% des Français conservent les objets publicitaires qu’ils reçoivent</li>
-                <li>81% déclarent s’en servir et retenir la marque associée au produit</li>
+                <li>
+                  99% des Français conservent les objets publicitaires qu’ils
+                  reçoivent
+                </li>
+                <li>
+                  81% déclarent s’en servir et retenir la marque associée au
+                  produit
+                </li>
               </ul>
-              <br>
-              <p>A quelle occasion les Français aiment-ils qu’on leur remette des objets
-                publicitaires?</p>
+              <br />
+              <p>
+                A quelle occasion les Français aiment-ils qu’on leur remette des
+                objets publicitaires?
+              </p>
               <ul>
                 <li>92% pour les remercier de leur fidélité</li>
                 <li>85% pour les remercier d'un premier achat</li>
@@ -41,32 +50,45 @@
           <div class="media-main">
             <h2><span>Délais</span> Express</h2>
             <div class="media-desc">
-              Chez <span class="brand">PURPLEBIRD</span>, nous prenons l’engagement de traiter vos commandes dans les
-              meilleurs délais. Nous nous adapterons à vos plannings même les plus serrés.
-              Il ne vous reste plus que 3, 5 ou 7 jours avant le début de votre opération ? <br>
-              Nous sélectionnerons pour vous des objets réalisables en un temps record : carnets, sacs en coton, t-shirts,
-              clés USB, connectiques multiports, bar à batterie... <br>
-              Interrogez-nous, nous avons des idées à foison et proposons des solutions rapides !
+              Chez <span class="brand">PURPLEBIRD</span>, nous prenons
+              l’engagement de traiter vos commandes dans les meilleurs délais.
+              Nous nous adapterons à vos plannings même les plus serrés. Il ne
+              vous reste plus que 3, 5 ou 7 jours avant le début de votre
+              opération ? <br />
+              Nous sélectionnerons pour vous des objets réalisables en un temps
+              record : carnets, sacs en coton, t-shirts, clés USB, connectiques
+              multiports, bar à batterie... <br />
+              Interrogez-nous, nous avons des idées à foison et proposons des
+              solutions rapides !
             </div>
           </div>
-          <div class="media-img">
-            <img src="https://www.rose.fr/images/feature-pink-3.jpg">
-          </div>
+          <div
+            class="media-img"
+            :style="{ backgroundImage: `url(${savoirFaire2})` }"
+          ></div>
         </li>
       </ul>
     </div>
   </div>
 </template>
-  
+
+<script setup>
+import savoirFaire1 from "../assets/savoir_faire_1.png";
+import savoirFaire2 from "../assets/savoir_faire_2.jpg";
+</script>
+
 <style lang="scss" scoped>
 .aboutus {
-  background-image: url(../assets/background-aboutus.jpg);
-  background-position: 50%;
+  background-image: url(../assets/Qui\ sommes-nous.jpg);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 64px 0;
 }
 
+ul {
+  padding: 0;
+}
 .container {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 64px;
@@ -103,22 +125,36 @@ p {
 }
 
 .media {
+    @media only screen and (max-width: $phone) {
+      display: block;
+    }
   margin: 64px 0;
   display: flex;
 
-  .media-img, .media-main {
+
+  .media-main {
+    @media only screen and (max-width: $phone) {
+      width: 100%;
+    }
     width: 50%;
     padding: 0 15px;
   }
 
-  img{
-    width: 100%;
+  .media-img {
+    @media only screen and (max-width: $phone) {
+      display: none;
+    }
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40%;
+    height: 300px;
     border-radius: 50%;
   }
 
   .media-main {
     h2 {
-      span{
+      span {
         color: $secondary;
       }
       color: $primary;

@@ -24,12 +24,12 @@
             >
           </li>
         </ul>
-        <ul style="border: 0;justify-content: space-between">
-          <li>
+        <ul style="border: 0;justify-content: flex-end">
+          <!-- <li>
             <router-link :to="{ name: 'categories' }" title="Catalogues"
             >Catalogues</router-link
             >
-          </li>
+          </li> -->
 
           <li>
             <router-link :to="{ name: 'recrutement' }" title="Nous Rejoindre" style="padding: 0"

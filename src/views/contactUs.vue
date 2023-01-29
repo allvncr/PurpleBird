@@ -132,8 +132,8 @@ export default {
 
 <style lang="scss" scoped>
 .aboutus {
-  background-image: url(../assets/background-aboutus.jpg);
-  background-position: 50%;
+  background-image: url(../assets/Contactez-nous.png);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 64px 0;

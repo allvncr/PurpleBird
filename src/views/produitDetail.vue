@@ -11,49 +11,52 @@
               <router-link to="/categories">Produits</router-link>
             </li>
             <li class="breadcrumb-item">
-              <a v-if="produit_id">{{ getProduit.name }}</a>
+              <a v-if="produit_id">{{ produit.name }}</a>
             </li>
           </ol>
         </div>
       </section>
+
       <section>
         <div class="row">
           <div class="col-xl-8 col-lg-7">
-            <div>
+            <div v-if="getProduit.length > 1">
               <span>coloris</span>
               <div class="coloris">
                 <div
                   class="color"
-                  v-for="(color, i) in quantiteColor"
+                  v-for="(prod, i) in getProduit"
                   :key="i"
-                  :class="{ bordered: currentColor == color.name }"
-                  :style="'background-color:' + color.code"
-                  @click="rangeColor(color.name)"
+                  :class="{
+                    bordered: produit.colorName == prod.colorName,
+                  }"
+                  :style="'background-color:' + prod.hexCodeColor"
+                  @click="rangeColor(prod)"
+                  :title="prod.colorName"
                 ></div>
               </div>
             </div>
             <div class="row justify-content-center">
-              <div class="col-8">
+              <div class="col-8" v-if="produit.imagesList[0]">
                 <img
                   style="cursor: pointer"
-                  v-if="images[0]"
-                  :src="images[0].imageStoreLocation"
-                  :alt="getProduit.name"
+                  :src="produit.imagesList[0].imageStoreLocation"
+                  :alt="produit.name"
                   @click="openModal()"
                 />
-                <img src="../assets/new.png" class="new" v-if="dateDiff" />
+                <img src="../assets/new-blue.png" class="new" v-if="dateDiff" />
               </div>
-              <div class="col-4 mini" v-if="images.length > 1">
+              <div class="col-4 mini" v-if="produit.imagesList.length > 1">
                 <Flicking
                   :options="{ circular: false, horizontal: false, bound: true }"
                   align="next"
                   style="height: 100%"
                 >
                   <img
-                    v-for="(image, i) in computedList"
+                    v-for="(image, i) in produit.imagesList.slice(1)"
                     :key="i"
                     :src="image.imageStoreLocation"
-                    :alt="getProduit.name"
+                    :alt="produit.name"
                     @click="charge(image, i)"
                   />
                 </Flicking>
@@ -77,7 +80,10 @@
                     />
                   </svg>
                 </span>
-                <img :src="images[0].imageStoreLocation" />
+                <img
+                  v-if="produit.imagesList[0]"
+                  :src="produit.imagesList[0].imageStoreLocation"
+                />
                 <span class="right" @click="swipe({ key: 'ArrowRight' })">
                   <svg width="32" height="32" viewBox="0 0 24 24">
                     <path
@@ -91,17 +97,17 @@
           </div>
           <div class="col-xl-4 col-lg-5">
             <div class="product-details-content">
-              <h1 class="h2">{{ getProduit.name }}</h1>
-              <h2><small>À partir de </small>{{ getProduit.price }} €</h2>
+              <h1 class="h2">{{ produit.name }}</h1>
+              <h2><small>À partir de </small>{{ produit.price }} €</h2>
               <p>
                 <strong
-                  >Référence : {{ getProduit.reference }} | Couleur:
-                  {{ images[0].color }}
+                  >Référence : {{ produit.reference }} | Couleur:
+                  {{ produit.colorName }}
                 </strong>
               </p>
               <br />
 
-              <p>{{ getProduit.description }}</p>
+              <p>{{ produit.description }}</p>
               <div class="pro-details-rating-wrap pb-2">
                 <div class="pro-details-rating">
                   <div class="row d-flex justify-content-center ml-2"></div>
@@ -124,22 +130,14 @@
             <div class="tab-content" v-show="review == 0">
               <p>CHOISISSEZ LES COULEURS ET QUANTITÉS SOUHAITÉES</p>
               <p>Cliquez sur les couleurs pour choisir la quantité.</p>
-              <!-- <div
+
+              <input
+                v-model="produit.quantite"
+                type="text"
+                maxlength="3"
                 class="badge-color-group"
-                v-for="(color, i) in getProduit.colorList"
-                :key="i"
-                :style="'background-color:' + color"
-              ></div> -->
-              <div v-for="(color, i) in quantiteColor" :key="i">
-                <input
-                  v-if="color.name == currentColor"
-                  type="text"
-                  maxlength="3"
-                  class="badge-color-group"
-                  :style="'background-color:' + color.code"
-                  v-model="color.number"
-                />
-              </div>
+                :style="'background-color:' + produit.hexCodeColor"
+              />
 
               <div class="btn btn-primary" @click="review = 1" v-if="totalQ">
                 Je souhaite personnaliser mon produit
@@ -152,7 +150,7 @@
                 <b-form-select
                   plain
                   v-model="perso.marque"
-                  :options="[{ content: null }, ...getProduit.markingList]"
+                  :options="[{ content: null }, ...produit.markingList]"
                   text-field="content"
                   value-field="content"
                 ></b-form-select>
@@ -192,7 +190,7 @@
                     <span>Prix unitaire H.T. :</span>
                     <span class="flex justify-content-end"
                       ><span id="unit_price" class="total-number">{{
-                        getProduit.price
+                        produit.price
                       }}</span>
                       <span>€</span></span
                     >
@@ -201,7 +199,7 @@
                     <span>Prix total H.T. :</span>
                     <span class="flex justify-content-end"
                       ><span id="total_price" class="total-number">{{
-                        getProduit.price * totalQ
+                        produit.price * totalQ
                       }}</span>
                       <span>€</span></span
                     >
@@ -247,7 +245,10 @@ export default {
 
   data() {
     return {
-      images: [],
+      produit: {
+        imagesList: [],
+        markingList: [],
+      },
       review: 0,
       quantiteColor: [],
       perso: {
@@ -264,41 +265,21 @@ export default {
     ...mapActions(["one_product", "add_product", "post_monio"]),
 
     charge(img) {
-      this.images = this.images.filter((item) => item.id !== img.id);
-      this.images.unshift(img);
+      this.produit.imagesList = this.produit.imagesList.filter(
+        (item) => item.id !== img.id
+      );
+      this.produit.imagesList.unshift(img);
     },
 
     panier() {
       var product = {
-        id: this.getProduit.id,
         marking: this.perso.file ? this.perso : null,
-        color: "",
-        quantite: 1,
-        image: this.images[0],
+        image: this.produit.imagesList[0],
       };
-
-      this.quantiteColor.forEach((c) => {
-        if (c.name == this.currentColor) {
-          product.color = c;
-          product.quantite = c.number;
-        }
-      });
-
       this.add_product({
         ...product,
-        ...this.getProduit,
+        ...this.produit,
       });
-
-      // for (let i = 0; i < this.quantiteColor.length; i++) {
-      //   if (this.quantiteColor[i].number > 0) {
-      //     product.color = this.quantiteColor[i].code;
-      //     product.quantite = this.quantiteColor[i].number;
-      //     this.add_product({
-      //       ...product,
-      //       ...this.getProduit,
-      //     });
-      //   }
-      // }
       var bodyFormData = new FormData();
       bodyFormData.append("file", this.perso.file);
       this.post_monio(bodyFormData);
@@ -328,12 +309,14 @@ export default {
 
     swipe(e) {
       if (e.key == "ArrowRight") {
-        this.images.push(this.images[0]);
-        this.images.splice(0, 1);
+        this.produit.imagesList.push(this.produit.imagesList[0]);
+        this.produit.imagesList.splice(0, 1);
       }
       if (e.key == "ArrowLeft") {
-        this.images.unshift(this.images[this.images.length - 1]);
-        this.images.pop();
+        this.produit.imagesList.unshift(
+          this.produit.imagesList[this.produit.imagesList.length - 1]
+        );
+        this.produit.imagesList.pop();
       }
     },
 
@@ -341,13 +324,8 @@ export default {
       window.removeEventListener("keydown", this.swipe);
     },
 
-    rangeColor(color) {
-      this.currentColor = color.toLowerCase();
-      this.images = [];
-      this.getProduit.imagesList.forEach((img) => {
-        if (img.color.toLowerCase() == color.toLowerCase())
-          this.images.push(img);
-      });
+    rangeColor(prod) {
+      this.produit = prod;
     },
   },
 
@@ -359,16 +337,17 @@ export default {
 
     totalQ() {
       var total = 0;
-      this.quantiteColor.forEach((e) => {
-        if (e.number == "" || e.number == null) {
-          total += 0;
-        } else if (!isNaN(e.number)) total += parseInt(e.number);
-      });
+
+      if (this.produit.quantite == "" || this.produit.quantite == null) {
+        total += 0;
+      } else if (!isNaN(this.produit.quantite))
+        total += parseInt(this.produit.quantite);
+
       return total;
     },
 
     dateDiff() {
-      const date1 = new Date(this.getProduit.created_at);
+      const date1 = new Date(this.produit.createdDate);
       const date2 = new Date();
       const diffInMilliseconds = date2.getTime() - date1.getTime();
       const diffInSeconds = diffInMilliseconds / 1000;
@@ -378,31 +357,13 @@ export default {
       const diffInWeeks = diffInDays / 7;
       return diffInWeeks.toFixed(0) < 4;
     },
-
-    computedList() {
-      var list = [];
-      this.images.forEach((img) => {
-        if (img.color == this.images[0].color) list.push(img);
-      });
-      return list.slice(1);
-    },
   },
 
   mounted() {
     this.one_product(this.$route.params).then(() => {
-      this.rangeColor(this.getProduit.imagesList[0].color);
-      this.getProduit.colorList.forEach((element) => {
-        this.quantiteColor.push({
-          code: element.hexCodeColor,
-          number: null,
-          name: element.name,
-        });
-      });
+      this.produit = this.getProduit[0];
     });
   },
-
-  created() {},
-  destroyed() {},
 };
 </script>
 
@@ -412,6 +373,7 @@ export default {
 }
 
 .breadcrumb-responsive {
+  margin-top: 24px;
   margin-bottom: 64px;
 
   .breadcrumb {
@@ -457,13 +419,37 @@ img {
 }
 
 .mini {
+  position: relative;
   max-height: 400px;
-  overflow: hidden;
 
   img {
     cursor: pointer;
     max-width: 108px;
     max-height: 108px;
+  }
+
+  .down {
+    @media only screen and (max-width: $tablette) {
+      display: none;
+    }
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 50px;
+    text-align: center;
+    margin: auto;
+  }
+
+  .top {
+    @media only screen and (max-width: $tablette) {
+      display: none;
+    }
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 50px;
+    text-align: center;
+    margin: auto;
   }
 }
 
@@ -564,8 +550,8 @@ img {
   position: absolute;
   width: 48px;
   height: 48px;
-  top: 0;
-  left: 0;
+  top: 20px;
+  left: 20px;
 }
 
 .coloris {

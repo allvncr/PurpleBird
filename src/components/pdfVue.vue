@@ -28,7 +28,7 @@
               <td class="ligneColor">
                 <div
                   class="color"
-                  :style="'background-color:' + product.color.code"
+                  :style="'background-color:' + product.hexCodeColor"
                 ></div>
               </td>
               <td class="panierCol">

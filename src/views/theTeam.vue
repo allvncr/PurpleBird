@@ -5,7 +5,7 @@
 
       <div class="team">
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/WW.jpg" width="170" />
+          <img class="rounded-circle" src="../assets/pole-crea.png" width="170" />
           <h5>Micha TOTSHI</h5>
           <p>
             Gérante<br />
@@ -18,7 +18,7 @@
         </div>
 
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/WW.jpg" width="170" />
+          <img class="rounded-circle" src="../assets/pole-crea.png" width="170" />
           <h5>Marie Thérèse Y.</h5>
           <p>
             Responsable Commerciale<br />
@@ -29,7 +29,7 @@
         </div>
 
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/Luffy.jpg" width="170" />
+          <img class="rounded-circle" src="../assets/pole-crea.png" width="170" />
           <h5>Thomas SIMON</h5>
           <p>
             Responsable Commercial<br />
@@ -40,7 +40,7 @@
         </div>
 
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/WW.jpg" width="170" />
+          <img class="rounded-circle" src="../assets/pole-crea.png" width="170" />
           <h5>Lois Anne</h5>
           <p>
             Conseiller Clientèle<br />
@@ -65,8 +65,8 @@
 
 <style lang="scss" scoped>
 .aboutus {
-  background-image: url(../assets/background-aboutus.jpg);
-  background-position: 50%;
+  background-image: url(../assets/équipe.png);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 64px 0;

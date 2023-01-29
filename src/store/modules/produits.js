@@ -25,9 +25,10 @@ const mutations = {
   },
   SET_PRODUCT(state, payload) {
     if (payload) {
-      state.produit = Product.create(payload);
+      // state.produit = payload.map((item) => Product.create(item));
+      state.produit = payload;
     } else {
-      state.produit = {};
+      state.produit = [];
     }
   },
   SET_PRODUCTS(state, payload) {
@@ -81,7 +82,6 @@ const actions = {
         domain + `/products/single-product/` + payload.id,
         {}
       );
-
       commit("SET_PRODUCT", response.data);
       commit("SET_PRODUCTLOADING", false);
       return true;

@@ -50,7 +50,7 @@
                     class="new"
                     v-if="dateDiff(produit.created_at)"
                   /> -->
-          <router-link :to="'/produit/' + produit.id">
+          <router-link :to="'/produit/' + produit.reference">
             <img
               class="img-fluid w-100"
               :src="produit.urlimage"
@@ -61,7 +61,7 @@
         </div>
         <div class="element_bottom">
           <div class="product_name">
-            <router-link :to="'/produit/' + produit.id">
+            <router-link :to="'/produit/' + produit.reference">
               {{ produit.name }}
             </router-link>
           </div>
@@ -207,11 +207,11 @@
         >
           <div class="element_top">
             <img
-              src="../assets/new.png"
+              src="../assets/new-blue.png"
               class="new"
               v-if="dateDiff(produit.created_at)"
             />
-            <router-link :to="'/produit/' + produit.id">
+            <router-link :to="'/produit/' + produit.reference">
               <img
                 class="produit_img img-fluid w-100"
                 :src="produit.urlimage"

@@ -28,7 +28,7 @@
             <td class="panierCol">
               <div
                 class="color"
-                :style="'background-color:' + product.color.code"
+                :style="'background-color:' + product.hexCodeColor"
               ></div>
             </td>
             <td>
@@ -139,6 +139,9 @@ export default {
       return product.price * product.quantite;
     },
   },
+  // mounted(){
+  //   console.log(this.getPanier)
+  // }
 };
 </script>
 
@@ -235,7 +238,7 @@ p {
   align-items: center;
   justify-content: space-between;
 
-  a {
+  .btn {
     width: 30%;
   }
 }

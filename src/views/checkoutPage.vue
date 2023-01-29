@@ -41,10 +41,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getPanier", "getMinio", "getOrderLoading"]),
+    ...mapGetters(["getPanier", "getMinio", "getOrderLoading", "getForm"]),
   },
   methods: {
-    ...mapActions(["create_order"]),
+    ...mapActions(["create_order", "clean_panier"]),
     generateReport() {
       let produit = {
         description: "",
@@ -75,27 +75,29 @@ export default {
       this.getPanier.forEach((el) => {
         let exist = estimateProductList.findIndex((p) => p.name == el.name);
         if (exist >= 0) {
-          detail.color = el.color.name;
-          detail.size = "";
+          detail.color = el.colorName;
+          detail.size = +el.quantite;
           detail.unitPriceHT = +el.price;
           detail.totalPriceHT = +el.quantite * +el.price;
-          detail.tva = (detail.totalPriceHT * 20) / 100;
-          detail.totalPriceTTC = detail.totalPriceHT + detail.tva;
+          detail.tva = 20;
+          detail.totalPriceTTC =
+            (detail.totalPriceHT * 20) / 100 + detail.totalPriceHT;
 
           estimateProductList[exist].subTotal.quantity += +el.quantite;
           estimateProductList[exist].subTotal.unitPriceHT += detail.unitPriceHT;
           estimateProductList[exist].subTotal.totalPriceHT +=
             detail.totalPriceHT;
-          estimateProductList[exist].subTotal.tva += detail.tva;
+          estimateProductList[exist].subTotal.tva = 20;
           estimateProductList[exist].subTotal.totalPriceTTC +=
             detail.totalPriceTTC;
 
           estimateProductList[exist].estimate.totalHT += detail.totalPriceHT;
-          estimateProductList[exist].estimate.tvaamount += detail.tva;
+          estimateProductList[exist].estimate.tvaamount +=
+            (detail.totalPriceHT * 20) / 100;
           estimateProductList[exist].estimate.totalTTC += detail.totalPriceTTC;
 
           estimateProductList[exist].detailsProductList.push(detail);
-        } else {
+        } else if (exist < 0) {
           produit.description = el.description ? el.description : "";
           produit.name = el.name;
           produit.reference = el.reference;
@@ -103,33 +105,72 @@ export default {
           produit.url_Image = el.image ? el.image.imageStoreLocation : "";
           produit.url_Logo = this.getMinio ? this.getMinio : "";
 
-          detail.color = el.color.name;
-          detail.size = "";
+          detail.color = el.colorName;
+          detail.size = +el.quantite;
           detail.unitPriceHT = +el.price;
           detail.totalPriceHT = +el.quantite * +el.price;
-          detail.tva = (detail.totalPriceHT * 20) / 100;
-          detail.totalPriceTTC = detail.totalPriceHT + detail.tva;
+          detail.tva = 20;
+          detail.totalPriceTTC =
+            (detail.totalPriceHT * 20) / 100 + detail.totalPriceHT;
           produit.detailsProductList.push(detail);
 
           produit.subTotal.quantity = +el.quantite;
           produit.subTotal.unitPriceHT = detail.unitPriceHT;
           produit.subTotal.totalPriceHT = detail.totalPriceHT;
-          produit.subTotal.tva = detail.tva;
+          produit.subTotal.tva = 20;
           produit.subTotal.totalPriceTTC = detail.totalPriceTTC;
 
           produit.estimate.totalHT = detail.totalPriceHT;
-          produit.estimate.tvaamount = detail.tva;
+          produit.estimate.tvaamount = (detail.totalPriceHT * 20) / 100;
           produit.estimate.totalTTC = detail.totalPriceTTC;
 
           estimateProductList.push(produit);
         }
 
         detail = {};
-        produit = {};
+        produit = {
+          detailsProductList: [],
+          estimate: {
+            infographicHT: 0,
+            totalHT: 0,
+            totalTTC: 0,
+            transportHT: 0,
+            tvaamount: 0,
+          },
+          subTotal: {
+            quantity: 0,
+            totalPriceHT: 0,
+            totalPriceTTC: 0,
+            tva: 0,
+            unitPriceHT: 0,
+          },
+        };
       });
 
-      this.create_order(estimateProductList)
-      this.showMsgBoxOne();
+      let order = {
+        estimateProducts: estimateProductList,
+        infoClient: {
+          address:
+            this.getForm.cp +
+            " ," +
+            this.getForm.ville +
+            " ," +
+            this.getForm.adresse,
+          email: this.getForm.email,
+          enterprise: this.getForm.societe,
+          firstname: this.getForm.prenom,
+          lastname: this.getForm.nom,
+          phoneNumber: this.getForm.tel,
+        },
+      };
+
+      alert(
+        "Votre devis à bien été reçu, nous reviendrons vers vous bientôt !"
+      );
+      this.create_order(order);
+      this.clean_panier();
+      this.$router.push("/");
+      // this.showMsgBoxOne();
     },
 
     showMsgBoxOne() {

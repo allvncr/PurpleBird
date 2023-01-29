@@ -1,4 +1,5 @@
 import axios from "axios";
+import domain from "@/environment";
 import Pays from "../../models/pays";
 
 const state = {
@@ -112,7 +113,7 @@ const actions = {
   async post_monio({ commit }, payload) {
     try {
       const response = await axios.post(
-        `http://192.168.1.20:8080/minio/upload/`,
+        domain +`/minio/upload/`,
         payload,
         {}
       );
@@ -140,7 +141,7 @@ const actions = {
   async create_order({ commit }, payload) {
     commit("SET_ORDERLOADING", true);
     try {
-      await axios.post(`http://192.168.1.20:8080/orders/estimate`, payload);
+      await axios.post(domain +`/orders/estimate`, payload);
 
       commit("SET_ORDERLOADING", false);
       return true;

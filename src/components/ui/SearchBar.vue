@@ -24,7 +24,7 @@
         v-model="filtre.categorie"
         :options="[
           {
-            lib: 'Categorie',
+            lib: 'Toutes Categories',
           },
           ...getCategories,
         ]"
@@ -51,7 +51,7 @@ export default {
     return {
       filtre: {
         search: null,
-        categorie: "Categorie",
+        categorie: "Toutes Categories",
         min: null,
         max: null,
       },
@@ -68,7 +68,7 @@ export default {
         min: this.filtre.min,
         max: this.filtre.max,
       };
-      if (this.filtre.categorie != "Categorie")
+      if (this.filtre.categorie != "Toutes Categories")
         data.categorie = this.filtre.categorie;
 
       this.all_products(data);

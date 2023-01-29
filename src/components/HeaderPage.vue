@@ -94,11 +94,11 @@
               Nous contacter
             </router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link :to="{ name: 'catalogue' }" title="Nous rejoindre">
               Catalogue
             </router-link>
-          </li>
+          </li> -->
         </ul>
         <div class="actions">
           <router-link :to="{ name: 'categories' }">
@@ -183,9 +183,12 @@ export default {
   }
 }
 .brand {
+    @media only screen and (max-width: $phone) {
+      max-width: 150px;
+    }
   display: block;
   padding: 16px 0;
-  max-width: 250px;
+  max-width: 200px;
   margin: 0 auto;
 
   img {

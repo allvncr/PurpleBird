@@ -90,7 +90,6 @@
             text-field="name"
             value-field="name"
             plain
-            required
             class="form-control"
           ></b-select>
         </div>

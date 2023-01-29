@@ -4,13 +4,13 @@
       <li v-for="product in getProduits" :key="product.id">
         <div class="product">
           <img
-            src="../assets/new.png"
+            src="../assets/new-blue.png"
             class="new"
             v-if="dateDiff(product.created_at)"
           />
           <router-link
             class="product-img img-ratio"
-            :to="'/produit/' + product.id"
+            :to="'/produit/' + product.reference"
             :title="product.name"
           >
             <img :src="product.urlimage" :alt="product.name" />
@@ -18,7 +18,7 @@
 
           <div class="product-details">
             <h2 class="h4 product-title">
-              <router-link :to="'/produit/' + product.id">
+              <router-link :to="'/produit/' + product.reference">
                 {{ product.name }}
               </router-link>
             </h2>
@@ -28,7 +28,7 @@
             <router-link
               style="border-radius: 0; padding: 18px 0"
               class="btn btn-primary"
-              :to="'produit/' + product.id"
+              :to="'produit/' + product.reference"
               title="Voir produit"
               >Voir produit</router-link
             >
