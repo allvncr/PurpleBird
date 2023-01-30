@@ -13,7 +13,7 @@ const state = {
     ? JSON.parse(localStorage.getItem("minio"))
     : null,
   pays: [],
-  orderLoading: false
+  orderLoading: false,
 };
 const getters = {
   getPanier: (state) => state.panier,
@@ -21,7 +21,7 @@ const getters = {
   getPanierRows: (state) => state.panier.length,
   getMinio: (state) => state.minio,
   getPays: (state) => state.pays,
-  getOrderLoading: (state) => state.orderLoading
+  getOrderLoading: (state) => state.orderLoading,
 };
 const mutations = {
   DO_NOTHING() {},
@@ -31,8 +31,8 @@ const mutations = {
   CLEAN_PANIER(state) {
     localStorage.removeItem("minio");
     localStorage.removeItem("panier");
-    state.panier = []
-    state.minio = null
+    state.panier = [];
+    state.minio = null;
   },
   SET_FORM(state, payload) {
     state.form = payload;
@@ -81,13 +81,13 @@ const mutations = {
       state.pays = [];
     }
   },
-  SET_ORDERLOADING(state, payload){
+  SET_ORDERLOADING(state, payload) {
     if (payload) {
       state.orderLoading = payload;
     } else {
       state.orderLoading = false;
     }
-  }
+  },
 };
 
 const actions = {
@@ -112,11 +112,7 @@ const actions = {
 
   async post_monio({ commit }, payload) {
     try {
-      const response = await axios.post(
-        domain +`/minio/upload/`,
-        payload,
-        {}
-      );
+      const response = await axios.post(domain + `/minio/upload/`, payload, {});
 
       commit("SET_MINIO", response.data);
       return true;
@@ -141,7 +137,7 @@ const actions = {
   async create_order({ commit }, payload) {
     commit("SET_ORDERLOADING", true);
     try {
-      await axios.post(domain +`/orders/estimate`, payload);
+      await axios.post(domain + `/orders/estimate/`, payload);
 
       commit("SET_ORDERLOADING", false);
       return true;

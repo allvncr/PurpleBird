@@ -2,7 +2,9 @@
   <div id="app">
     <HeaderSearch v-if="showSearch" />
     <HeaderPage v-else-if="ShowHeader" />
+
     <router-view />
+
     <FooterPage v-if="ShowHeader" />
     <cookie-template />
   </div>
@@ -20,7 +22,7 @@ export default {
     HeaderPage,
     FooterPage,
     cookieTemplate,
-    HeaderSearch
+    HeaderSearch,
   },
 
   computed: {

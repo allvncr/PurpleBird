@@ -56,9 +56,9 @@
             </li>
           </ul>
         </div>
-        <router-link to="/" class="brand">
+        <!-- <router-link to="/" class="brand">
           <img src="@/assets/PURPLEBIRD.jpg" />
-        </router-link>
+        </router-link> -->
       </div>
       <div class="navBlock">
         <ul class="nav-pages">

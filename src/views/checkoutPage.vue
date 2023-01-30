@@ -164,12 +164,14 @@ export default {
         },
       };
 
-      alert(
-        "Votre devis à bien été reçu, nous reviendrons vers vous bientôt !"
-      );
-      this.create_order(order);
-      this.clean_panier();
-      this.$router.push("/");
+      this.create_order(order).then(() => {
+        // alert(
+        //   "Votre devis à bien été reçu, nous reviendrons vers vous bientôt !"
+        // );
+        // this.clean_panier();
+        // this.$router.push("/");
+      });
+
       // this.showMsgBoxOne();
     },
 

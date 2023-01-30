@@ -46,9 +46,12 @@
                 />
                 <img src="../assets/new-blue.png" class="new" v-if="dateDiff" />
               </div>
-              <div class="col-4 mini" v-if="produit.imagesList.length > 1">
+              <div
+                class="col-4 mini"
+                v-if="produit.imagesList.length > 1"
+              >
                 <Flicking
-                  :options="{ circular: false, horizontal: false, bound: true }"
+                  :options="{ circular: true, horizontal: false, bound: false }"
                   align="next"
                   style="height: 100%"
                 >
@@ -80,10 +83,7 @@
                     />
                   </svg>
                 </span>
-                <img
-                  v-if="produit.imagesList[0]"
-                  :src="produit.imagesList[0].imageStoreLocation"
-                />
+                <img v-if="produit.imagesList[0]" :src="produit.imagesList[0].imageStoreLocation" />
                 <span class="right" @click="swipe({ key: 'ArrowRight' })">
                   <svg width="32" height="32" viewBox="0 0 24 24">
                     <path
@@ -131,13 +131,14 @@
               <p>CHOISISSEZ LES COULEURS ET QUANTITÉS SOUHAITÉES</p>
               <p>Cliquez sur les couleurs pour choisir la quantité.</p>
 
-              <input
-                v-model="produit.quantite"
-                type="text"
-                maxlength="3"
-                class="badge-color-group"
-                :style="'background-color:' + produit.hexCodeColor"
-              />
+                <input
+                  v-model="produit.quantite"
+                  type="text"
+                  maxlength="3"
+                  class="badge-color-group"
+                  :style="'background-color:' + produit.hexCodeColor"
+                  />
+
 
               <div class="btn btn-primary" @click="review = 1" v-if="totalQ">
                 Je souhaite personnaliser mon produit
@@ -247,7 +248,7 @@ export default {
     return {
       produit: {
         imagesList: [],
-        markingList: [],
+        markingList: []
       },
       review: 0,
       quantiteColor: [],
@@ -265,9 +266,7 @@ export default {
     ...mapActions(["one_product", "add_product", "post_monio"]),
 
     charge(img) {
-      this.produit.imagesList = this.produit.imagesList.filter(
-        (item) => item.id !== img.id
-      );
+      this.produit.imagesList = this.produit.imagesList.filter((item) => item.id !== img.id);
       this.produit.imagesList.unshift(img);
     },
 
@@ -313,9 +312,7 @@ export default {
         this.produit.imagesList.splice(0, 1);
       }
       if (e.key == "ArrowLeft") {
-        this.produit.imagesList.unshift(
-          this.produit.imagesList[this.produit.imagesList.length - 1]
-        );
+        this.produit.imagesList.unshift(this.produit.imagesList[this.produit.imagesList.length - 1]);
         this.produit.imagesList.pop();
       }
     },
@@ -325,7 +322,7 @@ export default {
     },
 
     rangeColor(prod) {
-      this.produit = prod;
+      this.produit = prod
     },
   },
 
@@ -338,10 +335,10 @@ export default {
     totalQ() {
       var total = 0;
 
-      if (this.produit.quantite == "" || this.produit.quantite == null) {
-        total += 0;
-      } else if (!isNaN(this.produit.quantite))
-        total += parseInt(this.produit.quantite);
+
+        if (this.produit.quantite == "" || this.produit.quantite == null) {
+          total += 0;
+        } else if (!isNaN(this.produit.quantite)) total += parseInt(this.produit.quantite);
 
       return total;
     },
@@ -361,9 +358,10 @@ export default {
 
   mounted() {
     this.one_product(this.$route.params).then(() => {
-      this.produit = this.getProduit[0];
+      this.produit = this.getProduit[0]
     });
   },
+
 };
 </script>
 
@@ -419,37 +417,13 @@ img {
 }
 
 .mini {
-  position: relative;
   max-height: 400px;
+  overflow: hidden;
 
   img {
     cursor: pointer;
     max-width: 108px;
     max-height: 108px;
-  }
-
-  .down {
-    @media only screen and (max-width: $tablette) {
-      display: none;
-    }
-    position: absolute;
-    bottom: -40px;
-    left: 0;
-    right: 50px;
-    text-align: center;
-    margin: auto;
-  }
-
-  .top {
-    @media only screen and (max-width: $tablette) {
-      display: none;
-    }
-    position: absolute;
-    top: -40px;
-    left: 0;
-    right: 50px;
-    text-align: center;
-    margin: auto;
   }
 }
 
