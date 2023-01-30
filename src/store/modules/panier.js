@@ -137,8 +137,7 @@ const actions = {
   async create_order({ commit }, payload) {
     commit("SET_ORDERLOADING", true);
     try {
-      await axios.post(domain + `/orders/estimate/`, payload);
-
+      await axios.post(domain + `/orders/estimate`, payload);
       commit("SET_ORDERLOADING", false);
       return true;
     } catch (error) {
