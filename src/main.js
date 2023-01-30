@@ -11,10 +11,6 @@ import "@egjs/vue-flicking/dist/flicking.css";
 // Or, if you have to support IE9
 import "@egjs/vue-flicking/dist/flicking-inline.css";
 
-import axiosPlugin from './axiosPlugin';
-
-Vue.use(axiosPlugin);
-
 Vue.use(Flicking);
 
 Vue.use(BootstrapVue)
