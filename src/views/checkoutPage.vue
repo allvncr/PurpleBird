@@ -164,15 +164,15 @@ export default {
         },
       };
 
-      this.create_order(order).then(() => {
-        alert(
-          "Votre devis à bien été reçu, nous reviendrons vers vous bientôt !"
-        );
-        this.clean_panier();
-        this.$router.push("/");
-      });
+      this.create_order(order)
 
-      // this.showMsgBoxOne();
+      // alert(
+      //     "Votre devis à bien été reçu, nous reviendrons vers vous bientôt !"
+      //   );
+      //   this.clean_panier();
+      //   this.$router.push("/");
+
+      this.showMsgBoxOne();
     },
 
     showMsgBoxOne() {

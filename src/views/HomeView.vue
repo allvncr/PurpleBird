@@ -305,6 +305,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  width: 90%;
+}
 .section-content {
   h2 {
     text-align: center;
@@ -401,7 +404,7 @@ a {
   margin-bottom: 24px;
 
   img {
-    height: calc(100vh - 175px);
+    height: 60vh;
     width: 95%;
     border-radius: 10px;
   }

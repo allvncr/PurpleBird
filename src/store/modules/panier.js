@@ -145,6 +145,18 @@ const actions = {
       return error;
     }
   },
+
+  async contact_us({ commit }, payload) {
+    commit("SET_ORDERLOADING", true);
+    try {
+      await axios.post(domain + `/contact`, payload);
+      commit("SET_ORDERLOADING", false);
+      return true;
+    } catch (error) {
+      commit("SET_ORDERLOADING", false);
+      return error;
+    }
+  },
 };
 
 export default { state, mutations, getters, actions };

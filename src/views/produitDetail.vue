@@ -20,7 +20,7 @@
       <section>
         <div class="row">
           <div class="col-xl-8 col-lg-7">
-            <div v-if="getProduit.length > 1">
+            <div>
               <span>coloris</span>
               <div class="coloris">
                 <div
@@ -28,11 +28,11 @@
                   v-for="(prod, i) in getProduit"
                   :key="i"
                   :class="{
-                    bordered: produit.colorName == prod.colorName,
+                    bordered: produit.color == prod.color,
                   }"
-                  :style="'background-color:' + prod.hexCodeColor"
+                  :style="'background-color:' + prod.hexCodeColors[0]"
                   @click="rangeColor(prod)"
-                  :title="prod.colorName"
+                  :title="prod.color"
                 ></div>
               </div>
             </div>
@@ -50,7 +50,7 @@
                 class="col-4 mini"
                 v-if="produit.imagesList.length > 1"
               >
-                <Flicking
+                <!-- <Flicking
                   :options="{ circular: true, horizontal: false, bound: false }"
                   align="next"
                   style="height: 100%"
@@ -62,7 +62,14 @@
                     :alt="produit.name"
                     @click="charge(image, i)"
                   />
-                </Flicking>
+                </Flicking> -->
+                <img
+                    v-for="(image, i) in produit.imagesList.slice(1)"
+                    :key="i"
+                    :src="image.imageStoreLocation"
+                    :alt="produit.name"
+                    @click="charge(image, i)"
+                  />
               </div>
             </div>
             <b-modal
@@ -102,17 +109,13 @@
               <p>
                 <strong
                   >Référence : {{ produit.reference }} | Couleur:
-                  {{ produit.colorName }}
+                  {{ produit.color }}
                 </strong>
               </p>
               <br />
 
-              <p>{{ produit.description }}</p>
-              <div class="pro-details-rating-wrap pb-2">
-                <div class="pro-details-rating">
-                  <div class="row d-flex justify-content-center ml-2"></div>
-                </div>
-              </div>
+              <p class="mb-4">{{ produit.description }}</p>
+              <b-table bordered :items="tableList"></b-table>
             </div>
           </div>
         </div>
@@ -136,7 +139,7 @@
                   type="text"
                   maxlength="3"
                   class="badge-color-group"
-                  :style="'background-color:' + produit.hexCodeColor"
+                  :style="'background-color:' + produit.hexCodeColors[0]"
                   />
 
 
@@ -259,6 +262,10 @@ export default {
       box: "",
       currentColor: null,
       plugins: [new Arrow({ moveByViewportSize: true, moveCount: 1 })],
+      items: [
+          { quantite: '50', prix: '500' },
+          { quantite: '25', prix: '250' }
+        ]
     };
   },
 
@@ -354,6 +361,18 @@ export default {
       const diffInWeeks = diffInDays / 7;
       return diffInWeeks.toFixed(0) < 4;
     },
+
+    tableList(){
+      var list = []
+      var object = {}
+      for (let i = 0; i < this.produit.quantities.length; i++) {
+        object.quantite = this.produit.quantities[i]
+        object.prix = this.produit.prices[i]
+        list.push(object)
+        object = {}
+      }
+      return list
+    }
   },
 
   mounted() {
@@ -417,14 +436,29 @@ img {
 }
 
 .mini {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 150px;
   max-height: 400px;
-  overflow: hidden;
+  overflow: auto;
+  scrollbar-color: #aaa transparent;
+  scrollbar-width: thin;
 
   img {
     cursor: pointer;
     max-width: 108px;
     max-height: 108px;
   }
+}
+
+.mini::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mini::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 8px;
 }
 
 .description-review {
@@ -533,10 +567,9 @@ img {
 
   .color {
     margin-left: 8px;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
-    border-radius: 50%;
   }
 }
 

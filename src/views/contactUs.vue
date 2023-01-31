@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="page-title"><span>Nous</span> contacter</h1>
 
-      <form action="">
+      <form @submit.prevent="sendContact">
         <div class="block">
           <div class="left">
             <b-form-group>
@@ -97,9 +97,8 @@
         <div style="margin: 12px 0">
           <input name="infoValid" id="infoValid" type="checkbox" required />
           <label for="infoValid" style="cursor: pointer; margin-left: 4px">
-             J'accepte que les informations saisies
-            soient exploitées dans le cadre d'une relation commerciale avec
-            PURPLEBIRD
+            J'accepte que les informations saisies soient exploitées dans le
+            cadre d'une relation commerciale avec PURPLEBIRD
           </label>
         </div>
 
@@ -114,6 +113,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   computed: {},
   data() {
@@ -125,7 +126,53 @@ export default {
       societe: "",
       sujet: "",
       message: "",
+      boxOne: ""
     };
+  },
+  methods: {
+    ...mapActions(["contact_us"]),
+
+    sendContact() {
+      var data = {
+        email: this.email,
+        enterprise: this.societe,
+        firstname: this.prenom,
+        lastname: this.nom,
+        message: this.message,
+        phoneNumber: this.tel,
+        subject: this.sujet,
+      };
+
+      this.contact_us(data).then(() => {
+        this.showMsgBoxOne();
+      });
+    },
+
+    showMsgBoxOne() {
+      this.boxOne = "";
+      this.$bvModal
+        .msgBoxOk(
+          "Votre message à bien été reçu, nous reviendrons vers vous bientôt !",
+          {
+            title: "Validation",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "success",
+            headerClass: "p-2 border-bottom-0",
+            footerClass: "p-2 border-top-0",
+            centered: true,
+          }
+        )
+        .then(() => {
+          this.email = null;
+          this.societe = null;
+          this.prenom = null;
+          this.nom = null;
+          this.message = null;
+          this.tel = null;
+          this.sujet = null;
+        });
+    },
   },
 };
 </script>

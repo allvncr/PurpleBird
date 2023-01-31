@@ -24,12 +24,12 @@
             >
           </li>
         </ul>
-        <ul style="border: 0;justify-content: flex-end">
-          <!-- <li>
+        <ul style="border: 0;justify-content: space-between">
+          <li>
             <router-link :to="{ name: 'categories' }" title="Catalogues"
             >Catalogues</router-link
             >
-          </li> -->
+          </li>
 
           <li>
             <router-link :to="{ name: 'recrutement' }" title="Nous Rejoindre" style="padding: 0"
@@ -249,7 +249,7 @@ export default {
   @media only screen and (max-width: $phone) {
     padding: 16px;
   }
-  padding: 64px 16px 16px;
+  padding: 16px;
   color: $grey-dark;
 }
 
@@ -319,7 +319,7 @@ export default {
   }
   background-color: $white;
   color: #959595;
-  padding: 32px 0;
+  padding: 15px 0;
   font-size: 14px;
 
   & .container {

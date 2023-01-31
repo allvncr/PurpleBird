@@ -94,11 +94,11 @@
               Nous contacter
             </router-link>
           </li>
-          <!-- <li>
+          <li>
             <router-link :to="{ name: 'catalogue' }" title="Nous rejoindre">
-              Catalogue
+              Catalogues
             </router-link>
-          </li> -->
+          </li>
         </ul>
         <div class="actions">
           <router-link :to="{ name: 'categories' }">
