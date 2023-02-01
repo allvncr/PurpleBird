@@ -1,10 +1,18 @@
 <template>
   <div class="home">
     <div class="sliders">
-      <Flicking :options="{ circular: true }" align="center" :plugins="pluginsS">
-        <div style="width: 97%">
+      <Flicking
+        :options="{ circular: true }"
+        align="center"
+        :plugins="pluginsS"
+      >
+        <a
+          href="https://heyzine.com/flip-book/19f2643a78.html"
+          target="_blank"
+          style="width: 97%"
+        >
           <img src="../assets/sliders/ban.jpeg" alt="image slot" />
-        </div>
+        </a>
         <div style="width: 97%">
           <img
             src="../assets/sliders/BC_2022_1800×600_01.jpg"
@@ -17,9 +25,13 @@
             alt="image slot"
           />
         </div>
-        <div style="width: 97%">
+        <a
+          href="https://heyzine.com/flip-book/b332d8d341.html"
+          target="_blank"
+          style="width: 97%"
+        >
           <img src="../assets/sliders/New.jpeg" alt="image slot" />
-        </div>
+        </a>
       </Flicking>
     </div>
 
@@ -222,7 +234,7 @@
           </div>
           <div class="element_bottom">
             <div class="product_name">
-              <router-link :to="'/produit/'+ produit.id">
+              <router-link :to="'/produit/' + produit.id">
                 {{ produit.name }}
               </router-link>
             </div>
@@ -255,7 +267,7 @@ export default {
       sliding: null,
       categorie: null,
       pluginsP,
-      pluginsS
+      pluginsS,
     };
   },
   computed: {
@@ -453,7 +465,7 @@ a {
     padding: 0 15px;
     margin-bottom: 20px;
 
-    &:hover .element_bottom{
+    &:hover .element_bottom {
       background-color: rgba($color: $primary, $alpha: 0.3);
     }
 

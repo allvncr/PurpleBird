@@ -264,7 +264,7 @@
       </section>
     </div>
     <div class="loader" v-else>
-      <b-spinner  label="Spinning"></b-spinner>
+      <b-spinner label="Spinning"></b-spinner>
     </div>
   </div>
 </template>
@@ -564,10 +564,37 @@ img {
 table {
   th,
   td {
-    border: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
     padding: 0.75rem;
     text-align: center;
     min-width: 64px;
+  }
+
+  th {
+    background-color: #0000000d;
+    color: $primary;
+    border: 1px solid #fff;
+
+    &:first-child {
+      border-left: 1px solid #dee2e6;
+    }
+
+    &:last-child {
+      border-right: 1px solid #dee2e6;
+    }
+  }
+
+  td {
+    border-bottom: 1px solid #dee2e6;
+    color: #7d3e77;
+
+    &:first-child {
+      border-left: 1px solid #dee2e6;
+    }
+
+    &:last-child {
+      border-right: 1px solid #dee2e6;
+    }
   }
 }
 
