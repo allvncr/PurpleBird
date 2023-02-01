@@ -70,7 +70,8 @@
             <div
               class="link dropdown"
               title="La société"
-              @click="dropdown = !dropdown"
+              @click="open"
+              ref="dropdown"
             >
               La société
               <div class="dropdown-container" v-show="dropdown">
@@ -138,6 +139,23 @@ export default {
   },
   computed: {
     ...mapGetters(["getPanierRows"]),
+  },
+  methods: {
+    open() {
+      if (this.dropdown) {
+        document.removeEventListener("click", this.close);
+        this.dropdown = false;
+      } else {
+        this.dropdown = true;
+        document.addEventListener("click", this.close);
+      }
+    },
+    close(e) {
+      if (this.$refs["dropdown"])
+        if (!this.$refs["dropdown"].contains(e.target)) {
+          this.dropdown = false;
+        }
+    },
   },
 };
 </script>

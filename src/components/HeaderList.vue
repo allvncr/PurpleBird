@@ -69,7 +69,8 @@
           <div
             class="link dropdown"
             title="La société"
-            @click="dropdown = !dropdown"
+            @click="open"
+            ref="dropdown"
           >
             La société
             <div class="dropdown-container" v-show="dropdown">
@@ -229,21 +230,40 @@ import { mapGetters } from "vuex";
 import SearchBar from "./ui/SearchBar.vue";
 
 export default {
+  components: { SearchBar },
   data() {
     return {
       dropdown: false,
       navbar: true,
     };
   },
-  methods: {},
   computed: {
     ...mapGetters(["getCategories", "getPanierRows"]),
   },
-  components: { SearchBar },
+  methods: {
+    open() {
+      if (this.dropdown) {
+        document.removeEventListener("click", this.close);
+        this.dropdown = false;
+      } else {
+        this.dropdown = true;
+        document.addEventListener("click", this.close);
+      }
+    },
+    close(e) {
+      if (this.$refs["dropdown"])
+        if (!this.$refs["dropdown"].contains(e.target)) {
+          this.dropdown = false;
+        }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+ul {
+  padding: 0;
+}
 .logoBlock {
   @media only screen and (max-width: $phone) {
     display: none;
