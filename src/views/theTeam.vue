@@ -5,7 +5,11 @@
 
       <div class="team">
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/pole-crea.png" width="170" />
+          <img
+            class="rounded-circle"
+            src="../assets/pole-crea.png"
+            width="170"
+          />
           <h5>Micha TOTSHI</h5>
           <p>
             Gérante<br />
@@ -18,7 +22,11 @@
         </div>
 
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/pole-crea.png" width="170" />
+          <img
+            class="rounded-circle"
+            src="../assets/pole-crea.png"
+            width="170"
+          />
           <h5>Marie Thérèse Y.</h5>
           <p>
             Responsable Commerciale<br />
@@ -29,7 +37,11 @@
         </div>
 
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/pole-crea.png" width="170" />
+          <img
+            class="rounded-circle"
+            src="../assets/pole-crea.png"
+            width="170"
+          />
           <h5>Thomas SIMON</h5>
           <p>
             Responsable Commercial<br />
@@ -40,7 +52,11 @@
         </div>
 
         <div class="about-feature">
-          <img class="rounded-circle" src="../assets/pole-crea.png" width="170" />
+          <img
+            class="rounded-circle"
+            src="../assets/pole-crea.png"
+            width="170"
+          />
           <h5>Lois Anne</h5>
           <p>
             Conseiller Clientèle<br />
@@ -62,6 +78,14 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  mounted() {
+    document.title = "L'equipe";
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .aboutus {

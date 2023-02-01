@@ -38,6 +38,9 @@ export default {
       return this.$route.name;
     },
   },
+  mounted() {
+    document.title = "Panier";
+  },
 };
 </script>
 

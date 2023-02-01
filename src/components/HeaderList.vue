@@ -480,6 +480,9 @@ export default {
 }
 
 .navbar-collapse {
+  @media only screen and (max-width: $phone) {
+    position: relative;
+  }
   position: absolute;
   z-index: 2;
   background-color: $white;

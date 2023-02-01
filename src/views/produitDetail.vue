@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" v-if="getProduit">
+    <div class="container" v-if="!getProduitLoading">
       <section>
         <div class="breadcrumb-responsive">
           <ol class="breadcrumb">
@@ -23,17 +23,30 @@
             <div>
               <span>coloris</span>
               <div class="coloris">
-                <div
-                  class="color"
-                  v-for="(prod, i) in getProduit"
-                  :key="i"
-                  :class="{
-                    bordered: produit.color == prod.color,
-                  }"
-                  :style="'background-color:' + prod.hexCodeColors[0]"
-                  @click="rangeColor(prod)"
-                  :title="prod.color"
-                ></div>
+                <div v-for="(prod, i) in getProduit" :key="i">
+                  <div
+                    v-if="prod.hexCodeColors.length < 2"
+                    class="color"
+                    :class="{
+                      bordered: produit.color == prod.color,
+                    }"
+                    :style="'background-color:' + prod.hexCodeColors[0]"
+                    @click="rangeColor(prod)"
+                    :title="prod.color"
+                  ></div>
+                  <div
+                    class="d_coloris"
+                    :style="
+                      'background:linear-gradient(to bottom right,' +
+                      produit.hexCodeColors[0] +
+                      ',' +
+                      produit.hexCodeColors[1] +
+                      ')'
+                    "
+                    :title="produit.color"
+                    v-else
+                  ></div>
+                </div>
               </div>
             </div>
             <div class="row justify-content-center">
@@ -46,10 +59,7 @@
                 />
                 <img src="../assets/new-blue.png" class="new" v-if="dateDiff" />
               </div>
-              <div
-                class="col-4 mini"
-                v-if="produit.imagesList.length > 1"
-              >
+              <div class="col-4 mini" v-if="produit.imagesList.length > 1">
                 <!-- <Flicking
                   :options="{ circular: true, horizontal: false, bound: false }"
                   align="next"
@@ -64,12 +74,12 @@
                   />
                 </Flicking> -->
                 <img
-                    v-for="(image, i) in produit.imagesList.slice(1)"
-                    :key="i"
-                    :src="image.imageStoreLocation"
-                    :alt="produit.name"
-                    @click="charge(image, i)"
-                  />
+                  v-for="(image, i) in produit.imagesList.slice(1)"
+                  :key="i"
+                  :src="image.imageStoreLocation"
+                  :alt="produit.name"
+                  @click="charge(image, i)"
+                />
               </div>
             </div>
             <b-modal
@@ -90,7 +100,10 @@
                     />
                   </svg>
                 </span>
-                <img v-if="produit.imagesList[0]" :src="produit.imagesList[0].imageStoreLocation" />
+                <img
+                  v-if="produit.imagesList[0]"
+                  :src="produit.imagesList[0].imageStoreLocation"
+                />
                 <span class="right" @click="swipe({ key: 'ArrowRight' })">
                   <svg width="32" height="32" viewBox="0 0 24 24">
                     <path
@@ -115,12 +128,27 @@
               <br />
 
               <p class="mb-4">{{ produit.description }}</p>
-              <b-table bordered :items="tableList"></b-table>
+              <table>
+                <thead>
+                  <tr>
+                    <th v-for="(quantite, i) in produit.quantities" :key="i">
+                      {{ quantite }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td v-for="(price, i) in produit.prices" :key="i">
+                      {{ price }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        <div class="row" style="margin-top: 48px">
+        <form @submit.prevent="panier" class="row" style="margin-top: 48px">
           <div class="col-lg-7">
             <div class="description-review nav">
               <div :class="{ active: review == 0 }" @click="review = 0">
@@ -134,14 +162,13 @@
               <p>CHOISISSEZ LES COULEURS ET QUANTITÉS SOUHAITÉES</p>
               <p>Cliquez sur les couleurs pour choisir la quantité.</p>
 
-                <input
-                  v-model="produit.quantite"
-                  type="text"
-                  maxlength="3"
-                  class="badge-color-group"
-                  :style="'background-color:' + produit.hexCodeColors[0]"
-                  />
-
+              <input
+                v-model="produit.quantite"
+                type="number"
+                :min="produit.minimalQuantity"
+                class="badge-color-group"
+                :style="'background-color:' + produit.hexCodeColors[0]"
+              />
 
               <div class="btn btn-primary" @click="review = 1" v-if="totalQ">
                 Je souhaite personnaliser mon produit
@@ -154,7 +181,10 @@
                 <b-form-select
                   plain
                   v-model="perso.marque"
-                  :options="[{ content: null }, ...produit.markingList]"
+                  :options="[
+                    { content: '' },
+                    ...produit.categories[0].markings,
+                  ]"
                   text-field="content"
                   value-field="content"
                 ></b-form-select>
@@ -212,10 +242,9 @@
               </div>
               <div class="proceed-btn">
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-primary"
                   :disabled="totalQ < 1"
-                  @click="panier"
                 >
                   Ajouter au panier
                 </button>
@@ -231,8 +260,11 @@
               éléments de marquage associés.
             </p>
           </div>
-        </div>
+        </form>
       </section>
+    </div>
+    <div class="loader" v-else>
+      <b-spinner  label="Spinning"></b-spinner>
     </div>
   </div>
 </template>
@@ -251,21 +283,21 @@ export default {
     return {
       produit: {
         imagesList: [],
-        markingList: []
+        markingList: [],
       },
       review: 0,
       quantiteColor: [],
       perso: {
         file: null,
-        marque: null,
+        marque: "",
       },
       box: "",
       currentColor: null,
       plugins: [new Arrow({ moveByViewportSize: true, moveCount: 1 })],
       items: [
-          { quantite: '50', prix: '500' },
-          { quantite: '25', prix: '250' }
-        ]
+        { quantite: "50", prix: "500" },
+        { quantite: "25", prix: "250" },
+      ],
     };
   },
 
@@ -273,7 +305,9 @@ export default {
     ...mapActions(["one_product", "add_product", "post_monio"]),
 
     charge(img) {
-      this.produit.imagesList = this.produit.imagesList.filter((item) => item.id !== img.id);
+      this.produit.imagesList = this.produit.imagesList.filter(
+        (item) => item.id !== img.id
+      );
       this.produit.imagesList.unshift(img);
     },
 
@@ -319,7 +353,9 @@ export default {
         this.produit.imagesList.splice(0, 1);
       }
       if (e.key == "ArrowLeft") {
-        this.produit.imagesList.unshift(this.produit.imagesList[this.produit.imagesList.length - 1]);
+        this.produit.imagesList.unshift(
+          this.produit.imagesList[this.produit.imagesList.length - 1]
+        );
         this.produit.imagesList.pop();
       }
     },
@@ -329,12 +365,12 @@ export default {
     },
 
     rangeColor(prod) {
-      this.produit = prod
+      this.produit = prod;
     },
   },
 
   computed: {
-    ...mapGetters(["getProduit"]),
+    ...mapGetters(["getProduit", "getProduitLoading"]),
     produit_id() {
       return this.$route.params.id;
     },
@@ -342,10 +378,10 @@ export default {
     totalQ() {
       var total = 0;
 
-
-        if (this.produit.quantite == "" || this.produit.quantite == null) {
-          total += 0;
-        } else if (!isNaN(this.produit.quantite)) total += parseInt(this.produit.quantite);
+      if (this.produit.quantite == "" || this.produit.quantite == null) {
+        total += 0;
+      } else if (!isNaN(this.produit.quantite))
+        total += parseInt(this.produit.quantite);
 
       return total;
     },
@@ -361,26 +397,14 @@ export default {
       const diffInWeeks = diffInDays / 7;
       return diffInWeeks.toFixed(0) < 4;
     },
-
-    tableList(){
-      var list = []
-      var object = {}
-      for (let i = 0; i < this.produit.quantities.length; i++) {
-        object.quantite = this.produit.quantities[i]
-        object.prix = this.produit.prices[i]
-        list.push(object)
-        object = {}
-      }
-      return list
-    }
   },
 
   mounted() {
+    document.title = "Details Article";
     this.one_product(this.$route.params).then(() => {
-      this.produit = this.getProduit[0]
+      this.produit = this.getProduit[0];
     });
   },
-
 };
 </script>
 
@@ -403,6 +427,9 @@ export default {
     border-radius: 10px;
 
     a {
+      @media only screen and (max-width: $phone) {
+        font-size: 14px;
+      }
       outline: medium none;
       color: #15273e;
     }
@@ -492,7 +519,7 @@ img {
   .badge-color-group {
     position: relative;
     display: inline-block;
-    width: 40px;
+    width: 50px;
     height: 25px;
     margin-right: 4px;
     margin-bottom: 4px;
@@ -534,6 +561,16 @@ img {
   }
 }
 
+table {
+  th,
+  td {
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+    text-align: center;
+    min-width: 64px;
+  }
+}
+
 .contact-link {
   outline: medium none;
   color: $primary;
@@ -544,6 +581,9 @@ img {
   align-items: center;
   justify-content: space-between;
   img {
+    @media only screen and (max-width: $phone) {
+      width: 400px;
+    }
     display: block;
     max-width: 800px;
     max-height: 500px;
@@ -564,16 +604,37 @@ img {
 
 .coloris {
   display: flex;
+  gap: 8px;
 
   .color {
-    margin-left: 8px;
+    border: 1px solid #333;
     width: 24px;
     height: 24px;
     cursor: pointer;
   }
 }
 
+.d_coloris {
+  cursor: pointer;
+  border: 1px solid #333;
+  height: 24px;
+  width: 24px;
+}
+
 .bordered {
-  border: 2px solid #000;
+  border: 2px solid #000 !important;
+}
+
+.loader {
+  height: 28vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+  }
 }
 </style>

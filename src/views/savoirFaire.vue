@@ -77,6 +77,14 @@ import savoirFaire1 from "../assets/savoir_faire_1.png";
 import savoirFaire2 from "../assets/savoir_faire_2.jpg";
 </script>
 
+<script>
+export default {
+  mounted() {
+    document.title = "Savoir Faire";
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .aboutus {
   background-image: url(../assets/Qui\ sommes-nous.jpg);
@@ -125,12 +133,11 @@ p {
 }
 
 .media {
-    @media only screen and (max-width: $phone) {
-      display: block;
-    }
+  @media only screen and (max-width: $phone) {
+    display: block;
+  }
   margin: 64px 0;
   display: flex;
-
 
   .media-main {
     @media only screen and (max-width: $phone) {

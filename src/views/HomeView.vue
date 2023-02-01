@@ -298,6 +298,7 @@ export default {
     },
   },
   mounted() {
+    document.title = "PurpleBird";
     this.all_products({ sort: "createdDate,desc" });
     this.all_categories();
   },
@@ -404,7 +405,7 @@ a {
   margin-bottom: 24px;
 
   img {
-    height: 60vh;
+    height: 65vh;
     width: 95%;
     border-radius: 10px;
   }

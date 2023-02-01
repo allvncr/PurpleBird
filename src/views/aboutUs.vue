@@ -63,6 +63,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+    document.title = "A Propos";
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .aboutus {
   background-image: url(../assets/Qui\ sommes-nous.jpg);

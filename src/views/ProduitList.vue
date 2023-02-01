@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ul>
-      <li v-for="product in getProduits" :key="product.id">
+    <ul v-if="!getProduitLoading">
+      <li v-for="product in liste" :key="product.id">
         <div class="product">
           <img
             src="../assets/new-blue.png"
@@ -36,6 +36,9 @@
         </div>
       </li>
     </ul>
+    <div class="loader" v-else>
+      <b-spinner label="Spinning"></b-spinner>
+    </div>
   </div>
 </template>
 
@@ -44,7 +47,18 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["getProduits", "getProduitRows", "getPanier"]),
+    ...mapGetters([
+      "getProduitRows",
+      "getPanier",
+      "getProduitLoading",
+    ]),
+  },
+
+  props: {
+    liste: {
+      type: Array,
+      default: () => [],
+    },
   },
   methods: {
     ...mapActions(["add_product", "remove_product"]),
@@ -67,6 +81,10 @@ export default {
       return diffInWeeks.toFixed(0) < 4;
     },
   },
+
+  mounted() {
+    document.title = "Liste articles";
+  },
 };
 </script>
 
@@ -79,10 +97,10 @@ ul {
 
   li {
     @media only screen and (max-width: $tablette) {
-      width: 25%;
+      width: 33%;
     }
     @media only screen and (max-width: $phone) {
-      width: 33%;
+      width: 50%;
     }
     width: 25%;
     padding: 0 15px;
@@ -162,6 +180,19 @@ ul {
         display: none;
       }
     }
+  }
+}
+
+.loader {
+  height: 28vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
   }
 }
 </style>

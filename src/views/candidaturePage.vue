@@ -47,6 +47,10 @@
 <script>
 export default {
   name: "candidaturePage",
+
+  mounted() {
+    document.title = "Candidatures";
+  },
 };
 </script>
 

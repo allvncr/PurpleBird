@@ -300,6 +300,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+    document.title = "Condition d'utilisation";
+  },
+}
+</script>
+
 <style lang="scss" scoped>
 .aboutus {
   background-image: url(../assets/background-aboutus.jpg);

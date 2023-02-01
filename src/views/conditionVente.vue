@@ -895,6 +895,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+    document.title = "Condition de vente";
+  },
+}
+</script>
+
 <style lang="scss" scoped>
 .aboutus {
   background-image: url(../assets/background-aboutus.jpg);

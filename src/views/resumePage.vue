@@ -166,6 +166,7 @@ export default {
   },
 
   mounted() {
+    document.title = "Resume";
     this.all_pays()
     this.form = { ...this.getForm };
   },

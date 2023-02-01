@@ -75,7 +75,7 @@ export default {
       this.getPanier.forEach((el) => {
         let exist = estimateProductList.findIndex((p) => p.name == el.name);
         if (exist >= 0) {
-          detail.color = el.colorName;
+          detail.color = el.color;
           detail.size = +el.quantite;
           detail.unitPriceHT = +el.price;
           detail.totalPriceHT = +el.quantite * +el.price;
@@ -105,7 +105,7 @@ export default {
           produit.url_Image = el.image ? el.image.imageStoreLocation : "";
           produit.url_Logo = this.getMinio ? this.getMinio : "";
 
-          detail.color = el.colorName;
+          detail.color = el.color;
           detail.size = +el.quantite;
           detail.unitPriceHT = +el.price;
           detail.totalPriceHT = +el.quantite * +el.price;
@@ -164,14 +164,8 @@ export default {
         },
       };
 
+
       this.create_order(order)
-
-      // alert(
-      //     "Votre devis à bien été reçu, nous reviendrons vers vous bientôt !"
-      //   );
-      //   this.clean_panier();
-      //   this.$router.push("/");
-
       this.showMsgBoxOne();
     },
 
@@ -195,6 +189,9 @@ export default {
           this.$router.push("/");
         });
     },
+  },
+  mounted() {
+    document.title = "Confirmation";
   },
 };
 </script>

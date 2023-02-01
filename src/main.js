@@ -11,6 +11,12 @@ import "@egjs/vue-flicking/dist/flicking.css";
 // Or, if you have to support IE9
 import "@egjs/vue-flicking/dist/flicking-inline.css";
 
+// Application global style
+import pagination from "./assets/pagination.css";
+
+Vue.use(pagination);
+
+
 Vue.use(Flicking);
 
 Vue.use(BootstrapVue)

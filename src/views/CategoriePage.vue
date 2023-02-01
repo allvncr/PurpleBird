@@ -27,8 +27,20 @@
         </div>
         <div class="produit-list">
           <!-- <router-view /> -->
-          <produit-list></produit-list>
+          <produit-list :liste="liste"></produit-list>
         </div>
+
+        <b-pagination
+          class=""
+          v-model="page"
+          :per-page="perPage"
+          :total-rows="getProduitRows"
+          last-number
+          first-number
+          pills
+          align="center"
+          @change="pagination"
+        ></b-pagination>
       </div>
     </section>
   </div>
@@ -43,20 +55,37 @@ export default {
   data() {
     return {
       page: 1,
-      perPage: 10,
+      perPage: 12,
       categorie: {},
+      liste: [],
     };
   },
   computed: {
-    ...mapGetters(["getCategories", "getProduitRows"]),
+    ...mapGetters(["getCategories", "getProduitRows", "getProduits"]),
   },
   methods: {
-    ...mapActions(["all_categories", "all_products", "category_products"]),
+    ...mapActions([
+      "all_categories",
+      "all_products",
+      "category_products",
+      "getProduitLoading",
+    ]),
     setup(query) {
-      this.all_products(query);
+      this.all_products(query).then(() => {
+        this.liste = this.getProduits.slice(0, this.perPage);
+      });
+    },
+    pagination(paginate) {
+      this.page = paginate;
+      this.liste = this.getProduits.slice(
+        this.perPage * (paginate - 1),
+        this.perPage * paginate
+      );
+      console.log(paginate);
     },
   },
   mounted() {
+    document.title = "Liste Articles";
     if (!this.$route.query.search) this.setup({});
     this.all_categories();
   },
@@ -82,8 +111,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ul,
+p {
+  margin: 0;
+}
 .container {
-  padding: 0 15px 128px;
+  padding: 0 15px 64px;
 }
 
 .breadcrumb-responsive {
@@ -238,8 +271,21 @@ export default {
     .category-total {
       text-align: right;
       border-bottom: 1px solid $grey-dark;
-      margin-bottom: 4px;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
     }
+  }
+}
+.loader {
+  height: 28vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
   }
 }
 </style>

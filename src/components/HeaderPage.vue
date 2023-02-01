@@ -94,7 +94,7 @@
               Nous contacter
             </router-link>
           </li>
-          <li>
+          <li class="catalogues">
             <router-link :to="{ name: 'catalogue' }" title="Nous rejoindre">
               Catalogues
             </router-link>
@@ -182,10 +182,11 @@ export default {
     }
   }
 }
+
 .brand {
-    @media only screen and (max-width: $phone) {
-      max-width: 150px;
-    }
+  @media only screen and (max-width: $phone) {
+    max-width: 110px;
+  }
   display: block;
   padding: 16px 0;
   max-width: 200px;
@@ -196,6 +197,12 @@ export default {
   }
 }
 
+.catalogues {
+  @media only screen and (max-width: $phone) {
+    display: none;
+  }
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -203,6 +210,9 @@ ul {
 }
 
 .nav-pages {
+  @media only screen and (max-width: $phone) {
+    gap: 8px;
+  }
   display: flex;
   align-items: center;
   position: relative;
@@ -216,6 +226,10 @@ ul {
 
   li a,
   li .link {
+    @media only screen and (max-width: $phone) {
+      padding: 0;
+      font-size: 10px;
+    }
     cursor: pointer;
     color: $black;
     display: block;
@@ -290,18 +304,32 @@ ul {
 .actions {
   display: flex;
   align-items: center;
+  gap: 8px;
 
   a {
+    @media only screen and (max-width: $phone) {
+      padding: 0;
+    }
     position: relative;
     text-decoration: none;
     padding: 10px 0px 10px 15px;
 
     svg {
+      @media only screen and (max-width: $phone) {
+        width: 18px;
+        height: 18px;
+      }
       width: 24px;
       height: 24px;
     }
 
     span {
+      @media only screen and (max-width: $phone) {
+        top: -8px;
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+      }
       position: absolute;
       top: 2px;
       right: -14px;

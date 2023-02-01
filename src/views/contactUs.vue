@@ -174,6 +174,9 @@ export default {
         });
     },
   },
+  mounted() {
+    document.title = "Nous Contacter";
+  },
 };
 </script>
 

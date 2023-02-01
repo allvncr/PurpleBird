@@ -18,7 +18,10 @@
 
 <script>
 export default {
-  name: "recrutementPage"
+  name: "recrutementPage",
+  mounted() {
+    document.title = "Recrutement";
+  },
 }
 </script>
 

@@ -348,7 +348,10 @@
 
 <script>
 export default {
-  name: "politiqueConfidentialite"
+  name: "politiqueConfidentialite",
+  mounted() {
+    document.title = "Politique de confidentialite";
+  },
 }
 </script>
 

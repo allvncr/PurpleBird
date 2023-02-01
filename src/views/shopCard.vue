@@ -27,9 +27,22 @@
             </td>
             <td class="panierCol">
               <div
+                v-if="product.hexCodeColors.length < 2"
                 class="color"
-                :style="'background-color:' + product.hexCodeColor"
+                :style="'background-color:' + product.hexCodeColors[0]"
               ></div>
+              <div
+                class="d_coloris"
+                :style="
+                  'background:linear-gradient(to bottom right,' +
+                  product.hexCodeColors[0] +
+                  ',' +
+                  product.hexCodeColors[1] +
+                  ')'
+                "
+                v-else
+              ></div>
+                <span>{{ product.color }}</span>
             </td>
             <td>
               {{ product.marking ? product.marking.marque : "-" }}
@@ -139,9 +152,9 @@ export default {
       return product.price * product.quantite;
     },
   },
-  // mounted(){
-  //   console.log(this.getPanier)
-  // }
+  mounted() {
+    document.title = "Panier";
+  },
 };
 </script>
 
@@ -229,8 +242,14 @@ p {
 }
 
 .color {
+  border: 1px solid #333;
   width: 24px;
   height: 24px;
+}
+.d_coloris {
+  border: 1px solid #333;
+  height: 24px;
+  width: 24px;
 }
 
 .actions {

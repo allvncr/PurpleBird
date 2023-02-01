@@ -73,6 +73,11 @@ const routes = [
     component: () => import("../views/contactUs.vue"),
   },
   {
+    path: "/catalogue",
+    name: "catalogue",
+    component: () => import("../views/cataloguePage.vue"),
+  },
+  {
     path: "/cgu",
     name: "condition utilisation",
     component: () => import("../views/conditionUtilisation.vue"),
@@ -112,12 +117,6 @@ const routes = [
     path: "/admin/home",
     name: "admin home",
     component: () => import("../views/admin/adminHome.vue"),
-    meta: { disableHeader: true },
-  },
-  {
-    path: "/pdf",
-    name: "pdf",
-    component: () => import("../views/pdfPage.vue"),
     meta: { disableHeader: true },
   },
   {

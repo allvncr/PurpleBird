@@ -137,6 +137,9 @@ export default {
       file: "",
     };
   },
+  mounted() {
+    document.title = "Candidature Spontannee";
+  },
 };
 </script>
 

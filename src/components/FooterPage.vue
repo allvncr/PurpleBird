@@ -18,22 +18,28 @@
               >L'équipe</router-link
             >
           </li>
-          <li >
-            <router-link :to="{ name: 'contact' }" title="Nous contacter" style="padding: 0"
+          <li>
+            <router-link
+              :to="{ name: 'contact' }"
+              title="Nous contacter"
+              style="padding: 0"
               >Nous contacter</router-link
             >
           </li>
         </ul>
-        <ul style="border: 0;justify-content: space-between">
+        <ul style="border: 0; justify-content: space-between">
           <li>
             <router-link :to="{ name: 'categories' }" title="Catalogues"
-            >Catalogues</router-link
+              >Catalogues</router-link
             >
           </li>
 
           <li>
-            <router-link :to="{ name: 'recrutement' }" title="Nous Rejoindre" style="padding: 0"
-            >Nous Rejoindre</router-link
+            <router-link
+              :to="{ name: 'recrutement' }"
+              title="Nous Rejoindre"
+              style="padding: 0"
+              >Nous Rejoindre</router-link
             >
           </li>
         </ul>
@@ -149,9 +155,9 @@
           </li>
           <li>
             <router-link
-                :to="{ name: 'politique de confidentialité' }"
-                title="Politique de confidentialité"
-            >Politique de confidentialité</router-link
+              :to="{ name: 'politique de confidentialité' }"
+              title="Politique de confidentialité"
+              >Politique de confidentialité</router-link
             >
           </li>
           <li>
@@ -202,6 +208,9 @@ export default {
 }
 
 .navbar {
+  @media only screen and (max-width: $phone) {
+    padding: 0;
+  }
   background-color: transparent;
   border: 0;
   border-radius: 0;
@@ -211,6 +220,9 @@ export default {
   position: static;
 
   ul {
+    @media only screen and (max-width: $phone) {
+      padding: 0;
+    }
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -229,6 +241,11 @@ export default {
     }
 
     li a {
+      @media only screen and (max-width: $phone) {
+        font-size: 12px;
+        padding: 8px;
+        text-align: center;
+      }
       color: $grey-dark;
       display: inline-block;
       font-size: 16px;
@@ -277,6 +294,9 @@ export default {
     }
 
     .nav-contact {
+      @media only screen and (max-width: $phone) {
+        padding: 0;
+      }
       line-height: 1.5;
       font-weight: 600;
       margin-bottom: 4px;
