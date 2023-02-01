@@ -182,7 +182,7 @@
                   plain
                   v-model="perso.marque"
                   :options="[
-                    { content: '' },
+                    { content: 'Aucun marquage' },
                     ...produit.categories[0].markings,
                   ]"
                   text-field="content"

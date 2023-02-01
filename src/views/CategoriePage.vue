@@ -6,8 +6,6 @@
           <li>
             <router-link to="/">Accueil</router-link>
           </li>
-          <li>Catégorie</li>
-          <li v-if="categorie.id">{{ categorie.lib }}</li>
         </ul>
       </div>
     </section>
@@ -56,7 +54,6 @@ export default {
     return {
       page: 1,
       perPage: 12,
-      categorie: {},
       liste: [],
     };
   },
@@ -90,21 +87,9 @@ export default {
     this.all_categories();
   },
   watch: {
-    "$route.params.id"(newParamsId) {
-      if (newParamsId)
-        this.category_products({
-          id: newParamsId,
-          page: 1,
-          perPage: this.perPage,
-        });
-    },
-    categorie(cat) {
-      if (cat.id)
-        this.$router.push({ name: "produitList", params: { id: cat.id } });
-      else {
-        this.setup({});
-        this.$router.push({ name: "categories" });
-      }
+    "getProduits"(newList) {
+      if (newList)
+        this.liste = newList.slice(0, this.perPage);
     },
   },
 };

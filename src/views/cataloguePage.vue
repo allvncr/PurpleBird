@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <section>
-        <header>Catalogues interactifs en ligne et magazines</header>
+        <header>Catalogues Objects Publicitaires</header>
         <div class="image-grid">
           <a href="https://heyzine.com/flip-book/a371410d53.html" target="_blank">
             <img :src="image1" />
@@ -15,7 +15,11 @@
           <a href="https://heyzine.com/flip-book/5ab6219686.html" target="_blank">
             <img :src="image3" />
           </a>
-
+        </div>
+      </section>
+      <section>
+        <header>Catalogues Textiles Publicitaires</header>
+        <div class="image-grid">
           <a href="https://heyzine.com/flip-book/19f2643a78.html" target="_blank">
             <img :src="image4" />
           </a>
@@ -41,7 +45,7 @@ import image5 from "../assets/catalogue/image5.png";
 <script>
 export default {
   mounted() {
-    document.title = "Catalogue";
+    document.title = "Catalogues";
   },
 };
 </script>

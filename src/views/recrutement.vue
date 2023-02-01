@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <section class="row mb-4">
+  <section class="row">
     <div class="col-6">
       <h4>Vous cherchez un emploi ?</h4>
       <p>
@@ -26,6 +26,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 h4 {
   color: $primary;

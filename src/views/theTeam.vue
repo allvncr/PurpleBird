@@ -16,8 +16,6 @@
             <a href="mailto:micha.totshi@purplebird.fr">
               micha.totshi@purplebird.fr
             </a>
-            <br />
-            <a href="tel:0617312495">06 17 31 24 95</a><br />
           </p>
         </div>
 
@@ -116,11 +114,11 @@ export default {
 .team {
   display: flex;
   align-items: center;
+    justify-content: center;
   flex-wrap: wrap;
 
   .about-feature {
-    width: 33%;
-    padding: 24px;
+    width: 25%;
     text-align: center;
 
     img {

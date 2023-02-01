@@ -70,10 +70,14 @@ export default {
   }
 
   .breadcrumb > li + li:before {
-    content: "/Â ";
+    content: "/> ";
     padding: 0 5px;
     color: #ccc;
   }
+}
+
+.container {
+  min-height: 60vh;
 }
 
 .sign-up {
@@ -104,6 +108,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 32px;
 
   .form-group {
     width: 40%;

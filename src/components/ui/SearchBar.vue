@@ -71,7 +71,7 @@ export default {
       if (this.filtre.categorie != "Toutes Categories")
         data.categorie = this.filtre.categorie;
 
-      this.all_products(data);
+      this.all_products(data)
       if (
         this.$route.name != "categories" &&
         this.$route.name != "produitList"
