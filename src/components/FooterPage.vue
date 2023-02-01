@@ -29,7 +29,7 @@
         </ul>
         <ul style="border: 0; justify-content: space-between">
           <li>
-            <router-link :to="{ name: 'categories' }" title="Catalogues"
+            <router-link :to="{ name: 'catalogue' }" title="Catalogues"
               >Catalogues</router-link
             >
           </li>
@@ -66,8 +66,8 @@
           </ul>
           <ul class="nav-social">
             <li>
-              <router-link
-                to=""
+              <a
+                href="https://www.linkedin.com/company/purplebird-objets-publicitaires/?viewAsMember=true"
                 title="Profil LinkedIn de Purplebird"
                 target="_blank"
               >
@@ -82,11 +82,11 @@
                     transform="translate(0 -1.27)"
                   ></path>
                 </svg>
-              </router-link>
+              </a>
             </li>
-            <li>
-              <router-link
-                to=""
+            <!-- <li>
+              <a
+                href=""
                 title="Profil Instagram de Purplebird"
                 target="_blank"
               >
@@ -101,11 +101,11 @@
                     transform="translate(0 -1.13)"
                   ></path>
                 </svg>
-              </router-link>
-            </li>
+              </a>
+            </li> -->
             <li>
               <a
-                href=""
+                href="https://www.facebook.com/profile.php?id=100089574870249"
                 title="Page Facebook de Purplebird"
                 target="_blank"
                 style="display: flex; justify-content: center"

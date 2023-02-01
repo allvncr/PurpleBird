@@ -4,7 +4,10 @@
       <div class="logoBlock-header">
         <ul>
           <li>
-            <router-link to="">
+            <a
+              href="https://www.linkedin.com/company/purplebird-objets-publicitaires/?viewAsMember=true"
+              target="_blank"
+            >
               <svg
                 class="img"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16,9 +19,9 @@
                   transform="translate(0 -1.27)"
                 ></path>
               </svg>
-            </router-link>
+            </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="">
               <svg
                 class="img"
@@ -32,10 +35,10 @@
                 ></path>
               </svg>
             </a>
-          </li>
+          </li> -->
           <li>
             <a
-              href=""
+              href="https://www.facebook.com/profile.php?id=100089574870249"
               target="_blank"
               style="display: flex; justify-content: center"
             >
