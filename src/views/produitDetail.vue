@@ -163,6 +163,7 @@
               <p>Cliquez sur les couleurs pour choisir la quantité.</p>
 
               <input
+                v-if="produit.hexCodeColors"
                 v-model="produit.quantite"
                 type="number"
                 :min="produit.minimalQuantity"
@@ -176,7 +177,7 @@
             </div>
 
             <div class="tab-content" v-show="review == 1">
-              <b-form-group>
+              <b-form-group v-if="produit.categories">
                 <template #label> Choix de marquage </template>
                 <b-form-select
                   plain
