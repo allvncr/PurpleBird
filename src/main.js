@@ -12,10 +12,7 @@ import "@egjs/vue-flicking/dist/flicking.css";
 import "@egjs/vue-flicking/dist/flicking-inline.css";
 
 // Application global style
-import pagination from "./assets/pagination.css";
-
-Vue.use(pagination);
-
+import './assets/pagination.css';
 
 Vue.use(Flicking);
 
