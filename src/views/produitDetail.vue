@@ -190,7 +190,7 @@
                 ></b-form-select>
               </b-form-group>
 
-              <b-form-group v-if="perso.marque">
+              <b-form-group v-if="perso.marque != 'Aucun marquage'">
                 <template #label>
                   Ajouter un visuel (jpeg, png) <span class="required">*</span>
                 </template>
@@ -289,7 +289,7 @@ export default {
       quantiteColor: [],
       perso: {
         file: null,
-        marque: "",
+        marque: "Aucun marquage",
       },
       box: "",
       currentColor: null,
