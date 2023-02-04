@@ -35,15 +35,16 @@
                     :title="prod.color"
                   ></div>
                   <div
+                    @click="rangeColor(prod)"
                     class="d_coloris"
                     :style="
                       'background:linear-gradient(to bottom right,' +
-                      produit.hexCodeColors[0] +
+                      prod.hexCodeColors[0] +
                       ',' +
-                      produit.hexCodeColors[1] +
+                      prod.hexCodeColors[1] +
                       ')'
                     "
-                    :title="produit.color"
+                    :title="prod.color"
                     v-else
                   ></div>
                 </div>
