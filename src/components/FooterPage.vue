@@ -51,16 +51,16 @@
           <ul class="nav-contact">
             <li>
               Tél:
-              <router-link to="tel:+33983374491" title="tel:+33 9 83 37 44 91"
-                >+33 9 83 37 44 91</router-link
+              <a href="tel:+33983374491" title="tel:+33 9 83 37 44 91"
+                >+33 9 83 37 44 91</a
               >
             </li>
             <li class="text-truncate">
               Email:
-              <router-link
-                to="mailto:contact@purplebird.fr"
+              <a
+                href="mailto:contact@purplebird.fr"
                 title="mailto:contact@purplebird.fr"
-                >contact@purplebird.fr</router-link
+                >contact@purplebird.fr</a
               >
             </li>
           </ul>

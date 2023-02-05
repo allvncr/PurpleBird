@@ -160,20 +160,20 @@
         <div class="navbar-group">
           <ul class="nav">
             <li>
-            <router-link :to="{ name: 'quiSommeNous' }"
-              >Qui sommes-nous ?</router-link
-            >
-          </li>
-          <li>
-            <router-link :to="{ name: 'equipe' }" title="L'équipe"
-              >L'équipe</router-link
-            >
-          </li>
+              <router-link :to="{ name: 'quiSommeNous' }"
+                >Qui sommes-nous ?</router-link
+              >
+            </li>
             <li>
-            <router-link :to="{ name: 'savoirFaire' }"
-              >Notre savoir-faire</router-link
-            >
-          </li>
+              <router-link :to="{ name: 'equipe' }" title="L'équipe"
+                >L'équipe</router-link
+              >
+            </li>
+            <li>
+              <router-link :to="{ name: 'savoirFaire' }"
+                >Notre savoir-faire</router-link
+              >
+            </li>
             <li>
               <router-link :to="{ name: 'catalogue' }" title="Catalogues"
                 >Catalogues</router-link
@@ -484,9 +484,6 @@ ul {
     }
     height: 58px;
     img {
-      @media only screen and (max-width: 375px) {
-        width: 135px;
-      }
       width: 183px;
       height: 100%;
     }

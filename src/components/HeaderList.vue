@@ -133,9 +133,9 @@
       </ul>
       <ul class="nav-pages nav-unstyled">
         <li>
-          <router-link to="tel:+33983374491" title="tel:+33 9 83 37 44 91">
+          <a href="tel:+33983374491" title="tel:+33 9 83 37 44 91">
             +33 9 83 37 44 91
-          </router-link>
+          </a>
         </li>
         <li>
           <a
