@@ -58,7 +58,7 @@ const actions = {
       category: payload.categorie,
       min: payload.min,
       max: payload.max,
-      sort: payload.sort
+      sort: payload.sort,
     };
     try {
       const response = await axios.get(domain + `/products`, {
@@ -87,6 +87,15 @@ const actions = {
       return true;
     } catch (error) {
       commit("SET_PRODUCTLOADING", false);
+      return error;
+    }
+  },
+  async candidature({ commit }, payload) {
+    commit("DO_NOTHING", true);
+    try {
+      await axios.post(domain + `/candidates`, payload);
+      return true;
+    } catch (error) {
       return error;
     }
   },

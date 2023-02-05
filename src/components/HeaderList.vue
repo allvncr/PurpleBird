@@ -138,13 +138,13 @@
           </router-link>
         </li>
         <li>
-          <router-link
+          <a
             style="text-transform: lowercase"
-            to="mailto:contact@purplebird.fr"
+            href="mailto:contact@purplebird.fr"
             title="contact@purplebird.fr"
           >
             contact@purplebird.fr
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>

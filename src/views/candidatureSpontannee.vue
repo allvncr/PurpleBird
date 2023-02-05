@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-md-7 col-sm-12">
-          <form action="">
+          <form @submit.prevent="postcandidature">
             <p class="text-info small">
               <span class="text-danger">*</span> Champ obligatoire
             </p>
@@ -81,10 +81,10 @@
             </b-form-group>
             <b-form-group>
               <template #label>
-                Titre de l’emploi recherché <span class="required">*</span>
+                Titre de l'emploi recherché <span class="required">*</span>
               </template>
               <b-form-input
-                v-model="lieu"
+                v-model="soughtJob"
                 maxlength="50"
                 trim
                 required
@@ -126,16 +126,61 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "candidatureSpontannee",
   data() {
     return {
-      nom: "",
-      prenom: "",
-      email: "",
-      lieu: "",
-      file: "",
+      nom: null,
+      prenom: null,
+      email: null,
+      lieu: null,
+      file: null,
+      soughtJob: null,
+      boxOne: "",
     };
+  },
+  methods: {
+    ...mapActions(["candidature"]),
+    postcandidature() {
+      var bodyFormData = new FormData();
+
+      bodyFormData.append("lastname", this.nom);
+      bodyFormData.append("firstname", this.prenom);
+      bodyFormData.append("file", this.email);
+      bodyFormData.append("address", this.lieu);
+      bodyFormData.append("file", this.file);
+      bodyFormData.append("soughtJob", this.soughtJob);
+
+      this.candidature(bodyFormData);
+      this.showMsgBoxOne();
+    },
+
+    showMsgBoxOne() {
+      this.boxOne = "";
+      this.$bvModal
+        .msgBoxOk(
+          "Votre candidature à bien été reçu, nous reviendrons vers vous bientôt !",
+          {
+            title: "Validation",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "success",
+            headerClass: "p-2 border-bottom-0",
+            footerClass: "p-2 border-top-0",
+            centered: true,
+          }
+        )
+        .then(() => {
+          this.nom = null;
+          this.prenom = null;
+          this.email = null;
+          this.lieu = null;
+          this.file = null;
+          this.soughtJob = null;
+        });
+    },
   },
   mounted() {
     document.title = "Candidature Spontannee";
