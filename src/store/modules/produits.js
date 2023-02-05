@@ -1,6 +1,6 @@
 import axios from "axios";
 import domain from "@/environment";
-import Product from "@/models/product";
+// import Product from "@/models/product";
 
 const state = {
   produit: null,
@@ -33,7 +33,11 @@ const mutations = {
   },
   SET_PRODUCTS(state, payload) {
     if (payload) {
-      state.produits = payload.map((item) => Product.create(item));
+      state.produits = [];
+      // state.produits = payload.map((item) => Product.create(item));
+      payload.forEach((p) => {
+        if (p) state.produits.push(p);
+      });
     } else {
       state.produits = [];
     }
@@ -65,8 +69,8 @@ const actions = {
         params,
       });
 
-      commit("SET_PRODUCTS", response.data);
       commit("UPDATE_PRODUCT_ROW", response.data.length);
+      commit("SET_PRODUCTS", response.data);
       commit("SET_PRODUCTLOADING", false);
       return true;
     } catch (error) {
