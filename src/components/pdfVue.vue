@@ -25,12 +25,7 @@
 
           <tbody>
             <tr>
-              <td class="ligneColor">
-                <div
-                  class="color"
-                  :style="'background-color:' + product.hexCodeColor"
-                ></div>
-              </td>
+              <td class="ligneColor">{{ product.color }}</td>
               <td class="panierCol">
                 {{ product.quantite }}
               </td>
