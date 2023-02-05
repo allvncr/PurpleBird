@@ -199,13 +199,14 @@
 
               <b-form-group v-if="perso.marque != 'Aucun marquage'">
                 <template #label>
-                  Ajouter un visuel (jpeg, png) <span class="required">*</span>
+                  Ajouter un visuel (pdf, ai, eps, png)
+                  <span class="required">*</span>
                 </template>
                 <b-form-file
                   required
                   v-model="perso.file"
                   placeholder="Choisir un fichier"
-                  accept="image/*"
+                  accept=".pdf, .ai, .png, .eps"
                 ></b-form-file>
               </b-form-group>
               <p style="font-weight: 400">
