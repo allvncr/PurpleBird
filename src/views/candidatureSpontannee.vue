@@ -148,7 +148,7 @@ export default {
 
       bodyFormData.append("lastname", this.nom);
       bodyFormData.append("firstname", this.prenom);
-      bodyFormData.append("file", this.email);
+      bodyFormData.append("email", this.email);
       bodyFormData.append("address", this.lieu);
       bodyFormData.append("file", this.file);
       bodyFormData.append("soughtJob", this.soughtJob);
