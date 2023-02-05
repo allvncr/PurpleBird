@@ -46,11 +46,19 @@ export default {
 
 <style lang="scss" scoped>
 section {
+  @media only screen and (max-width: $phone) {
+    padding: 0 0 64px;
+    width: 95%;
+  }
   padding: 64px 0;
   width: 75%;
   margin: auto;
 }
 h1 {
+  @media only screen and (max-width: $phone) {
+    font-size: 42px;
+    margin-bottom: 12px;
+  }
   font-size: 56px;
   line-height: 1.15;
   font-weight: 600;
@@ -96,6 +104,9 @@ ul {
   }
 
   a {
+      @media only screen and (max-width: $phone) {
+        text-align: center;
+      }
     color: $black;
   }
 

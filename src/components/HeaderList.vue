@@ -161,57 +161,51 @@
         <a href="/" class="brand">
           <img src="@/assets/PURPLEBIRD.jpg" />
         </a>
-        <router-link
-          :to="{ name: 'panier' }"
-          title="Votre Panier"
-          class="shopping-cart"
-        >
-          <svg
-            class="img shopping-cart-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 391.52 355.52"
-          >
-            <g>
+        <div class="actions">
+          <router-link :to="{ name: 'categories' }">
+            <svg width="32" height="32" viewBox="0 0 16 16">
               <path
-                fill="#2c3e57"
-                d="M370.961,348.238H205.922c-7.363,0-13.281-5.918-13.281-13.277V176.078H384.16v158.883 C384.238,342.238,378.238,348.238,370.961,348.238L370.961,348.238z M370.961,348.238"
-              ></path>
+                fill="#2a2a2a"
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+          </router-link>
+          <router-link :to="{ name: 'panier' }">
+            <span class="total">{{ getPanierRows }}</span>
+            <svg width="32" height="32" viewBox="0 0 512 512">
               <path
-                fill="#000"
-                d="M50.32,355.441h110.719c4,0,7.281-3.281,7.281-7.281s-3.281-7.281-7.281-7.281H50.32 c-19.761,0-35.761-16.078-35.761-35.758V75.68H64v30.64c0,4,3.281,7.282,7.281,7.282c4,0,7.278-3.282,7.278-7.282V75.68h96.961 v30.64c0,4,3.281,7.282,7.281,7.282c4,0,7.277-3.282,7.277-7.282V75.68h49.442V92c0,4,3.281,7.281,7.281,7.281 c4,0,7.277-3.281,7.277-7.281V68.398c0-4-3.277-7.277-7.277-7.277h-56.723C189.121,27.199,161.281,0,127.121,0 s-62,27.281-62.961,61.121H7.281c-4,0-7.281,3.277-7.281,7.277v236.723C0.078,332.879,22.641,355.441,50.32,355.441L50.32,355.441z M126.961,14.559c26.078,0,47.437,20.722,48.48,46.64H78.559C79.52,35.281,100.879,14.559,126.961,14.559L126.961,14.559z M126.961,14.559"
-              ></path>
-              <path
-                fill="#000"
-                d="M237.039,159.121v9.758h-44.398c-4,0-7.282,3.281-7.282,7.281v145.36c0,18.718,15.2,34,34,34H357.52 c18.718,0,34-15.2,34-34V176.078c0-4-3.282-7.277-7.282-7.277H339.84v-9.762c0-28.32-23.039-51.359-51.36-51.359 C260.16,107.68,237.039,130.801,237.039,159.121L237.039,159.121z M376.961,183.359V321.52c0,10.718-8.723,19.441-19.441,19.441 H219.359c-10.718,0-19.437-8.723-19.437-19.441V183.359h37.117v20.403c0,4,3.281,7.277,7.281,7.277s7.282-3.277,7.282-7.277 v-20.403h73.757v20.403c0,4,3.282,7.277,7.282,7.277c4,0,7.281-3.277,7.281-7.277v-20.403H376.961z M288.398,122.238 c20.321,0,36.883,16.563,36.883,36.883v9.758H251.52v-9.758C251.602,138.719,268.078,122.238,288.398,122.238L288.398,122.238z M288.398,122.238"
-              ></path>
-            </g>
-          </svg>
-        </router-link>
+                fill="#2a2a2a"
+                d="M160 96.039v32h304v63.345l-35.5 112.655H149.932L109.932 16H16v32h66.068l40 288.039h329.9L496 196.306V96.039H160zm16.984 272.305a64.073 64.073 0 0 0-64 64a64 64 0 0 0 128 0a64.072 64.072 0 0 0-64-64Zm0 96a32 32 0 1 1 32-32a32.038 32.038 0 0 1-32 32Zm224-96a64.073 64.073 0 0 0-64 64a64 64 0 0 0 128 0a64.072 64.072 0 0 0-64-64Zm0 96a32 32 0 1 1 32-32a32.038 32.038 0 0 1-32 32Z"
+              />
+            </svg>
+          </router-link>
+        </div>
       </div>
       <div class="navbar-collapse" v-show="navbar">
         <div class="navbar-group">
           <ul class="nav">
             <li>
-              <router-link to="" title="Qui sommes-nous ?"
+              <router-link :to="{ name: 'quiSommeNous' }"
                 >Qui sommes-nous ?</router-link
               >
             </li>
             <li>
-              <router-link to="" title="L’équipe">L’équipe</router-link>
+              <router-link :to="{ name: 'equipe' }" title="L'équipe"
+                >L'équipe</router-link
+              >
             </li>
             <li>
-              <router-link to="" title="Notre savoir-faire"
+              <router-link :to="{ name: 'savoirFaire' }"
                 >Notre savoir-faire</router-link
               >
             </li>
             <li>
-              <router-link to="" title="Nos références"
-                >Nos références</router-link
+              <router-link :to="{ name: 'catalogue' }" title="Catalogues"
+                >Catalogues</router-link
               >
             </li>
             <li>
-              <router-link to="" title="Nous contacter"
+              <router-link :to="{ name: 'contact' }" title="Nous contacter"
                 >Nous contacter</router-link
               >
             </li>
@@ -441,6 +435,48 @@ ul {
   border-bottom: 1px solid $grey-dark;
   padding: 16px;
 }
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  a {
+    @media only screen and (max-width: $phone) {
+      padding: 0;
+    }
+    position: relative;
+    text-decoration: none;
+    padding: 10px 0px 10px 15px;
+
+    svg {
+      @media only screen and (max-width: $phone) {
+        width: 18px;
+        height: 18px;
+      }
+      width: 24px;
+      height: 24px;
+    }
+
+    span {
+      @media only screen and (max-width: $phone) {
+        top: -8px;
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+      }
+      position: absolute;
+      top: 2px;
+      right: -14px;
+      min-width: 20px;
+      line-height: 20px;
+      font-size: 9px;
+      text-align: center;
+      border-radius: 50%;
+      background-color: $secondary;
+      color: $white;
+    }
+  }
+}
 
 .container-fluid {
   @media only screen and (max-width: $phone) {
@@ -491,6 +527,13 @@ ul {
     height: 58px;
     img {
       height: 100%;
+    }
+  }
+
+  .actions {
+    gap: 0;
+    a span {
+      right: 0;
     }
   }
 

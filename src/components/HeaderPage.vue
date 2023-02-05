@@ -93,12 +93,12 @@
               </div>
             </div>
           </li>
-          <li>
+          <li class="contact">
             <router-link :to="{ name: 'contact' }" title="Nous contacter">
               Nous contacter
             </router-link>
           </li>
-          <li class="catalogues">
+          <li>
             <router-link :to="{ name: 'catalogue' }" title="Nous rejoindre">
               Catalogues
             </router-link>
@@ -124,6 +124,69 @@
           </router-link>
         </div>
       </nav>
+
+      <div class="container-fluid">
+        <div class="navbar-mobile">
+          <button type="button" class="toggle" @click="navbar = !navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="brand">
+            <img src="@/assets/PURPLEBIRD.jpg" />
+          </a>
+          <div class="actions">
+            <router-link :to="{ name: 'categories' }">
+              <svg width="32" height="32" viewBox="0 0 16 16">
+                <path
+                  fill="#2a2a2a"
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0z"
+                />
+              </svg>
+            </router-link>
+            <router-link :to="{ name: 'panier' }">
+              <span class="total">{{ getPanierRows }}</span>
+              <svg width="32" height="32" viewBox="0 0 512 512">
+                <path
+                  fill="#2a2a2a"
+                  d="M160 96.039v32h304v63.345l-35.5 112.655H149.932L109.932 16H16v32h66.068l40 288.039h329.9L496 196.306V96.039H160zm16.984 272.305a64.073 64.073 0 0 0-64 64a64 64 0 0 0 128 0a64.072 64.072 0 0 0-64-64Zm0 96a32 32 0 1 1 32-32a32.038 32.038 0 0 1-32 32Zm224-96a64.073 64.073 0 0 0-64 64a64 64 0 0 0 128 0a64.072 64.072 0 0 0-64-64Zm0 96a32 32 0 1 1 32-32a32.038 32.038 0 0 1-32 32Z"
+                />
+              </svg>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <div class="navbar-collapse" v-show="navbar">
+        <div class="navbar-group">
+          <ul class="nav">
+            <li>
+            <router-link :to="{ name: 'quiSommeNous' }"
+              >Qui sommes-nous ?</router-link
+            >
+          </li>
+          <li>
+            <router-link :to="{ name: 'equipe' }" title="L'équipe"
+              >L'équipe</router-link
+            >
+          </li>
+            <li>
+            <router-link :to="{ name: 'savoirFaire' }"
+              >Notre savoir-faire</router-link
+            >
+          </li>
+            <li>
+              <router-link :to="{ name: 'catalogue' }" title="Catalogues"
+                >Catalogues</router-link
+              >
+            </li>
+            <li>
+              <router-link :to="{ name: 'contact' }" title="Nous contacter"
+                >Nous contacter</router-link
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -135,6 +198,7 @@ export default {
   data() {
     return {
       dropdown: false,
+      navbar: true,
     };
   },
   computed: {
@@ -164,6 +228,9 @@ export default {
 .header {
   border-bottom: 1px solid #d9d9d9;
   nav {
+    @media only screen and (max-width: $phone) {
+      display: none;
+    }
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -205,9 +272,6 @@ export default {
 }
 
 .brand {
-  @media only screen and (max-width: $phone) {
-    max-width: 110px;
-  }
   display: block;
   padding: 16px 0;
   max-width: 200px;
@@ -218,7 +282,7 @@ export default {
   }
 }
 
-.catalogues {
+.contact {
   @media only screen and (max-width: $phone) {
     display: none;
   }
@@ -361,6 +425,118 @@ ul {
       border-radius: 50%;
       background-color: $secondary;
       color: $white;
+    }
+  }
+}
+
+.container-fluid {
+  @media only screen and (max-width: $phone) {
+    display: block;
+  }
+  position: relative;
+  display: none;
+}
+.navbar-mobile {
+  display: none;
+  @media only screen and (max-width: $phone) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  padding: 16px 0;
+  position: relative;
+
+  a {
+    @media only screen and (max-width: $phone) {
+      padding: 0 8px;
+    }
+    display: block;
+    padding: 0 15px;
+  }
+
+  .toggle {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    display: block;
+    float: left;
+    outline: 0;
+    padding: 8px 15px;
+
+    .icon-bar {
+      background-color: #000;
+      border-radius: 1px;
+      display: block;
+      height: 2px;
+      width: 22px;
+
+      & + .icon-bar {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .brand {
+    @media only screen and (max-width: $phone) {
+      width: 60%;
+      margin: 0;
+    }
+    height: 58px;
+    img {
+      @media only screen and (max-width: 375px) {
+        width: 135px;
+      }
+      width: 183px;
+      height: 100%;
+    }
+  }
+
+  .actions {
+    gap: 0;
+    a span {
+      right: 0;
+    }
+  }
+  .shopping-cart-icon {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+  }
+}
+
+.navbar-collapse {
+  @media only screen and (max-width: $phone) {
+    position: relative;
+    display: block;
+  }
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-color: $white;
+  border-bottom: 1px solid $grey-dark;
+  width: 100%;
+  left: 0;
+  .navbar-group {
+    padding: 15px 0;
+    border-top: 1px solid $grey-dark;
+
+    .nav {
+      @media only screen and (max-width: $phone) {
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .nav > li > a {
+      color: #000;
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.5;
+      padding: 9px 18px;
+      text-transform: uppercase;
     }
   }
 }

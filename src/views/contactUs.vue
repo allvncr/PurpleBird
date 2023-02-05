@@ -126,7 +126,7 @@ export default {
       societe: "",
       sujet: "",
       message: "",
-      boxOne: ""
+      boxOne: "",
     };
   },
   methods: {
@@ -190,11 +190,17 @@ export default {
 }
 
 .container {
+  @media only screen and (max-width: $phone) {
+    padding: 32px 15px;
+  }
   background-color: rgba(255, 255, 255, 0.95);
   padding: 64px;
 }
 
 .page-title {
+  @media only screen and (max-width: $phone) {
+    font-size: 42px;
+  }
   font-size: 56px;
   line-height: 1.15;
   margin-bottom: 24px;
@@ -242,12 +248,18 @@ form {
 }
 
 .block {
+  @media only screen and (max-width: $phone) {
+    display: block;
+  }
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
   .left,
   .right {
+    @media only screen and (max-width: $phone) {
+      width: 100%;
+    }
     width: 48%;
   }
 }

@@ -93,105 +93,105 @@
     </div>
     <div class="container partenaires">
       <Flicking :options="{ circular: true }" :plugins="pluginsP">
-        <div style="width: 25%">
+        <div class="divSlide">
           <img src="../assets/partenaires/LOGO_RTP_RVB.jpg" alt="image slot" />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/Logo_SOLO-Group.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             style="padding: 16px 32px"
             src="../assets/partenaires/atf_Noir_CMJN.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/NEO BLU logo avec baseline Bleu RVB.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/SOLS logo avec baseline Noir RVB.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/Joy Thai_ logotype_Noir.png"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/XDXCLUSIVE_primary_logo.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/XD_Design_primary_logo_black.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/XDConnects_Logo_Black_Tagline.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             style="padding: 42px 16px"
             src="../assets/partenaires/Urban-Vitamin_black_primary_RGB.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/SwissPeak_primary_logo.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             style="padding: 32px 16px"
             src="../assets/partenaires/Impact_the-collection-of-tomorrow.png"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             style="padding: 42px 16px"
             src="../assets/partenaires/GEAR-X_primary_black_RGB.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             style="padding: 42px 16px"
             src="../assets/partenaires/philips-primary_black.png"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/Vinga_Sweden_logo_v2.png"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             src="../assets/partenaires/iqoniq_tagline_grey.jpg"
             alt="image slot"
           />
         </div>
-        <div style="width: 25%">
+        <div class="divSlide">
           <img
             style="padding: 42px 16px"
             src="../assets/partenaires/motorola-primary_black.png"
@@ -212,8 +212,7 @@
     <section class="container product_list">
       <Flicking :options="{ circular: true }">
         <div
-          style="width: 33%"
-          class="product"
+          class="product product_slide"
           v-for="(produit, y) in getProduits.slice(0, 10)"
           :key="y"
         >
@@ -323,6 +322,9 @@ export default {
 }
 .section-content {
   h2 {
+    @media only screen and (max-width: $phone) {
+      font-size: 32px;
+    }
     text-align: center;
     font-size: 42px;
     line-height: 1.5;
@@ -389,6 +391,10 @@ a {
 }
 
 .partenaires {
+  @media only screen and (max-width: $phone) {
+    display: none;
+  }
+
   position: relative;
   margin-bottom: 48px;
 
@@ -424,9 +430,21 @@ a {
 }
 
 .widget-tabs {
+  @media only screen and (max-width: $phone) {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
   margin-bottom: 15px;
   text-align: center;
   .widget {
+    @media only screen and (max-width: $phone) {
+      margin: 0;
+      font-size: 16px;
+    }
     display: inline-flex;
     align-items: center;
     flex-direction: column;
@@ -447,10 +465,20 @@ a {
 }
 
 .product_list {
+  @media only screen and (max-width: $phone) {
+    padding: 0;
+  }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 48px;
+
+  .img-fluid {
+    @media only screen and (max-width: $phone) {
+      height: 120px;
+    }
+    height: 180px;
+  }
 
   .product {
     @media only screen and (max-width: $tablette) {
@@ -513,9 +541,26 @@ a {
       }
     }
   }
+
+  .product_slide {
+    @media only screen and (max-width: $phone) {
+      width: 60%;
+    }
+
+    .produit_img {
+      @media only screen and (max-width: $phone) {
+        height: 150px !important;
+      }
+      width: 217px;
+      height: 217px;
+    }
+  }
 }
 
 h3 {
+  @media only screen and (max-width: $phone) {
+    font-size: 28px;
+  }
   font-size: 32px;
   line-height: 1.4em;
   color: #333333;
@@ -535,11 +580,21 @@ h3 {
   }
 
   span {
+    @media only screen and (max-width: $phone) {
+      padding-left: 15px;
+    }
     font-size: 16px;
     font-style: italic;
     line-height: 1.6em;
     color: #999999;
     padding-left: 30px;
   }
+}
+
+.divSlide {
+  @media only screen and (max-width: $tablette) {
+    width: 30%;
+  }
+  width: 25%;
 }
 </style>

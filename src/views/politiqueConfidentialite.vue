@@ -365,11 +365,17 @@ export default {
 }
 
 .container {
+  @media only screen and (max-width: $phone) {
+    padding: 32px 15px;
+  }
   background-color: rgba(255, 255, 255, 0.95);
   padding: 64px;
 }
 
 .page-title {
+  @media only screen and (max-width: $phone) {
+    font-size: 24px;
+  }
   font-size: 32px;
   line-height: 1.15;
   margin-bottom: 24px;

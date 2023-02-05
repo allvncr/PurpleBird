@@ -78,7 +78,6 @@ export default {
         this.perPage * (paginate - 1),
         this.perPage * paginate
       );
-      console.log(paginate);
     },
   },
   mounted() {
@@ -87,9 +86,8 @@ export default {
     this.all_categories();
   },
   watch: {
-    "getProduits"(newList) {
-      if (newList)
-        this.liste = newList.slice(0, this.perPage);
+    getProduits(newList) {
+      if (newList) this.liste = newList.slice(0, this.perPage);
     },
   },
 };

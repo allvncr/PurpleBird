@@ -5,11 +5,7 @@
 
       <div class="team">
         <div class="about-feature">
-          <img
-            class="rounded-circle"
-            src="../assets/pole-crea.png"
-            width="170"
-          />
+          <img class="rounded-circle" src="../assets/pole-crea.png" />
           <h5>Micha TOTSHI</h5>
           <p>
             Gérante<br />
@@ -20,11 +16,7 @@
         </div>
 
         <div class="about-feature">
-          <img
-            class="rounded-circle"
-            src="../assets/pole-crea.png"
-            width="170"
-          />
+          <img class="rounded-circle" src="../assets/pole-crea.png" />
           <h5>Marie Thérèse Y.</h5>
           <p>
             Responsable Commerciale<br />
@@ -35,11 +27,7 @@
         </div>
 
         <div class="about-feature">
-          <img
-            class="rounded-circle"
-            src="../assets/pole-crea.png"
-            width="170"
-          />
+          <img class="rounded-circle" src="../assets/pole-crea.png" />
           <h5>Thomas SIMON</h5>
           <p>
             Responsable Commercial<br />
@@ -50,11 +38,7 @@
         </div>
 
         <div class="about-feature">
-          <img
-            class="rounded-circle"
-            src="../assets/pole-crea.png"
-            width="170"
-          />
+          <img class="rounded-circle" src="../assets/pole-crea.png" />
           <h5>Lois Anne</h5>
           <p>
             Conseiller Clientèle<br />
@@ -65,11 +49,7 @@
         </div>
 
         <div class="about-feature">
-          <img
-            class="rounded-circle"
-            src="../assets/pole-crea.png"
-            width="170"
-          />
+          <img class="rounded-circle" src="../assets/pole-crea.png" />
           <h5>Pôle Sourcing & Achat</h5>
         </div>
       </div>
@@ -95,11 +75,17 @@ export default {
 }
 
 .container {
+  @media only screen and (max-width: $phone) {
+    padding: 32px 15px;
+  }
   background-color: rgba(255, 255, 255, 0.95);
   padding: 64px;
 }
 
 .page-title {
+  @media only screen and (max-width: $phone) {
+    font-size: 42px;
+  }
   font-size: 56px;
   line-height: 1.15;
   margin-bottom: 24px;
@@ -111,13 +97,27 @@ export default {
   }
 }
 
+.rounded-circle {
+  width: 100%;
+  max-width: 170px;
+}
+
 .team {
+  @media only screen and (max-width: $phone) {
+    display: block;
+  }
   display: flex;
   align-items: center;
-    justify-content: center;
+  justify-content: center;
   flex-wrap: wrap;
 
   .about-feature {
+    @media only screen and (max-width: $tablette) {
+      width: 50%;
+    }
+    @media only screen and (max-width: $phone) {
+      width: 100%;
+    }
     width: 25%;
     text-align: center;
 

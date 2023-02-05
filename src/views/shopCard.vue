@@ -2,7 +2,7 @@
   <div>
     <p v-if="!getPanierRows">Vide</p>
 
-    <div v-else>
+    <div style="overflow: auto; margin-bottom: 24px" v-else>
       <table class="PanierTable">
         <thead>
           <tr class="PanierTRTitle">
@@ -42,7 +42,7 @@
                 "
                 v-else
               ></div>
-                <span>{{ product.color }}</span>
+              <span>{{ product.color }}</span>
             </td>
             <td>
               {{ product.marking ? product.marking.marque : "-" }}
@@ -101,7 +101,7 @@
             <td colspan="2"></td>
             <td></td>
             <td align="right">Total TTC</td>
-            <td align="right" class="panierCol">{{ getTotal + getTVA }} €</td>
+            <td align="right" class="panierCol">{{ getTTC }} €</td>
             <td></td>
           </tr>
         </tbody>
@@ -134,7 +134,7 @@ export default {
       this.getPanier.forEach((product) => {
         total += product.price * product.quantite;
       });
-      return total;
+      return total.toFixed(2);
     },
     getTVA() {
       var total = 0;
@@ -142,14 +142,19 @@ export default {
         total += product.price * product.quantite;
       });
       total = (total * 20) / 100;
-      return total;
+      return total.toFixed(2);
+    },
+    getTTC() {
+      let total = +this.getTVA + +this.getTotal;
+      return total.toFixed(2);
     },
   },
   methods: {
     ...mapActions(["add_product", "remove_product"]),
 
     productTotal(product) {
-      return product.price * product.quantite;
+      let total = product.price * product.quantite;
+      return total.toFixed(2);
     },
   },
   mounted() {
@@ -185,14 +190,14 @@ p {
       text-transform: uppercase;
       vertical-align: middle;
       white-space: nowrap;
-      padding: 20px;
+      padding: 15px;
     }
   }
 
   tbody {
     td {
       position: relative;
-      padding: 20px;
+      padding: 15px;
       font-size: 14px;
       border-top: 1px solid $grey-dark;
       // line-height: 36px;
@@ -254,10 +259,16 @@ p {
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
   justify-content: space-between;
 
   .btn {
+    @media only screen and (max-width: $phone) {
+      width: 100%;
+      display: block;
+    }
     width: 30%;
   }
 }

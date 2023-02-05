@@ -17,18 +17,10 @@
           </div>
           <!--  .moove-gdpr-cookie-notice -->
           <div class="button-holder">
-            <button
-              class="btn"
-              aria-label="Accepter"
-              @click="setCookie(true)"
-            >
+            <button class="btn" aria-label="Accepter" @click="setCookie(true)">
               Accepter
             </button>
-            <button
-              class="btn"
-              aria-label="Rejeter"
-              @click="setCookie(false)"
-            >
+            <button class="btn" aria-label="Rejeter" @click="setCookie(false)">
               Rejeter
             </button>
           </div>
@@ -47,15 +39,14 @@ export default {
   },
 
   methods: {
-    setCookie(bool){
-      sessionStorage.setItem("Cookie", bool)
-      this.showCookie = false
-    }
+    setCookie(bool) {
+      sessionStorage.setItem("Cookie", bool);
+      this.showCookie = false;
+    },
   },
 
   mounted() {
-    if(sessionStorage.getItem("Cookie") == undefined)
-      this.showCookie = true;
+    if (sessionStorage.getItem("Cookie") == undefined) this.showCookie = true;
   },
 };
 </script>
@@ -75,11 +66,19 @@ export default {
   z-index: 9900;
 
   .info-bar-container {
+    @media only screen and (max-width: $phone) {
+      padding: 10px;
+    }
     padding: 10px 40px;
     position: static;
     display: inline-block;
 
     .info-bar-content {
+      @media only screen and (max-width: $phone) {
+        padding: 0 15px;
+        display: block;
+        text-align: center;
+      }
       padding-left: 30px;
       padding-right: 30px;
       text-align: left;

@@ -79,7 +79,7 @@
             <td></td>
             <td>{{ getTotal }} €</td>
             <td>{{ getTVA }} €</td>
-            <td>{{ getTotal + getTVA }} €</td>
+            <td>{{ getTTC }} €</td>
           </tr>
         </tbody>
       </table>
@@ -93,7 +93,8 @@ import { mapGetters } from "vuex";
 export default {
   methods: {
     productTotal(product) {
-      return product.price * product.quantite;
+      let total = product.price * product.quantite;
+      return total.toFixed(2);
     },
   },
   computed: {
@@ -104,7 +105,7 @@ export default {
       this.getPanier.forEach((product) => {
         total += product.price * product.quantite;
       });
-      return total;
+      return total.toFixed(2);
     },
     getTVA() {
       var total = 0;
@@ -112,7 +113,11 @@ export default {
         total += product.price * product.quantite;
       });
       total = (total * 20) / 100;
-      return total;
+      return total.toFixed(2);
+    },
+    getTTC() {
+      let total = +this.getTVA + +this.getTotal;
+      return total.toFixed(2);
     },
   },
 };
@@ -232,6 +237,7 @@ ul {
       font-size: 14px;
       font-weight: 400;
       text-align: center;
+      min-width: 110px;
     }
 
     .full {
@@ -312,6 +318,7 @@ ul {
   }
 }
 .page {
+  overflow: auto;
   padding: 0 15px;
 }
 

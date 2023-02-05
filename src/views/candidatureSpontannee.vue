@@ -145,6 +145,10 @@ export default {
 
 <style lang="scss" scoped>
 h1 {
+  @media only screen and (max-width: $phone) {
+    text-align: center;
+    margin-top: 32px;
+  }
   font-size: 1.8em;
   color: $secondary;
   font-weight: 800;

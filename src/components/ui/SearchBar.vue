@@ -90,14 +90,19 @@ export default {
 
 <style lang="scss" scoped>
 form {
+    @media only screen and (max-width: $phone) {
+      width: 100%;
+      gap: 8px 0;
+    }
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   width: 75%;
   margin: auto;
   .form-group {
     @media only screen and (max-width: $phone) {
-      width: 100%;
+      width: 24%;
     }
     position: relative;
     margin: 0;
@@ -105,9 +110,6 @@ form {
 
     input,
     select {
-      @media only screen and (max-width: $phone) {
-        border: 0;
-      }
       @media only screen and (max-width: $tablette) {
         padding: 8px;
         font-size: 12px;
@@ -131,15 +133,25 @@ form {
   }
 
   .btn {
+    @media only screen and (max-width: $phone) {
+      width: 60%;
+      margin: auto;
+    }
     width: 15%;
     padding: 8px 12px;
   }
 
   .search {
+    @media only screen and (max-width: $phone) {
+      width: 100%;
+    }
     width: 40%;
   }
 
   .select {
+    @media only screen and (max-width: $phone) {
+      width: 49%;
+    }
     width: 20%;
   }
 }

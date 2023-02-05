@@ -4,15 +4,24 @@
       <section>
         <header>Catalogues Objects Publicitaires</header>
         <div class="image-grid">
-          <a href="https://heyzine.com/flip-book/a371410d53.html" target="_blank">
+          <a
+            href="https://heyzine.com/flip-book/a371410d53.html"
+            target="_blank"
+          >
             <img :src="image1" />
           </a>
 
-          <a href="https://heyzine.com/flip-book/89fbe399b6.html" target="_blank">
+          <a
+            href="https://heyzine.com/flip-book/89fbe399b6.html"
+            target="_blank"
+          >
             <img :src="image2" />
           </a>
 
-          <a href="https://heyzine.com/flip-book/5ab6219686.html" target="_blank">
+          <a
+            href="https://heyzine.com/flip-book/5ab6219686.html"
+            target="_blank"
+          >
             <img :src="image3" />
           </a>
         </div>
@@ -20,11 +29,17 @@
       <section>
         <header>Catalogues Textiles Publicitaires</header>
         <div class="image-grid">
-          <a href="https://heyzine.com/flip-book/19f2643a78.html" target="_blank">
+          <a
+            href="https://heyzine.com/flip-book/19f2643a78.html"
+            target="_blank"
+          >
             <img :src="image4" />
           </a>
 
-          <a href="https://heyzine.com/flip-book/b332d8d341.html" target="_blank">
+          <a
+            href="https://heyzine.com/flip-book/b332d8d341.html"
+            target="_blank"
+          >
             <img :src="image5" />
           </a>
         </div>
@@ -32,7 +47,6 @@
     </div>
   </div>
 </template>
-
 
 <script setup>
 import image1 from "../assets/catalogue/image1.jpg";
@@ -66,6 +80,9 @@ section {
   }
 
   .image-grid {
+    @media only screen and (max-width: $phone) {
+      display: inline-block;
+    }
     display: flex;
     flex-wrap: wrap;
 

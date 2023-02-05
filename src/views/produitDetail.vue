@@ -119,7 +119,10 @@
           <div class="col-xl-4 col-lg-5">
             <div class="product-details-content">
               <h1 class="h2">{{ produit.name }}</h1>
-              <h2><small>À partir de </small>{{ produit.price }} €</h2>
+              <h2 v-if="produit.prices">
+                <small>À partir de </small>
+                {{ produit.prices[produit.prices.length - 1] }} €
+              </h2>
               <p>
                 <strong
                   >Référence : {{ produit.reference }} | Couleur:
@@ -170,6 +173,8 @@
                 :min="produit.minimalQuantity"
                 class="badge-color-group"
                 :style="'background-color:' + produit.hexCodeColors[0]"
+                @change="adaptPrice"
+                required
               />
 
               <div class="btn btn-primary" @click="review = 1" v-if="totalQ">
@@ -222,12 +227,12 @@
                       totalQ
                     }}</span>
                   </li>
-                  <li>
+                  <li v-if="produit.prices">
                     <span>Prix unitaire H.T. :</span>
                     <span class="flex justify-content-end"
-                      ><span id="unit_price" class="total-number">{{
-                        produit.price
-                      }}</span>
+                      ><span id="unit_price" class="total-number">
+                        {{ produit.price }}
+                      </span>
                       <span>€</span></span
                     >
                   </li>
@@ -235,7 +240,7 @@
                     <span>Prix total H.T. :</span>
                     <span class="flex justify-content-end"
                       ><span id="total_price" class="total-number">{{
-                        produit.price * totalQ
+                        totaTTC
                       }}</span>
                       <span>€</span></span
                     >
@@ -243,11 +248,7 @@
                 </ul>
               </div>
               <div class="proceed-btn">
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  :disabled="totalQ < 1"
-                >
+                <button type="submit" class="btn btn-primary">
                   Ajouter au panier
                 </button>
               </div>
@@ -318,6 +319,7 @@ export default {
         marking: this.perso.file ? this.perso : null,
         image: this.produit.imagesList[0],
       };
+
       this.add_product({
         ...product,
         ...this.produit,
@@ -342,6 +344,19 @@ export default {
         .then((value) => {
           if (!value) this.$router.push("/panier");
         });
+    },
+
+    adaptPrice() {
+      for (let i = 0; i < this.produit.quantities.length; i++) {
+        if (i == this.produit.quantities.length - 1) {
+          this.produit.price = this.produit.prices[i];
+        } else {
+          if (this.produit.quantite < this.produit.quantities[i + 1]) {
+            this.produit.price = this.produit.prices[i];
+            break;
+          }
+        }
+      }
     },
 
     openModal() {
@@ -386,6 +401,10 @@ export default {
         total += parseInt(this.produit.quantite);
 
       return total;
+    },
+
+    totaTTC() {
+      return (this.totalQ * this.produit.price).toFixed(2);
     },
 
     dateDiff() {
