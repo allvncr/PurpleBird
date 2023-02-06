@@ -22,7 +22,7 @@
                 {{ product.name }}
               </router-link>
             </h2>
-            <div class="product-price">{{ product.price }} € HT</div>
+            <div class="product-price">{{ product.price | price }} € HT</div>
           </div>
           <div class="product-actions actions">
             <router-link
@@ -47,11 +47,7 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters([
-      "getProduitRows",
-      "getPanier",
-      "getProduitLoading",
-    ]),
+    ...mapGetters(["getProduitRows", "getPanier", "getProduitLoading"]),
   },
 
   props: {
@@ -79,6 +75,12 @@ export default {
       const diffInDays = diffInHours / 24;
       const diffInWeeks = diffInDays / 7;
       return diffInWeeks.toFixed(0) < 4;
+    },
+  },
+
+  filters: {
+    price: function (value) {
+      return Number(value).toFixed(2);
     },
   },
 

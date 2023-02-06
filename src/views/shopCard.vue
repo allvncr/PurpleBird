@@ -55,7 +55,9 @@
                 @input="getTotal"
               />
             </td>
-            <td class="panierCol" align="right">{{ product.price }} €</td>
+            <td class="panierCol" align="right">
+              {{ product.price | price }} €
+            </td>
             <td class="panierCol" align="right">
               {{ productTotal(product) }} €
             </td>
@@ -155,6 +157,12 @@ export default {
     productTotal(product) {
       let total = product.price * product.quantite;
       return total.toFixed(2);
+    },
+  },
+
+  filters: {
+    price: function (value) {
+      return Number(value).toFixed(2);
     },
   },
   mounted() {

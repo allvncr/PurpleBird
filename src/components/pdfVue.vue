@@ -29,7 +29,9 @@
               <td class="panierCol">
                 {{ product.quantite }}
               </td>
-              <td class="panierCol" align="right">{{ product.price }} €</td>
+              <td class="panierCol" align="right">
+                {{ product.price | price }} €
+              </td>
               <td class="panierCol" align="right">20%</td>
               <td class="panierCol">{{ productTotal(product) }} €</td>
             </tr>
@@ -113,6 +115,12 @@ export default {
     getTTC() {
       let total = +this.getTVA + +this.getTotal;
       return total.toFixed(2);
+    },
+  },
+
+  filters: {
+    price: function (value) {
+      return Number(value).toFixed(2);
     },
   },
 };

@@ -78,7 +78,7 @@
             </router-link>
           </div>
           <div class="product_price">
-            <span class="price">{{ produit.price }} €</span>
+            <span class="price">{{ produit.price | price }} €</span>
           </div>
         </div>
       </div>
@@ -238,7 +238,7 @@
               </router-link>
             </div>
             <div class="product_price">
-              <span class="price">{{ produit.price }} €</span>
+              <span class="price">{{ produit.price | price }} €</span>
             </div>
           </div>
         </div>
@@ -306,6 +306,12 @@ export default {
       const diffInDays = diffInHours / 24;
       const diffInWeeks = diffInDays / 7;
       return diffInWeeks.toFixed(0) < 4;
+    },
+  },
+
+  filters: {
+    price: function (value) {
+      return Number(value).toFixed(2);
     },
   },
   mounted() {

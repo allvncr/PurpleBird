@@ -121,7 +121,7 @@
               <h1 class="h2">{{ produit.name }}</h1>
               <h2 v-if="produit.prices">
                 <small>À partir de </small>
-                {{ produit.prices[produit.prices.length - 1] }} €
+                {{ produit.prices[produit.prices.length - 1] | price }} €
               </h2>
               <p>
                 <strong
@@ -143,7 +143,7 @@
                 <tbody>
                   <tr>
                     <td v-for="(price, i) in produit.prices" :key="i">
-                      {{ price }}
+                      {{ price | price }}
                     </td>
                   </tr>
                 </tbody>
@@ -232,7 +232,7 @@
                     <span>Prix unitaire H.T. :</span>
                     <span class="flex justify-content-end"
                       ><span id="unit_price" class="total-number">
-                        {{ produit.price }}
+                        {{ produit.price | price }}
                       </span>
                       <span>€</span></span
                     >
@@ -418,6 +418,12 @@ export default {
       const diffInDays = diffInHours / 24;
       const diffInWeeks = diffInDays / 7;
       return diffInWeeks.toFixed(0) < 4;
+    },
+  },
+
+  filters: {
+    price: function (value) {
+      return Number(value).toFixed(2);
     },
   },
 
