@@ -78,6 +78,7 @@ export default {
         this.perPage * (paginate - 1),
         this.perPage * paginate
       );
+      window.scrollTo({ top: 300, behavior: "smooth" });
     },
   },
   mounted() {

@@ -34,7 +34,7 @@
                     @click="rangeColor(prod)"
                     :title="prod.color"
                   ></div>
-                  <div
+                  <!-- <div
                     @click="rangeColor(prod)"
                     class="d_coloris"
                     :style="
@@ -46,7 +46,20 @@
                     "
                     :title="prod.color"
                     v-else
-                  ></div>
+                  ></div> -->
+                  <div
+                    @click="rangeColor(prod)"
+                    class="b_coloris"
+                    :style="'background-color:' + prod.hexCodeColors[0]"
+                    :title="prod.color"
+                    v-else
+                  >
+                    <div
+                      @click="rangeColor(prod)"
+                      class="bottom"
+                      :style="'background-color:' + prod.hexCodeColors[1]"
+                    ></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -173,7 +186,7 @@
                 :min="produit.minimalQuantity"
                 class="badge-color-group"
                 :style="'background-color:' + produit.hexCodeColors[0]"
-                @change="adaptPrice"
+                @input="adaptPrice"
                 required
               />
 
@@ -669,11 +682,18 @@ table {
   }
 }
 
-.d_coloris {
+.b_coloris {
   cursor: pointer;
-  border: 1px solid #333;
-  height: 24px;
   width: 24px;
+  border-left: 1px solid #333;
+  border-top: 1px solid #333;
+
+  .bottom {
+    clip-path: polygon(0 100%, 100% 0%, 100% 100%, 0% 100%);
+    height: 24px;
+    border-bottom: 1px solid #333;
+    border-right: 1px solid #333;
+  }
 }
 
 .bordered {

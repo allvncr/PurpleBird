@@ -25,7 +25,24 @@
 
           <tbody>
             <tr>
-              <td class="ligneColor">{{ product.color }}</td>
+              <td class="ligneColor">
+                <div
+                  v-if="product.hexCodeColors.length < 2"
+                  class="color"
+                  :style="'background-color:' + product.hexCodeColors[0]"
+                ></div>
+                <div
+                  class="b_coloris"
+                  :style="'background-color:' + product.hexCodeColors[0]"
+                  :title="product.color"
+                  v-else
+                >
+                  <div
+                    class="bottom"
+                    :style="'background-color:' + product.hexCodeColors[1]"
+                  ></div>
+                </div>
+              </td>
               <td class="panierCol">
                 {{ product.quantite }}
               </td>
@@ -272,9 +289,22 @@ ul {
       display: flex;
       justify-content: center;
       .color {
-        width: 18px;
-        height: 18px;
-        border: 1px solid $black;
+        border: 1px solid #333;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .b_coloris {
+      width: 24px;
+      border-left: 1px solid #333;
+      border-top: 1px solid #333;
+
+      .bottom {
+        clip-path: polygon(0 100%, 100% 0%, 100% 100%, 0% 100%);
+        height: 24px;
+        border-bottom: 1px solid #333;
+        border-right: 1px solid #333;
       }
     }
 

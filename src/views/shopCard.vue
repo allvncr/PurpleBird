@@ -32,16 +32,16 @@
                 :style="'background-color:' + product.hexCodeColors[0]"
               ></div>
               <div
-                class="d_coloris"
-                :style="
-                  'background:linear-gradient(to bottom right,' +
-                  product.hexCodeColors[0] +
-                  ',' +
-                  product.hexCodeColors[1] +
-                  ')'
-                "
+                class="b_coloris"
+                :style="'background-color:' + product.hexCodeColors[0]"
+                :title="product.color"
                 v-else
-              ></div>
+              >
+                <div
+                  class="bottom"
+                  :style="'background-color:' + product.hexCodeColors[1]"
+                ></div>
+              </div>
               <span>{{ product.color }}</span>
             </td>
             <td>
@@ -259,10 +259,18 @@ p {
   width: 24px;
   height: 24px;
 }
-.d_coloris {
-  border: 1px solid #333;
-  height: 24px;
+.b_coloris {
+  cursor: pointer;
   width: 24px;
+  border-left: 1px solid #333;
+  border-top: 1px solid #333;
+
+  .bottom {
+    clip-path: polygon(0 100%, 100% 0%, 100% 100%, 0% 100%);
+    height: 24px;
+    border-bottom: 1px solid #333;
+    border-right: 1px solid #333;
+  }
 }
 
 .actions {
