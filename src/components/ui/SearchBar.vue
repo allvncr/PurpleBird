@@ -30,6 +30,7 @@
         ]"
         text-field="lib"
         value-field="lib"
+        @change="searchProduct"
       ></b-select>
     </div>
     <div class="form-group">
@@ -71,12 +72,16 @@ export default {
       if (this.filtre.categorie != "Toutes Categories")
         data.categorie = this.filtre.categorie;
 
-      this.all_products(data)
+      this.all_products(data);
       if (
         this.$route.name != "categories" &&
         this.$route.name != "produitList"
       ) {
-        this.$router.push("/categories");
+        this.$router.push("/categories?cat=" + this.filtre.categorie);
+      } else {
+        if (this.filtre.categorie != "Toutes Categories")
+          this.$router.push("/categories?cat=" + this.filtre.categorie);
+        else this.$router.push("/categories");
       }
     },
   },
@@ -85,15 +90,23 @@ export default {
       if (this.search != newSearch) this.search = newSearch;
     },
   },
+  mounted() {
+    if (this.$route.query.cat) {
+      this.filtre.categorie = this.$route.query.cat;
+      this.all_products({
+        categorie: this.filtre.categorie,
+      });
+    }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 form {
-    @media only screen and (max-width: $phone) {
-      width: 100%;
-      gap: 8px 0;
-    }
+  @media only screen and (max-width: $phone) {
+    width: 100%;
+    gap: 8px 0;
+  }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
