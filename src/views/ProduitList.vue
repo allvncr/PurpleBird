@@ -46,6 +46,9 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {};
+  },
   computed: {
     ...mapGetters(["getProduitRows", "getPanier", "getProduitLoading"]),
   },

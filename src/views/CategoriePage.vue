@@ -25,7 +25,14 @@
         </div>
         <div class="produit-list">
           <!-- <router-view /> -->
-          <produit-list :liste="liste"></produit-list>
+          <produit-list
+            v-if="!showSpinner"
+            :liste="liste"
+            :showSpinner="showSpinner"
+          ></produit-list>
+          <div class="loader" v-else>
+            <b-spinner label="Spinning"></b-spinner>
+          </div>
         </div>
 
         <b-pagination
@@ -55,6 +62,7 @@ export default {
       page: 1,
       perPage: 12,
       liste: [],
+      showSpinner: false,
     };
   },
   computed: {
@@ -69,21 +77,34 @@ export default {
     ]),
     setup(query) {
       this.all_products(query).then(() => {
-        this.liste = this.getProduits.slice(0, this.perPage);
+        if (this.$route.query.page) {
+          this.pagination(this.$route.query.page);
+        } else {
+          this.liste = this.getProduits.slice(0, this.perPage);
+        }
       });
     },
     pagination(paginate) {
+      this.showSpinner = true;
       this.page = paginate;
       this.liste = this.getProduits.slice(
         this.perPage * (paginate - 1),
         this.perPage * paginate
       );
+      if (!this.$route.query.cat)
+        this.$router.push({ name: "categories", query: { page: this.page } });
+
       window.scrollTo({ top: 300, behavior: "smooth" });
+      setTimeout(() => {
+        this.showSpinner = false;
+      }, 2000);
     },
   },
   mounted() {
     document.title = "Liste Articles";
-    if (!this.$route.query.search) this.setup({});
+    if (!this.$route.query.search && !this.$route.query.cat) {
+      this.setup({});
+    }
     this.all_categories();
   },
   watch: {

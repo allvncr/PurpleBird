@@ -39,12 +39,10 @@
 
         <div class="about-feature">
           <img class="rounded-circle" src="../assets/pole-crea.png" />
-          <h5>Lois Anne</h5>
+          <h5>Jean Gnagoh</h5>
           <p>
-            Conseiller Clientèle<br />
-            <a href="mailto:lois.anne@purplebird.fr">
-              lois.anne@purplebird.fr
-            </a>
+            Administration et Finance<br />
+            <a href="mailto:admin@purplebird.fr"> admin@purplebird.fr </a>
           </p>
         </div>
 
