@@ -104,7 +104,7 @@
         </div>
         <div class="divSlide">
           <img
-            style="padding: 16px 32px"
+            style="padding: 8px 16px"
             src="../assets/partenaires/atf_Noir_CMJN.jpg"
             alt="image slot"
           />
@@ -139,15 +139,15 @@
             alt="image slot"
           />
         </div>
-        <div class="divSlide">
+        <!-- <div class="divSlide">
           <img
             src="../assets/partenaires/XDConnects_Logo_Black_Tagline.jpg"
             alt="image slot"
           />
-        </div>
+        </div> -->
         <div class="divSlide">
           <img
-            style="padding: 42px 16px"
+            style="padding: 12px 6px"
             src="../assets/partenaires/Urban-Vitamin_black_primary_RGB.jpg"
             alt="image slot"
           />
@@ -160,21 +160,21 @@
         </div>
         <div class="divSlide">
           <img
-            style="padding: 32px 16px"
+            style="padding: 12px 6px"
             src="../assets/partenaires/Impact_the-collection-of-tomorrow.png"
             alt="image slot"
           />
         </div>
         <div class="divSlide">
           <img
-            style="padding: 42px 16px"
+            style="padding: 12px 6px"
             src="../assets/partenaires/GEAR-X_primary_black_RGB.jpg"
             alt="image slot"
           />
         </div>
         <div class="divSlide">
           <img
-            style="padding: 42px 16px"
+            style="padding: 12px 6px"
             src="../assets/partenaires/philips-primary_black.png"
             alt="image slot"
           />
@@ -193,7 +193,7 @@
         </div>
         <div class="divSlide">
           <img
-            style="padding: 42px 16px"
+            style="padding: 12px 6px"
             src="../assets/partenaires/motorola-primary_black.png"
             alt="image slot"
           />
@@ -405,9 +405,8 @@ a {
   margin-bottom: 48px;
 
   img {
-    padding: 16px;
-    height: 140px;
-    width: 200px;
+    height: 70px;
+    width: 140px;
   }
 
   .block_grey {
@@ -416,7 +415,7 @@ a {
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 20px;
     background-color: #f5f5f5;
   }
 }

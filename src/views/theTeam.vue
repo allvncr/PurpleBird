@@ -8,7 +8,7 @@
           <img class="rounded-circle" src="../assets/pole-crea.png" />
           <h5>Micha TOTSHI</h5>
           <p>
-            Gérante<br />
+            Chargée de projet marketing et communication<br />
             <a href="mailto:micha.totshi@purplebird.fr">
               micha.totshi@purplebird.fr
             </a>
