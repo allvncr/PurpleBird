@@ -168,7 +168,6 @@ export default {
   },
   mounted() {
     document.title = "Panier";
-    console.log(this.getPanier);
   },
 };
 </script>
