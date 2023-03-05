@@ -43,6 +43,7 @@
                 ></div>
               </div>
               <span>{{ product.color }}</span>
+              <div v-if="product.size">{{ product.size }}</div>
             </td>
             <td>
               {{ product.marking ? product.marking.marque : "-" }}
@@ -167,6 +168,7 @@ export default {
   },
   mounted() {
     document.title = "Panier";
+    console.log(this.getPanier);
   },
 };
 </script>

@@ -76,7 +76,8 @@ export default {
         let exist = estimateProductList.findIndex((p) => p.name == el.name);
         if (exist >= 0) {
           detail.color = el.color;
-          detail.size = +el.quantite;
+          if (el.size) detail.size = el.size + " x " + +el.quantite;
+          else detail.size = +el.quantite;
           detail.unitPriceHT = +el.price;
           detail.totalPriceHT = +el.quantite * +el.price;
           detail.tva = 20;
@@ -106,7 +107,8 @@ export default {
           produit.url_Logo = this.getMinio ? this.getMinio : "";
 
           detail.color = el.color;
-          detail.size = +el.quantite;
+          if (el.size) detail.size = el.size + " x " + +el.quantite;
+          else detail.size = +el.quantite;
           detail.unitPriceHT = +el.price;
           detail.totalPriceHT = +el.quantite * +el.price;
           detail.tva = 20;
@@ -164,8 +166,7 @@ export default {
         },
       };
 
-
-      this.create_order(order)
+      this.create_order(order);
       this.showMsgBoxOne();
     },
 

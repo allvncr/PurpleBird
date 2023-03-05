@@ -22,7 +22,9 @@
                 {{ product.name }}
               </router-link>
             </h2>
-            <div class="product-price">{{ product.price | price }} € HT</div>
+            <div class="product-price" v-if="!isTextile">
+              {{ product.price | price }} € HT
+            </div>
           </div>
           <div class="product-actions actions">
             <router-link
@@ -51,6 +53,12 @@ export default {
   },
   computed: {
     ...mapGetters(["getProduitRows", "getPanier", "getProduitLoading"]),
+    isTextile() {
+      var bool = false;
+      if (this.$route.query.cat && this.$route.query.cat == "Textiles")
+        bool = true;
+      return bool;
+    },
   },
 
   props: {

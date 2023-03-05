@@ -132,9 +132,12 @@
           <div class="col-xl-4 col-lg-5">
             <div class="product-details-content">
               <h1 class="h2">{{ produit.name }}</h1>
-              <h2 v-if="produit.prices">
+              <h2 v-if="produit.prices && !isTextile">
                 <small>À partir de </small>
                 {{ produit.prices[produit.prices.length - 1] | price }} €
+              </h2>
+              <h2 v-else style="margin-bottom: 8px">
+                <small>Prix sur Devis</small>
               </h2>
               <p>
                 <strong
@@ -143,6 +146,9 @@
                 </strong>
               </p>
               <br />
+              <b-form-group label="Taille" v-if="isTextile">
+                <b-select :options="produit.sizes" v-model="size"></b-select>
+              </b-form-group>
 
               <p class="mb-4">{{ produit.description }}</p>
               <table>
@@ -232,7 +238,7 @@
           </div>
           <div class="col-lg-5">
             <div class="proceed-area">
-              <div class="estimate-totals">
+              <div class="estimate-totals" v-if="!isTextile">
                 <h3><strong class="total-title">Total</strong></h3>
                 <ul>
                   <li>
@@ -298,6 +304,7 @@ export default {
 
   data() {
     return {
+      size: "L",
       produit: {
         imagesList: [],
         markingList: [],
@@ -333,6 +340,7 @@ export default {
         marking: this.perso.file ? this.perso : null,
         image: this.produit.imagesList[0],
       };
+      if (this.isTextile) product.size = this.size;
 
       this.add_product({
         ...product,
@@ -431,6 +439,11 @@ export default {
       const diffInDays = diffInHours / 24;
       const diffInWeeks = diffInDays / 7;
       return diffInWeeks.toFixed(0) < 4;
+    },
+    isTextile() {
+      var bool = false;
+      if (this.produit.infoSubCategory) bool = true;
+      return bool;
     },
   },
 

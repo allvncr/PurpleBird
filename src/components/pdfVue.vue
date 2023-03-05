@@ -44,6 +44,7 @@
                 </div>
               </td>
               <td class="panierCol">
+                <span v-if="product.size"> {{ product.size }} x </span>
                 {{ product.quantite }}
               </td>
               <td class="panierCol" align="right">

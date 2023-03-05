@@ -9,7 +9,7 @@
         </ul>
       </div>
     </section>
-    <section v-if="isTexttile">
+    <section v-if="isTextile">
       <ul class="categories">
         <li @click="filtreSub()">Tout textile</li>
         <li
@@ -84,7 +84,7 @@ export default {
       "getProduits",
       "getSousCategories",
     ]),
-    isTexttile() {
+    isTextile() {
       var bool = false;
       if (this.$route.query.cat && this.$route.query.cat == "Textiles")
         bool = true;
@@ -136,8 +136,7 @@ export default {
       this.setup({});
     }
     this.all_categories();
-    console.log(this.isTexttile);
-    if (this.isTexttile) this.all_subcategories();
+    if (this.isTextile) this.all_subcategories();
   },
   watch: {
     getProduits(newList) {
