@@ -136,7 +136,7 @@ export default {
       this.setup({});
     }
     this.all_categories();
-    if (this.isTextile) this.all_subcategories();
+    this.all_subcategories();
   },
   watch: {
     getProduits(newList) {
