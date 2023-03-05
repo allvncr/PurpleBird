@@ -63,7 +63,8 @@ const actions = {
       min: payload.min,
       max: payload.max,
       sort: payload.sort,
-      subCategory: payload.smartFilter,
+      subCategory: payload.subCategory,
+      infoSubCategory: payload.infoSubCategory,
     };
     try {
       const response = await axios.get(domain + `/products`, {

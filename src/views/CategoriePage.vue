@@ -9,22 +9,29 @@
         </ul>
       </div>
     </section>
-    <section v-if="isTextile">
-      <ul class="categories">
-        <li @click="filtreSub()">Tout textile</li>
-        <li
-          v-for="(cat, i) in getSousCategories"
-          :key="i"
-          @click="filtreSub(cat)"
-        >
-          {{ cat }}
-        </li>
-      </ul>
-    </section>
     <section class="section">
+      <div class="left">
+        <b-form-group v-if="isTextile">
+          <label>Sous Categorie</label>
+          <b-select
+            :options="['Tous', ...getSousCategories]"
+            v-model="sousCategorie"
+            @change="filtreSub"
+          ></b-select>
+        </b-form-group>
+        <b-form-group v-if="isTextile && sousCategorie != 'Tous'">
+          <label>Type de produit</label>
+          <b-select
+            :options="['Tous', ...getInfoSousCategories]"
+            v-model="infoSousCategorie"
+            @change="filtreInfoSub"
+          ></b-select>
+        </b-form-group>
+      </div>
       <div class="right">
         <div class="searchnone">
-          <h1 class="page-title category-title">Recherche</h1>
+          <h1 class="page-title category-title" v-if="!isTextile">Recherche</h1>
+          <h1 v-else class="page-title category-title">Textiles</h1>
           <div class="category-total">
             <p>
               <strong>{{ getProduitRows }}</strong> produit(s)
@@ -75,6 +82,8 @@ export default {
       perPage: 12,
       liste: [],
       showSpinner: false,
+      sousCategorie: "Tous",
+      infoSousCategorie: "Tous",
     };
   },
   computed: {
@@ -83,6 +92,7 @@ export default {
       "getProduitRows",
       "getProduits",
       "getSousCategories",
+      "getInfoSousCategories",
     ]),
     isTextile() {
       var bool = false;
@@ -98,6 +108,7 @@ export default {
       "category_products",
       "getProduitLoading",
       "all_subcategories",
+      "all_infosubcategories",
     ]),
     setup(query) {
       this.all_products(query).then(() => {
@@ -108,10 +119,20 @@ export default {
         }
       });
     },
-    filtreSub(cat = null) {
-      if (cat) this.setup({ smartFilter: cat });
-      else {
+    filtreSub(cat) {
+      if (cat != "Tous") {
+        this.infoSousCategorie = "Tous";
+        this.all_infosubcategories(cat);
+        this.setup({ subCategory: cat });
+      } else {
         this.setup({ categorie: "Textiles" });
+      }
+    },
+    filtreInfoSub(sub) {
+      if (sub != "Tous") {
+        this.setup({ infoSubCategory: sub });
+      } else {
+        this.filtreSub(this.sousCategorie);
       }
     },
     pagination(paginate) {

@@ -5,12 +5,14 @@ import Categorie from "@/models/categorie";
 const state = {
   categories: [],
   Souscategories: [],
+  InfoSouscategories: [],
   categorieLoading: false,
   categorieRows: 0,
 };
 const getters = {
   getCategories: (state) => state.categories,
   getSousCategories: (state) => state.Souscategories,
+  getInfoSousCategories: (state) => state.InfoSouscategories,
   getCategorieLoading: (state) => state.categorieLoading,
   getCategorieRows: (state) => state.categorieRows,
 };
@@ -35,6 +37,13 @@ const mutations = {
       state.Souscategories = payload;
     } else {
       state.Souscategories = [];
+    }
+  },
+  SET_INFOSOUSCATEGORIES(state, payload) {
+    if (payload) {
+      state.InfoSouscategories = payload;
+    } else {
+      state.InfoSouscategories = [];
     }
   },
   PUSH_CATEGORIE(state, payload) {
@@ -68,6 +77,20 @@ const actions = {
     try {
       const response = await axios.get(domain + `/categories/subcategories/27`);
       commit("SET_SOUSCATEGORIES", response.data);
+      commit("SET_CATEGORIELOADING", false);
+      return true;
+    } catch (error) {
+      commit("SET_CATEGORIELOADING", false);
+      return error;
+    }
+  },
+  async all_infosubcategories({ commit }, payload) {
+    commit("SET_CATEGORIELOADING", true);
+    try {
+      const response = await axios.get(
+        domain + `/subcategories/infosubcategories/` + payload
+      );
+      commit("SET_INFOSOUSCATEGORIES", response.data);
       commit("SET_CATEGORIELOADING", false);
       return true;
     } catch (error) {
