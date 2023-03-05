@@ -9,6 +9,18 @@
         </ul>
       </div>
     </section>
+    <section v-if="isTexttile">
+      <ul class="categories">
+        <li @click="filtreSub()">Tout textile</li>
+        <li
+          v-for="(cat, i) in getSousCategories"
+          :key="i"
+          @click="filtreSub(cat)"
+        >
+          {{ cat }}
+        </li>
+      </ul>
+    </section>
     <section class="section">
       <div class="right">
         <div class="searchnone">
@@ -66,7 +78,18 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getCategories", "getProduitRows", "getProduits"]),
+    ...mapGetters([
+      "getCategories",
+      "getProduitRows",
+      "getProduits",
+      "getSousCategories",
+    ]),
+    isTexttile() {
+      var bool = false;
+      if (this.$route.query.cat && this.$route.query.cat == "Textiles")
+        bool = true;
+      return bool;
+    },
   },
   methods: {
     ...mapActions([
@@ -74,6 +97,7 @@ export default {
       "all_products",
       "category_products",
       "getProduitLoading",
+      "all_subcategories",
     ]),
     setup(query) {
       this.all_products(query).then(() => {
@@ -83,6 +107,12 @@ export default {
           this.liste = this.getProduits.slice(0, this.perPage);
         }
       });
+    },
+    filtreSub(cat = null) {
+      if (cat) this.setup({ smartFilter: cat });
+      else {
+        this.setup({ categorie: "Textiles" });
+      }
     },
     pagination(paginate) {
       this.showSpinner = true;
@@ -106,6 +136,8 @@ export default {
       this.setup({});
     }
     this.all_categories();
+    console.log(this.isTexttile);
+    if (this.isTexttile) this.all_subcategories();
   },
   watch: {
     getProduits(newList) {
@@ -291,6 +323,27 @@ p {
   .spinner-border {
     width: 5rem;
     height: 5rem;
+  }
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 8px;
+  li {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 14px;
+    padding: 8px 24px;
+    border-radius: 5px;
+    background-color: $primary;
+    border-color: $primary;
+    border-radius: 5px;
+    color: $white;
+    font-weight: 600;
+    margin-bottom: 12px;
   }
 }
 </style>

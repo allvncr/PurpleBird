@@ -444,6 +444,9 @@ export default {
     document.title = "Details Article";
     this.one_product(this.$route.params).then(() => {
       this.produit = this.getProduit[0];
+      if (!this.produit.categories[0].markings.length) {
+        this.produit.categories[0].markings = this.produit.defaultsMarkings;
+      }
     });
   },
 };
