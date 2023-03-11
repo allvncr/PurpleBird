@@ -273,6 +273,7 @@ export default {
     ...mapGetters(["getProduits", "getCategories"]),
 
     computedProd() {
+      console.log(this.getProduits);
       var list = this.getProduits;
       list = list.reverse();
 
@@ -316,7 +317,7 @@ export default {
   },
   mounted() {
     document.title = "PurpleBird";
-    this.all_products({ sort: "createdDate,desc" });
+    this.all_products({});
     this.all_categories();
   },
 };
