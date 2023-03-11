@@ -12,7 +12,10 @@ const state = {
   categorieRows: 0,
 };
 const getters = {
-  getCategories: (state) => state.categories,
+  getCategories: (state) =>
+    state.categories.sort((a, b) => {
+      return a.lib.localeCompare(b.lib);
+    }),
   getSousCategories: (state) => state.Souscategories,
   getInfoSousCategories: (state) => state.InfoSouscategories,
   getCategorieLoading: (state) => state.categorieLoading,
