@@ -20,8 +20,8 @@ const getters = {
   getInfoSousCategories: (state) => state.InfoSouscategories,
   getCategorieLoading: (state) => state.categorieLoading,
   getCategorieRows: (state) => state.categorieRows,
-  getAllColors: (state) => state.colors,
-  getAllSizes: (state) => state.sizes,
+  getAllColors: (state) => state.colors.sort(),
+  getAllSizes: (state) => state.sizes.sort(),
 };
 const mutations = {
   DO_NOTHING() {},
