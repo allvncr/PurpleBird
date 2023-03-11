@@ -45,16 +45,11 @@
               <span>{{ product.color }}</span>
               <div v-if="product.size">{{ product.size }}</div>
             </td>
-            <td>
+            <td style="text-transform: uppercase">
               {{ product.marking ? product.marking.marque : "-" }}
             </td>
             <td class="panierCol">
-              <input
-                type="number"
-                v-model="product.quantite"
-                min="1"
-                @input="getTotal"
-              />
+              {{ product.quantite }}
             </td>
             <td class="panierCol" align="right">
               {{ product.price | price }} €

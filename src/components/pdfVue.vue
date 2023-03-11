@@ -67,7 +67,9 @@
           </thead>
           <tbody>
             <tr>
-              <td colspan="3">{{ product.marking.marque }}</td>
+              <td colspan="3" style="text-transform: uppercase">
+                {{ product.marking.marque }}
+              </td>
               <td></td>
               <td></td>
               <td>

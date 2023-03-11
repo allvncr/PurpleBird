@@ -205,6 +205,7 @@
               <b-form-group v-if="produit.categories">
                 <template #label> Choix de marquage </template>
                 <b-form-select
+                  style="text-transform: uppercase"
                   plain
                   v-model="perso.marque"
                   :options="[
@@ -442,7 +443,7 @@ export default {
     },
     isTextile() {
       var bool = false;
-      if (this.produit.infoSubCategory) bool = true;
+      if (this.produit.size?.length) bool = true;
       return bool;
     },
   },

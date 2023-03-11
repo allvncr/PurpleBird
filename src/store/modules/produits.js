@@ -65,6 +65,8 @@ const actions = {
       sort: payload.sort,
       subCategory: payload.subCategory,
       infoSubCategory: payload.infoSubCategory,
+      color: payload.color,
+      size: payload.sort,
     };
     try {
       const response = await axios.get(domain + `/products`, {

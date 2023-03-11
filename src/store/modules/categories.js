@@ -6,6 +6,8 @@ const state = {
   categories: [],
   Souscategories: [],
   InfoSouscategories: [],
+  colors: [],
+  sizes: [],
   categorieLoading: false,
   categorieRows: 0,
 };
@@ -15,6 +17,8 @@ const getters = {
   getInfoSousCategories: (state) => state.InfoSouscategories,
   getCategorieLoading: (state) => state.categorieLoading,
   getCategorieRows: (state) => state.categorieRows,
+  getAllColors: (state) => state.colors,
+  getAllSizes: (state) => state.sizes,
 };
 const mutations = {
   DO_NOTHING() {},
@@ -46,6 +50,20 @@ const mutations = {
       state.InfoSouscategories = [];
     }
   },
+  SET_COLORS(state, payload) {
+    if (payload) {
+      state.colors = payload;
+    } else {
+      state.colors = [];
+    }
+  },
+  SET_SIZES(state, payload) {
+    if (payload) {
+      state.sizes = payload;
+    } else {
+      state.sizes = [];
+    }
+  },
   PUSH_CATEGORIE(state, payload) {
     state.categories.push(payload);
   },
@@ -72,10 +90,12 @@ const actions = {
       return error;
     }
   },
-  async all_subcategories({ commit }) {
+  async all_subcategories({ commit }, payload) {
     commit("SET_CATEGORIELOADING", true);
     try {
-      const response = await axios.get(domain + `/categories/subcategories/27`);
+      const response = await axios.get(
+        domain + `/categories/subcategories/` + payload
+      );
       commit("SET_SOUSCATEGORIES", response.data);
       commit("SET_CATEGORIELOADING", false);
       return true;
@@ -91,6 +111,30 @@ const actions = {
         domain + `/subcategories/infosubcategories/` + payload
       );
       commit("SET_INFOSOUSCATEGORIES", response.data);
+      commit("SET_CATEGORIELOADING", false);
+      return true;
+    } catch (error) {
+      commit("SET_CATEGORIELOADING", false);
+      return error;
+    }
+  },
+  async all_colors({ commit }) {
+    commit("SET_CATEGORIELOADING", true);
+    try {
+      const response = await axios.get(domain + `/products/colors`);
+      commit("SET_COLORS", response.data);
+      commit("SET_CATEGORIELOADING", false);
+      return true;
+    } catch (error) {
+      commit("SET_CATEGORIELOADING", false);
+      return error;
+    }
+  },
+  async all_sizes({ commit }) {
+    commit("SET_CATEGORIELOADING", true);
+    try {
+      const response = await axios.get(domain + `/products/sizes`);
+      commit("SET_SIZES", response.data);
       commit("SET_CATEGORIELOADING", false);
       return true;
     } catch (error) {

@@ -171,7 +171,8 @@
             <router-link
               :to="{ name: 'condition de vente' }"
               title="tous droits réservés © 2022"
-              >tous droits réservés © 2022&nbsp;PURPLEBIRD</router-link
+              >tous droits réservés © <span>{{ moment(Date()) }}</span
+              >&nbsp;PURPLEBIRD</router-link
             >
           </li>
           <!-- <li>
@@ -190,10 +191,14 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   methods: {
     scrollUp() {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    moment(date) {
+      return moment(new Date(date)).format("YYYY");
     },
   },
 };

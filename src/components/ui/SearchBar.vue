@@ -34,10 +34,10 @@
       ></b-select>
     </div>
     <div class="form-group">
-      <input type="text" v-model="filtre.min" placeholder="Min" />
+      <input type="text" v-model="filtre.min" placeholder="Prix min" />
     </div>
     <div class="form-group">
-      <input type="text" v-model="filtre.max" placeholder="Max" />
+      <input type="text" v-model="filtre.max" placeholder="Prix max" />
     </div>
 
     <button type="submit" class="btn btn-primary">Valider</button>
@@ -62,15 +62,17 @@ export default {
     ...mapGetters(["getCategories"]),
   },
   methods: {
-    ...mapActions(["all_products", "all_categories"]),
+    ...mapActions(["all_products", "all_categories", "all_subcategories"]),
     searchProduct() {
       var data = {
         search: this.filtre.search,
         min: this.filtre.min,
         max: this.filtre.max,
       };
-      if (this.filtre.categorie != "Toutes Categories")
+      if (this.filtre.categorie != "Toutes Categories") {
         data.categorie = this.filtre.categorie;
+        this.all_subcategories(data.categorie);
+      }
 
       this.all_products(data);
       if (
@@ -140,7 +142,7 @@ form {
       }
 
       &::placeholder {
-        text-transform: uppercase;
+        text-transform: capitalize;
       }
     }
   }

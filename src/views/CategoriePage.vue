@@ -1,72 +1,101 @@
 <template>
-  <div class="container">
-    <section>
-      <div class="breadcrumb-responsive">
-        <ul class="breadcrumb">
-          <li>
-            <router-link to="/">Accueil</router-link>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="section">
-      <div class="left">
-        <b-form-group v-if="isTextile">
-          <label>Sous Categorie</label>
-          <b-select
-            :options="['Tous', ...getSousCategories]"
-            v-model="sousCategorie"
-            @change="filtreSub"
-          ></b-select>
-        </b-form-group>
-        <b-form-group v-if="isTextile && sousCategorie != 'Tous'">
-          <label>Type de produit</label>
-          <b-select
-            :options="['Tous', ...getInfoSousCategories]"
-            v-model="infoSousCategorie"
-            @change="filtreInfoSub"
-          ></b-select>
-        </b-form-group>
-      </div>
-      <div class="right">
-        <div class="searchnone">
-          <h1 class="page-title category-title" v-if="!isTextile">Recherche</h1>
-          <h1 v-else class="page-title category-title">Textiles</h1>
-          <div class="category-total">
-            <p>
-              <strong>{{ getProduitRows }}</strong> produit(s)
+  <div class="background">
+    <div class="container">
+      <section>
+        <div class="breadcrumb-responsive">
+          <ul class="breadcrumb">
+            <li>
+              <router-link to="/">Accueil</router-link>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="section">
+        <div class="left">
+          <b-form-group v-if="getSousCategories.length">
+            <label>Sous Categorie</label>
+            <b-select
+              :options="['Tous', ...getSousCategories]"
+              v-model="sousCategorie"
+              @change="filtreSub"
+            ></b-select>
+          </b-form-group>
+          <b-form-group
+            v-if="sousCategorie != 'Tous' && getInfoSousCategories.length"
+          >
+            <label>Type de produit</label>
+            <b-select
+              :options="['Tous', ...getInfoSousCategories]"
+              v-model="infoSousCategorie"
+              @change="filtreInfoSub"
+            ></b-select>
+          </b-form-group>
+
+          <b-form-group v-if="getAllColors.length">
+            <label>Couleur</label>
+            <b-select
+              :options="['Tous', ...getAllColors]"
+              v-model="color"
+              @change="filtreColor"
+            ></b-select>
+          </b-form-group>
+
+          <b-form-group v-if="getAllSizes.length">
+            <label>Taille</label>
+            <b-select
+              :options="['Tous', ...getAllSizes]"
+              v-model="size"
+              @change="filtreSize"
+            ></b-select>
+          </b-form-group>
+        </div>
+        <div class="right">
+          <div class="searchnone">
+            <h1 class="page-title category-title">
+              {{ $route.query.cat ? $route.query.cat : "Recherche" }}
+            </h1>
+            <div class="category-total">
+              <b-select
+                :options="[12, 24, 36]"
+                v-model="perPage"
+                @change="pagination(1)"
+              ></b-select>
+
+              <p>
+                <strong>{{ getProduitRows }}</strong> produit(s)
+              </p>
+            </div>
+            <p v-if="!getProduitRows">
+              Il n'y a aucun produit pour cette recherche. Merci de nous
+              contacter.
             </p>
           </div>
-          <p v-if="!getProduitRows">
-            Il n'y a aucun produit pour cette recherche. Merci de nous
-            contacter.
-          </p>
-        </div>
-        <div class="produit-list">
-          <!-- <router-view /> -->
-          <produit-list
-            v-if="!showSpinner"
-            :liste="liste"
-            :showSpinner="showSpinner"
-          ></produit-list>
-          <div class="loader" v-else>
-            <b-spinner label="Spinning"></b-spinner>
+          <div class="produit-list">
+            <!-- <router-view /> -->
+            <produit-list
+              v-if="!showSpinner"
+              :liste="liste"
+              :showSpinner="showSpinner"
+            ></produit-list>
+            <div class="loader" v-else>
+              <b-spinner label="Spinning"></b-spinner>
+            </div>
           </div>
-        </div>
 
-        <b-pagination
-          class=""
-          v-model="page"
-          :per-page="perPage"
-          :total-rows="getProduitRows"
-          last-number
-          first-number
-          pills
-          align="center"
-          @change="pagination"
-        ></b-pagination>
-      </div>
-    </section>
+          <b-pagination
+            class=""
+            v-model="page"
+            :per-page="perPage"
+            :total-rows="getProduitRows"
+            last-number
+            first-number
+            pills
+            align="center"
+            @change="pagination"
+          ></b-pagination>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -79,11 +108,13 @@ export default {
   data() {
     return {
       page: 1,
-      perPage: 12,
+      perPage: 24,
       liste: [],
       showSpinner: false,
       sousCategorie: "Tous",
       infoSousCategorie: "Tous",
+      color: "Tous",
+      size: "Tous",
     };
   },
   computed: {
@@ -93,13 +124,9 @@ export default {
       "getProduits",
       "getSousCategories",
       "getInfoSousCategories",
+      "getAllColors",
+      "getAllSizes",
     ]),
-    isTextile() {
-      var bool = false;
-      if (this.$route.query.cat && this.$route.query.cat == "Textiles")
-        bool = true;
-      return bool;
-    },
   },
   methods: {
     ...mapActions([
@@ -109,9 +136,20 @@ export default {
       "getProduitLoading",
       "all_subcategories",
       "all_infosubcategories",
+      "all_colors",
+      "all_sizes",
     ]),
     setup(query) {
-      this.all_products(query).then(() => {
+      var data = {
+        categorie: this.$route.query.cat,
+        color: this.color != "Tous" ? this.color : null,
+        size: this.size != "Tous" ? this.size : null,
+        subCategory: this.sousCategorie != "Tous" ? this.sousCategorie : null,
+        infoSubCategory:
+          this.infoSousCategorie != "Tous" ? this.infoSousCategorie : null,
+        ...query,
+      };
+      this.all_products(data).then(() => {
         if (this.$route.query.page) {
           this.pagination(this.$route.query.page);
         } else {
@@ -120,12 +158,12 @@ export default {
       });
     },
     filtreSub(cat) {
+      this.infoSousCategorie = "Tous";
       if (cat != "Tous") {
-        this.infoSousCategorie = "Tous";
         this.all_infosubcategories(cat);
         this.setup({ subCategory: cat });
       } else {
-        this.setup({ categorie: "Textiles" });
+        this.setup({});
       }
     },
     filtreInfoSub(sub) {
@@ -133,6 +171,20 @@ export default {
         this.setup({ infoSubCategory: sub });
       } else {
         this.filtreSub(this.sousCategorie);
+      }
+    },
+    filtreColor(color) {
+      if (color != "Tous") {
+        this.setup({ color: color });
+      } else {
+        this.setup({});
+      }
+    },
+    filtreSize(size) {
+      if (size != "Tous") {
+        this.setup({ size: size });
+      } else {
+        this.setup({});
       }
     },
     pagination(paginate) {
@@ -148,7 +200,7 @@ export default {
       window.scrollTo({ top: 300, behavior: "smooth" });
       setTimeout(() => {
         this.showSpinner = false;
-      }, 2000);
+      }, 500);
     },
   },
   mounted() {
@@ -157,7 +209,8 @@ export default {
       this.setup({});
     }
     this.all_categories();
-    this.all_subcategories();
+    this.all_colors();
+    this.all_sizes();
   },
   watch: {
     getProduits(newList) {
@@ -326,10 +379,18 @@ p {
     }
 
     .category-total {
-      text-align: right;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
       border-bottom: 1px solid $grey-dark;
       padding-bottom: 8px;
       margin-bottom: 8px;
+
+      input,
+      select {
+        width: 64px;
+      }
     }
   }
 }
