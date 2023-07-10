@@ -39,7 +39,7 @@
 
         <div class="about-feature">
           <img class="rounded-circle" src="../assets/pole-crea.png" />
-          <h5>Jean Gnagoh</h5>
+          <h5></h5>
           <p>
             Administration et Finance<br />
             <a href="mailto:admin@purplebird.fr"> admin@purplebird.fr </a>
