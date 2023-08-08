@@ -213,6 +213,12 @@ export default {
     this.all_sizes();
   },
   watch: {
+    $route() {
+      this.sousCategorie = "Tous";
+      this.infoSousCategorie = "Tous";
+      this.color = "Tous";
+      this.size = "Tous";
+    },
     getProduits(newList) {
       if (newList) this.liste = newList.slice(0, this.perPage);
     },
